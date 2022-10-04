@@ -18,6 +18,20 @@
         <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
     <meta name="generator" content="Hexo 6.3.0"></head>
     <body>
+        <div id="L2dCanvas"></div>
+        <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script>
         <canvas
             id="fireworks"
             style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483647">
