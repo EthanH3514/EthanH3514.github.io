@@ -58,11 +58,6 @@
             <span>&ensp;tags</span>
         </a>
         
-        <a href="/friends">
-            <i class="fa-solid fa-friends fa-fw"></i>
-            <span>&ensp;friends</span>
-        </a>
-        
     </div>
     <div :class="'phone-menu ' + menu_show" id="phone-menu">
         <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
@@ -115,15 +110,6 @@
                         <i class="fa-solid fa-tags fa-fw"></i>
                     </div>
                     <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
-                </div>
-            </a>
-            
-            <a href="/friends">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-friends fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
                 </div>
             </a>
             
