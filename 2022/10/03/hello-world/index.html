@@ -354,6 +354,7 @@ answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troublesh
         <script src="/js/showimg.js"></script>
         
 <script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script src="../source/js/md5.min.js"></script>
 <script>
     var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
     
@@ -364,7 +365,7 @@ answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troublesh
         owner: "EthanH3514",
         admin: ["EthanH3514"],
         language: "zh-CN",
-        id: location.pathname,
+        id: md5({{ theme.gitalk.ID }}),
         distractionFreeMode: false,
         
     })
