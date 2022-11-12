@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <title>
-            Tags | Hxy的小站
+            2022年11月自律 | Hxy的小站
         </title>
         <meta name="author" content="EthanH3514">
         <meta name="description" content="这里是描述，好耶！">
@@ -282,75 +282,71 @@ mjx-container[display="true"] + br {
 </nav>
                     </div>
                     <div id="main">
-                         
-<div class="categories-tags">
+                        
+<div class="article">
+    <div>
+        <h1>2022年11月自律 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/12
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/自律/" style="color: #03a9f4">
+                    自律
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/计划/" style="color: #03a9f4">
+                    计划
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>数学竞赛落幕，是时候了。</p>
+<span id="more"></span>
+<hr>
+<h4 id="模板">模板</h4>
+<p>时间： //xx号<br>
+状态： //（考试周，正常上课，网课or假期）<br>
+课程量： //x节（一节1h）<br>
+起床时间： //xx：xx（指洗漱完坐到桌前的时间）<br>
+课程状态评价：<br>
+运动量： //xxx（运动名）+x h（运动时间）<br>
+额外指标：<br>
+ACM：<br>
+洛谷：<br>
+牛客：<br>
+codeforce： //题号<br>
+英语：<br>
+记忆单词：<br>
+专注阅读：<br>
+英文电影：</p>
+
+    </div>
     
-    <div class="all-s">
-        
-        
-        <span>
-            <a href="/tags/高等数学竞赛/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                高等数学竞赛
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/数学/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                数学
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/教程/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                教程
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/踩坑/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                踩坑
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/自律/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                自律
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/计划/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                计划
-            </a>
-        </span>
-        
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
     </div>
-    <div id="archives">
-        
-    </div>
+    
+    
 </div>
                              
 <footer id="footer">
@@ -380,6 +376,25 @@ mjx-container[display="true"] + br {
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
     </body>
 
