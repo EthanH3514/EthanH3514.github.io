@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <title>
-            随记 | Hxy(慌糖盐)
+            Hxy(慌糖盐)
         </title>
         <meta name="author" content="EthanH3514">
         <meta name="description" content="喵喵喵？">
@@ -283,54 +283,139 @@ mjx-container[display="true"] + br {
 </nav>
                     </div>
                     <div id="main">
-                        
-<div class="article">
-    <div>
-        <h1>随记 </h1>
+                        <div id="home-head">
+    <div id="home-background" style="background-image: url(https://user-images.githubusercontent.com/103171084/209776146-2310a63b-c836-4aaa-bd84-5ab4d98a630f.jpg)"></div>
+    
+    <div id="home-info" class="home-info" @click="home_click">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>hxy(慌糖盐)</h1>
+                <h3>炳烛之明，熟与昧行乎</h3>
+                <h5>喵喵喵？</h5>
+            </div>
+        </span>
     </div>
-    <div class="info">
+    
+</div>
+
+<div id="home-posts-wrap" class="">
+    <div id="home-posts">
+        <div id="posts">
+            
+
+<div class="post">
+    <a href="/2022/10/03/hello-world/">
+        <h2 class="post-title">Hello World</h2>
+    </a>
+    <div class="category-and-date">
+        
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/12/23
+            2022/10/3
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a><br>
+## Quick Start<br>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/10/03/hello-world/" class="go-post">阅读全文</a>
+</div>
+
+             
+<div class="page-current">
+    <div class="prev">
+        
+        <a href="/">
+            <span class="page-num">
+                <i class="fa-solid fa-caret-left fa-fw"></i>
+            </span>
+        </a>
+        
+    </div>
+    <div class="page-index">
+        
+        <span>
+            
+            
+            <a href="/">
+                <span class="page-num">
+                    1
+                </span>
+            </a>
         </span>
         
+        <span class="current">
+            2
+        </span>
         
-        <span class="tags">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-            </span>
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+        </div>
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style" style="width: 300px">
+        <div class="avatar">
+            <img src="https://user-images.githubusercontent.com/103171084/194305177-a03c64b6-1e6f-454c-a1b0-2c4dcb41956a.jpg " alt="avatar">
+        </div>
+        <div class="name">
+            EthanH3514
+        </div>
+        <div class="descriptions">
             
-            <span class="tag">
-                
-                <a href="/tags/随记/" style="color: #ff7d73">
-                    随记
+            <div class="description">
+                A student forever
+            </div>
+            
+        </div>
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/EthanH3514">
+                    <i class="fa-brands fa-github fa-fw"></i>
                 </a>
             </span>
             
-        </span>
-        
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/38484581">
+                    <i class="fa-brands fa-bilibili fa-fw"></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="atom.xml">
+                    <i class="fa-solid fa-rss fa-fw"></i>
+                </a>
+            </span>
+            
+        </div>
+        <div class="friend-links">
+            
+        </div>
     </div>
-    <div class="content" v-pre>
-        <blockquote>
-<p>如果没有坚定的信念或者所热爱的事物，也许在路上会迷失吧。</p>
-</blockquote>
-<hr>
-<span id="more"></span>
-<p>最大的错误，莫过于将兴趣变为任务。 -22.12.23</p>
-<hr>
-<!-- ![知乎：那些被认为是学科竞赛「种子选手」，最后却失利的人现在过得怎么样？](https://user-images.githubusercontent.com/103171084/209435786-873f000d-7e57-47a3-be29-90476b4cc723.png)
-
-我还没有走出来吗？伤痛仍然刻骨铭心          -22.12.24 -->
-
+</div>
     </div>
-    
-    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
-    <div id="comment">
-        <div id="gitalk-container"></div>
-    </div>
-    
     
 </div>
                              
@@ -361,25 +446,6 @@ mjx-container[display="true"] + br {
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
-<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
-<script>
-    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
-    
-    const gitalk = new Gitalk({
-        clientID: clientID,
-        clientSecret: clientSecret,
-        repo: "gittalk_comments",
-        owner: "EthanH3514",
-        admin: ["EthanH3514"],
-        language: "zh-CN",
-        id: md5(window.location.pathname),
-        distractionFreeMode: false,
-        
-    })
-    gitalk.render("gitalk-container")
-</script>
-
 
     </body>
 
