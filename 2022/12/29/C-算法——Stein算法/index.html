@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <title>
-            为particlex主题提供RSS支持 | Hxy(慌糖盐)
+            C++算法——Stein算法 | Hxy(慌糖盐)
         </title>
         <meta name="author" content="EthanH3514">
         <meta name="description" content="喵喵喵？">
@@ -286,14 +286,14 @@ mjx-container[display="true"] + br {
                         
 <div class="article">
     <div>
-        <h1>为particlex主题提供RSS支持 </h1>
+        <h1>C++算法——Stein算法 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/12/28
+            2022/12/29
         </span>
         
         
@@ -304,15 +304,29 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/RSS/" style="color: #00bcd4">
-                    RSS
+                <a href="/tags/算法/" style="color: #ff7d73">
+                    算法
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/particlex/" style="color: #ffa2c4">
-                    particlex
+                <a href="/tags/C/" style="color: #00a596">
+                    C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Stein算法/" style="color: #00a596">
+                    Stein算法
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/gcd/" style="color: #ff7d73">
+                    gcd
                 </a>
             </span>
             
@@ -320,21 +334,57 @@ mjx-container[display="true"] + br {
         
     </div>
     <div class="content" v-pre>
-        <p>发现目前的博客还没有RSS</p>
+        <p>Stein算法是更相减损术的改进。</p>
 <hr>
 <span id="more"></span>
+<p>求gcd(a,b)时，可以分为几种情况进行优化。<br>
+1. a和b都是偶数。gcd(a,b)=2*gcd(a/2,b/2)<br>
+2. a b一奇一偶(不妨a奇b偶)。gcd(a,b)=gcd(a,b/2)<br>
+3. a和b都是奇数。gcd(a,b)=gcd((a+b)/2,(a-b)/2)<br>
+结束条件 gcd(a,a)=a</p>
+<p>Stein算法只用到加减法和移位</p>
 <hr>
-<h3 id="安装rss插件"><strong>1. 安装rss插件</strong></h3>
-<p>在博客根目录下使用以下命令安装生成RSS feed的插件：</p>
-<p><code>$npm install hexo-generator-feed --save</code></p>
-<h3 id="开一个链接窗口"><strong>2. 开一个链接窗口</strong></h3>
-<p>需要跳转到rss的链接，我将其做成图标放在博客主页头像栏下面</p>
-<p>particlex主题所对应的代码位置在<code>themes\particlex\_config.yml</code>中的<code>icon_links</code>内，在<a target="_blank" rel="noopener" href="https://fontawesome.com/search/">fontawesome</a>上找一个比较合适的图标(particlex主题自带对其支持)，我找的是rss的经典图标</p>
-<p>将以下代码加入到图标栏中即可</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">"sidebar_rss"</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> rss</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> solid</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">link</span><span class="kw">:</span><span class="at"> atom.xml</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> stein_gcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span><span class="dt">int</span> b<span class="op">)</span> <span class="co">//递归形式</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>a<span class="op">&lt;</span>b<span class="op">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        a<span class="op">^=</span>b<span class="op">,</span>b<span class="op">^=</span>a<span class="op">,</span>a<span class="op">^=</span>b<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>b<span class="op">==</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">((!(</span>a<span class="op">&amp;</span><span class="dv">1</span><span class="op">))&amp;&amp;(!(</span>b<span class="op">&amp;</span><span class="dv">1</span><span class="op">)))</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> stein_gcd<span class="op">(</span>a<span class="op">&gt;&gt;</span><span class="dv">1</span><span class="op">,</span>b<span class="op">&gt;&gt;</span><span class="dv">1</span><span class="op">)&lt;&lt;</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span><span class="op">((</span>a<span class="op">&amp;</span><span class="dv">1</span><span class="op">)&amp;&amp;(!(</span>b<span class="op">&amp;</span><span class="dv">1</span><span class="op">)))</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> stein_gcd<span class="op">(</span>a<span class="op">,</span>b<span class="op">&gt;&gt;</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span><span class="op">((!(</span>a<span class="op">&amp;</span><span class="dv">1</span><span class="op">)&amp;&amp;(</span>b<span class="op">&amp;</span><span class="dv">1</span><span class="op">)))</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> stein_gcd<span class="op">(</span>a<span class="op">&gt;&gt;</span><span class="dv">1</span><span class="op">,</span>b<span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> stein_gcd<span class="op">(</span>a<span class="op">-</span>b<span class="op">,</span>b<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> stein<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span><span class="dt">int</span> b<span class="op">)</span> <span class="co">//循环形式</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> k<span class="op">=</span><span class="dv">1</span><span class="op">;</span>        <span class="co">//k用来记录2的次幂</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">((!(</span>a<span class="op">&amp;</span><span class="dv">1</span><span class="op">))&amp;&amp;(!(</span>b<span class="op">&amp;</span><span class="dv">1</span><span class="op">)))</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        k<span class="op">&lt;&lt;=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        a<span class="op">&gt;&gt;=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        b<span class="op">&gt;&gt;=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(!(</span>a<span class="op">&amp;</span><span class="dv">1</span><span class="op">))</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        a<span class="op">&gt;&gt;=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(!(</span>b<span class="op">&amp;</span><span class="dv">1</span><span class="op">))</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        b<span class="op">&gt;&gt;=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>a<span class="op">&lt;</span>b<span class="op">)</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        a<span class="op">^=</span>b<span class="op">,</span>b<span class="op">^=</span>a<span class="op">,</span>a<span class="op">^=</span>b<span class="op">;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>a<span class="op">!=</span>b<span class="op">)</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        a<span class="op">-=</span>b<span class="op">;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>a<span class="op">&lt;</span>b<span class="op">)</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            a<span class="op">^=</span>b<span class="op">,</span>b<span class="op">^=</span>a<span class="op">,</span>a<span class="op">^=</span>b<span class="op">;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> k<span class="op">*</span>a<span class="op">;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <hr>
 
     </div>
