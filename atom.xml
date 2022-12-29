@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2022-12-29T05:34:25.129Z</updated>
+  <updated>2022-12-29T10:34:43.022Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++算法——龟速乘</title>
+    <link href="https://ethanh3514.github.io/2022/12/29/C-%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%BE%9F%E9%80%9F%E4%B9%98/"/>
+    <id>https://ethanh3514.github.io/2022/12/29/C-%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%BE%9F%E9%80%9F%E4%B9%98/</id>
+    <published>2022-12-29T10:28:28.000Z</published>
+    <updated>2022-12-29T10:34:43.022Z</updated>
+    
+    <content type="html"><![CDATA[<p>大数乘法可能还没来得及取模就爆了long long，采用龟速乘优化</p><hr><span id="more"></span><hr><div class="sourceCode" id="cb1"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ll mod<span class="op">;</span></span><span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ll mul<span class="op">(</span>ll a<span class="op">,</span>ll b<span class="op">)</span></span><span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span><span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    ll ans<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span><span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>b<span class="op">)</span></span><span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span><span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>b<span class="op">&amp;</span><span class="dv">1</span><span class="op">)</span></span><span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            ans<span class="op">=(</span>ans<span class="op">+</span>a<span class="op">)%</span>mod<span class="op">;</span></span><span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        a<span class="op">=(</span>a<span class="op">+</span>a<span class="op">)%</span>mod<span class="op">;</span></span><span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        b<span class="op">&gt;&gt;=</span><span class="dv">1</span><span class="op">;</span></span><span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span><span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ans<span class="op">;</span></span><span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><hr>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;大数乘法可能还没来得及取模就爆了long long，采用龟速乘优化&lt;/p&gt;
+&lt;hr&gt;</summary>
+    
+    
+    
+    
+    <category term="算法" scheme="https://ethanh3514.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="C++" scheme="https://ethanh3514.github.io/tags/C/"/>
+    
+    <category term="龟速乘" scheme="https://ethanh3514.github.io/tags/%E9%BE%9F%E9%80%9F%E4%B9%98/"/>
+    
+  </entry>
   
   <entry>
     <title>markdown常用指令汇总</title>
