@@ -304,14 +304,14 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/C/" style="color: #00a596">
+                <a href="/tags/C/" style="color: #03a9f4">
                     C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/代码规范/" style="color: #00bcd4">
+                <a href="/tags/代码规范/" style="color: #00a596">
                     代码规范
                 </a>
             </span>
@@ -420,7 +420,7 @@ mjx-container[display="true"] + br {
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>唯一的不同的是<code>cnt</code>和<code>i</code>的数据类型，我感觉是在for循环的判定条件中有<code>i*i&lt;d</code>，<code>d</code>是long
-long类型的，左边i也得是long
+long类型的，左边<code>i</code>也得是long
 long类型的才能快速判断，不然可能会在每次判断时都进行类型转换，造成大量时间的浪费。</p>
 <p>一次TLE，发现了个很深的代码习惯问题。</p>
 <hr>
