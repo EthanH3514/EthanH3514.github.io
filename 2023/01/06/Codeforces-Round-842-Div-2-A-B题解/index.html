@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <title>
-            Hxy(慌糖盐)
+            Codeforces Round 842 Div. 2 A-B��� | Hxy(慌糖盐)
         </title>
         <meta name="author" content="EthanH3514">
         <meta name="description" content="喵喵喵？">
@@ -283,47 +283,72 @@ mjx-container[display="true"] + br {
 </nav>
                     </div>
                     <div id="main">
-                        <div id="home-head">
-    <div id="home-background" style="background-image: url(https://user-images.githubusercontent.com/103171084/209776146-2310a63b-c836-4aaa-bd84-5ab4d98a630f.jpg)"></div>
-    
-    <div id="home-info" class="home-info" @click="home_click">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>hxy(慌糖盐)</h1>
-                <h3>炳烛之明，熟与昧行乎</h3>
-                <h5>喵喵喵？</h5>
-            </div>
-        </span>
+                        
+<div class="article">
+    <div>
+        <h1>Codeforces Round 842 Div. 2 A-B��� </h1>
     </div>
-    
-</div>
-
-<div id="home-posts-wrap" class="">
-    <div id="home-posts">
-        <div id="posts">
-            
-
-<div class="post">
-    <a href="/2023/01/06/Codeforces-Round-842-Div-2-A-B题解/">
-        <h2 class="post-title">Codeforces Round 842 Div. 2 A-B���</h2>
-    </a>
-    <div class="category-and-date">
-        
+    <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
             2023/1/6
         </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
             
-            <span id="more"></span>
+            <span class="tag">
+                
+                <a href="/tags/���/" style="color: #ff7d73">
+                    ���
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #03a9f4">
+                    C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Codeforces/" style="color: #ffa2c4">
+                    Codeforces
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/�㷨����/" style="color: #00a596">
+                    �㷨����
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Round-842/" style="color: #00a596">
+                    Round 842
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Div-2/" style="color: #03a9f4">
+                    Div. 2
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <span id="more"></span>
 <h3 id="a.greatest-convex">A.Greatest Convex</h3>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1768/problem/A">����</a></p>
 <p>�Ȼ�����<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="31.954ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 14123.8 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(572,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g><g data-mml-node="mo" transform="translate(1072.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mo" transform="translate(2072.4,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(2461.4,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(3255.7,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(4255.9,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(4755.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(5144.9,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g><g data-mml-node="mo" transform="translate(5700.7,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(6756.4,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(7145.4,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(7939.7,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(8939.9,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(9439.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(10051.1,0)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z"></path></g><g data-mml-node="mo" transform="translate(10773.3,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(11162.3,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(11956.6,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(12956.8,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(13456.8,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(13845.8,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g></g></g></svg></mjx-container></span><br>
@@ -404,608 +429,13 @@ mjx-container[display="true"] + br {
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <hr>
 
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/���/" style="color: #00a596">
-                ���
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #ff7d73">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Codeforces/" style="color: #00a596">
-                Codeforces
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/�㷨����/" style="color: #ffa2c4">
-                �㷨����
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Round-842/" style="color: #ffa2c4">
-                Round 842
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Div-2/" style="color: #00a596">
-                Div. 2
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/01/06/Codeforces-Round-842-Div-2-A-B题解/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/01/04/Codeforces-Hello-2023题解A-C/">
-        <h2 class="post-title">Codeforces Hello 2023题解A-C</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/1/4
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>第一次熬夜打比赛:D</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #00bcd4">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Codeforces/" style="color: #00a596">
-                Codeforces
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Hello-2023/" style="color: #00bcd4">
-                Hello 2023
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/题解/" style="color: #ffa2c4">
-                题解
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/算法竞赛/" style="color: #00bcd4">
-                算法竞赛
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/01/04/Codeforces-Hello-2023题解A-C/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/31/一次TLE发现的代码规范问题/">
-        <h2 class="post-title">一次TLE发现的代码规范问题</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/31
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>一道水题怎么也过不了，经历了痛苦且漫长的debug后发现竟然是数据类型没统一导致的。</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #00bcd4">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/代码规范/" style="color: #ffa2c4">
-                代码规范
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/TLE/" style="color: #00bcd4">
-                TLE
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/31/一次TLE发现的代码规范问题/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/29/C-算法——Stein算法/">
-        <h2 class="post-title">C++算法——Stein算法</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/29
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>Stein算法是更相减损术的改进。</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/算法/" style="color: #ff7d73">
-                算法
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #ffa2c4">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Stein算法/" style="color: #03a9f4">
-                Stein算法
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/gcd/" style="color: #00bcd4">
-                gcd
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/29/C-算法——Stein算法/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/29/C-算法——龟速乘/">
-        <h2 class="post-title">C++算法——龟速乘</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/29
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>大数乘法可能还没来得及取模就爆了long long，采用龟速乘优化</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/算法/" style="color: #ff7d73">
-                算法
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #03a9f4">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/龟速乘/" style="color: #ff7d73">
-                龟速乘
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/乘法优化/" style="color: #ffa2c4">
-                乘法优化
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/29/C-算法——龟速乘/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/29/markdown常用指令汇总/">
-        <h2 class="post-title">Markdown常用指令汇总</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/29
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>Markdown
-是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
-<p><del>快来五分钟速通markdown</del></p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/markdown/" style="color: #03a9f4">
-                markdown
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/指令/" style="color: #00bcd4">
-                指令
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/29/markdown常用指令汇总/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/28/在Profile-Readme中添加近期博客自动拉取功能/">
-        <h2 class="post-title">在Profile Readme中添加近期博客自动拉取功能</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/28
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>为增强github仓库和个人博客的联动，所以想要在Profile
-Readme中加入最近发布的博客链接，并作展示</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Profile-Readme/" style="color: #00a596">
-                Profile Readme
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/博客自动拉取/" style="color: #00a596">
-                博客自动拉取
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/28/在Profile-Readme中添加近期博客自动拉取功能/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/28/为particlex主题提供RSS支持/">
-        <h2 class="post-title">为particlex主题提供RSS支持</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/28
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>发现目前的博客还没有RSS</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/RSS/" style="color: #00bcd4">
-                RSS
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/particlex/" style="color: #ff7d73">
-                particlex
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/28/为particlex主题提供RSS支持/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/28/搜索指令/">
-        <h2 class="post-title">搜索指令</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/28
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>灵活运用搜索指令可以更高效地使用搜索引擎</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/搜索/" style="color: #ffa2c4">
-                搜索
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/28/搜索指令/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/27/新冠记录帖/">
-        <h2 class="post-title">新冠记录帖</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/27
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <blockquote>
-<p>谨以此贴记录我的新冠过程🤒</p>
-</blockquote>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/记录/" style="color: #ff7d73">
-                记录
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/新冠/" style="color: #00a596">
-                新冠
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/27/新冠记录帖/" class="go-post">阅读全文</a>
-</div>
-
-             
-<div class="page-current">
-    <div class="prev">
-        
-    </div>
-    <div class="page-index">
-        
-        <span class="current">
-            1
-        </span>
-        
-        <span>
-            <a href="/page/2/">
-                <span class="page-num">
-                    2
-                </span>
-            </a>
-            
-            
-        </span>
-        
-    </div>
-    <div class="next">
-        
-        <a href="/page/2/ ">
-            <span class="page-num">
-                <i class="fa-solid fa-caret-right fa-fw"></i>
-            </span>
-        </a>
-        
-    </div>
-</div>
-        </div>
     </div>
     
-    <div id="home-card">
-        <div id="card-div">
-    <div class="card-style" style="width: 300px">
-        <div class="avatar">
-            <img src="https://user-images.githubusercontent.com/103171084/194305177-a03c64b6-1e6f-454c-a1b0-2c4dcb41956a.jpg " alt="avatar">
-        </div>
-        <div class="name">
-            EthanH3514
-        </div>
-        <div class="descriptions">
-            
-            <div class="description">
-                A student forever
-            </div>
-            
-        </div>
-        <div class="icon-links">
-            
-            <span class="icon-link">
-                <a target="_blank" rel="noopener" href="https://github.com/EthanH3514">
-                    <i class="fa-brands fa-github fa-fw"></i>
-                </a>
-            </span>
-            
-            <span class="icon-link">
-                <a target="_blank" rel="noopener" href="https://space.bilibili.com/38484581">
-                    <i class="fa-brands fa-bilibili fa-fw"></i>
-                </a>
-            </span>
-            
-            <span class="icon-link">
-                <a href="atom.xml">
-                    <i class="fa-solid fa-rss fa-fw"></i>
-                </a>
-            </span>
-            
-        </div>
-        <div class="friend-links">
-            
-        </div>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
     </div>
-</div>
-    </div>
+    
     
 </div>
                              
@@ -1036,6 +466,25 @@ Readme中加入最近发布的博客链接，并作展示</p>
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
     </body>
 
