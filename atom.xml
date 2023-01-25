@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2023-01-22T08:29:23.580Z</updated>
+  <updated>2023-01-25T08:33:16.198Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VSCode自动配置头文件</title>
+    <link href="https://ethanh3514.github.io/2023/01/25/VSCode%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%A4%B4%E6%96%87%E4%BB%B6/"/>
+    <id>https://ethanh3514.github.io/2023/01/25/VSCode%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%A4%B4%E6%96%87%E4%BB%B6/</id>
+    <published>2023-01-25T08:20:24.000Z</published>
+    <updated>2023-01-25T08:33:16.198Z</updated>
+    
+    <content type="html"><![CDATA[<p>自动配置后可以在做题时节省很大的时间.</p><hr><span id="more"></span><ol type="1"><li>按<code>Ctrl+Shift+P</code></li><li>输入<code>Snippets: Configure User Snippets</code>(配置用户代码片段)</li><li>新建全局代码片段文件</li><li>输入一个代码片段名(例如<code>bits</code>)</li><li>里面有一段示例</li></ol><div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Example</span></span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Print to console"</span><span class="op">:</span> {                  </span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scope"</span><span class="op">:</span> <span class="st">"javascript,typescript"</span><span class="op">,</span>       <span class="co">//文件类型</span></span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prefix"</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span>                        <span class="co">//触发指令</span></span><span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"body"</span><span class="op">:</span> [                               <span class="co">//模板主体</span></span><span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"console.log('$1');"</span><span class="op">,</span></span><span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"$2"</span></span><span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span><span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"description"</span><span class="op">:</span> <span class="st">"Log output to console"</span>  <span class="co">//可以去掉</span></span><span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     }</span></code></pre></div><hr><p>例如我目前做题用的模板就是</p><div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">"C header"</span><span class="op">:</span> <span class="op">{</span></span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scope"</span><span class="op">:</span><span class="st">"c, cpp"</span><span class="op">,</span></span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prefix"</span><span class="op">:</span> <span class="st">"header"</span><span class="op">,</span></span><span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"body"</span><span class="op">:</span> <span class="op">[</span></span><span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#include&lt;bits/stdc++.h&gt;"</span><span class="op">,</span></span><span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"using namespace std;"</span><span class="op">,</span></span><span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"typedef long long ll;"</span><span class="op">,</span></span><span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#define lowbit(x) ((x)&amp;-(x))"</span><span class="op">,</span></span><span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"int main() {"</span><span class="op">,</span></span><span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"</span><span class="sc">\t</span><span class="st">ios::sync_with_stdio(false);"</span><span class="op">,</span></span><span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"</span><span class="sc">\t</span><span class="st">$0"</span><span class="op">,</span></span><span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"</span><span class="sc">\t</span><span class="st">return 0;"</span><span class="op">,</span></span><span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"}"</span></span><span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">]</span></span><span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div><hr><p>在新建的<code>.cpp</code>文件中输入<code>header</code>就会生成模板了</p><hr><p>后期可以一点点完善自己的模板，总的来说还是很方便的.</p><hr>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;自动配置后可以在做题时节省很大的时间.&lt;/p&gt;
+&lt;hr&gt;</summary>
+    
+    
+    
+    
+    <category term="VSCode" scheme="https://ethanh3514.github.io/tags/VSCode/"/>
+    
+    <category term="头文件" scheme="https://ethanh3514.github.io/tags/%E5%A4%B4%E6%96%87%E4%BB%B6/"/>
+    
+    <category term="模板" scheme="https://ethanh3514.github.io/tags/%E6%A8%A1%E6%9D%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>春光复始 适常如斯</title>
@@ -519,30 +543,6 @@ Readme中加入最近发布的博客链接，并作展示&lt;/p&gt;
     
     
     <category term="搜索" scheme="https://ethanh3514.github.io/tags/%E6%90%9C%E7%B4%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>新冠记录帖</title>
-    <link href="https://ethanh3514.github.io/2022/12/27/%E6%96%B0%E5%86%A0%E8%AE%B0%E5%BD%95%E5%B8%96/"/>
-    <id>https://ethanh3514.github.io/2022/12/27/%E6%96%B0%E5%86%A0%E8%AE%B0%E5%BD%95%E5%B8%96/</id>
-    <published>2022-12-27T02:48:09.000Z</published>
-    <updated>2022-12-31T10:02:48.640Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>谨以此贴记录我的新冠过程🤒</p></blockquote><hr><span id="more"></span><h4 id="section">12.24</h4><ul><li>18:25宿舍楼群里隔壁的隔壁的隔壁的寝室有阳的，感觉不妙，因为我虽然在寝室几乎不出门，但是时不时会去水房接热水，而我和那个寝室的同学去的都是一个水房</li></ul><h4 id="section-1">12.25</h4><ul><li>嗓子有点不舒服</li><li>17:03打完上海编程市赛之后心里默念“如果我真的阳了，那么我将抽出死神”，然后抽了一张塔罗牌，『正位』的『死神』😅，然后过了一会就开始发烧，37℃+</li><li>害怕一个人在宿舍万一没挺住。确认了要机票改签，第二天就润回家</li><li>21:54 又测了一下温度，38℃+了，喝了粒布洛芬</li></ul><h4 id="section-2">12.26</h4><ul><li>6:20 测了下温度，恢复正常了</li><li>6:40 吃了早饭，感觉又烧起来了，大概37℃</li><li>10:50上了回家的飞机，从书包里掏出来一粒布洛芬，心里想着如果坚持不住就喝掉</li><li>飞机起飞，用睡眠渡过时间</li><li>11:20再也睡不着了，头晕，十分的难受，打开百度地图定位，看着飞机一点点靠近家乡</li><li>11:35飞机开始下降，将注意力集中在定位的高度上，看着数字一点点减小，计算了一下降落的速率，发现飞机将提前半个小时左右降落</li><li>12:00 头晕的厉害，不想摘掉口罩喝水或喝药，想着再撑一会</li><li>12:45 飞机顺利降落，提前了整整半个小时</li><li>13:00 出机场</li><li>14:12到家，换了身衣服，测温，39℃，简单吃了点饭，灌水，喝了粒布洛芬，喝了一袋清热颗粒，睡觉</li><li>18:30 睡醒，出了很多汗，测温，37℃，感觉没啥事了，精神状态恢复</li><li><del>感觉新冠不过如此😝</del></li></ul><h4 id="section-3">12.27</h4><ul><li>4:00梦中惊醒，发现自己在抖，昨天能捂出汗的棉被现在却如纸一样薄，起床烧水，热了热小米粥，喝了粒布洛芬</li><li>7:00睡不着了，还是烧，简单吃了点饭，开始捂汗，顺带把上午的课的假都请了</li><li>8:30 体温回降到37℃，精神状态好转</li><li>16:00 又烧起来辣，38℃+</li><li>清热颗粒顶上，和家人聊聊天，状态恢复</li><li>21:00 又烧起来辣，38℃</li><li>喝了清热颗粒，睡觉</li></ul><h4 id="section-4">12.28</h4><ul><li>安稳渡过这一晚</li><li>8:30 测体温，37℃+</li><li>精神状态恢复，感觉快结束了</li></ul><h4 id="section-5">12.29</h4><ul><li>0:15 测温，37.4℃，但已经没有什么生病的感觉了</li><li>9:30 测温 36.8℃</li><li>10:31 抽了发塔罗牌，『逆位』的『恶魔』，其释义为:逃离束缚、拒绝诱惑、治愈病痛、直面现实，也许意味着今天病就好了</li></ul><h4 id="section-6">12.31</h4><ul><li>17:30 测抗原，阴性</li></ul><hr>]]></content>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;谨以此贴记录我的新冠过程🤒&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;</summary>
-    
-    
-    
-    
-    <category term="记录" scheme="https://ethanh3514.github.io/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-    <category term="新冠" scheme="https://ethanh3514.github.io/tags/%E6%96%B0%E5%86%A0/"/>
     
   </entry>
   
