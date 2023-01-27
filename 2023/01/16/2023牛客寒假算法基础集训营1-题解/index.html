@@ -311,14 +311,14 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+                <a href="/tags/算法竞赛/" style="color: #00a596">
                     算法竞赛
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/题解/" style="color: #ffa2c4">
+                <a href="/tags/题解/" style="color: #ff7d73">
                     题解
                 </a>
             </span>
@@ -332,14 +332,14 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/寒假算法集训营/" style="color: #ffa2c4">
+                <a href="/tags/寒假算法集训营/" style="color: #00bcd4">
                     寒假算法集训营
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/2023/" style="color: #03a9f4">
+                <a href="/tags/2023/" style="color: #00a596">
                     2023
                 </a>
             </span>
@@ -553,19 +553,70 @@ mjx-container[display="true"] + br {
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <hr>
+<h3 id="k.-本题主要考察了dp">K. 本题主要考察了dp</h3>
+<p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/46800/K">题面</a><br>
+从小情况入手，接着对n分类讨论一下，发现<code>100100...1111</code>这样是最优的.</p>
+<p>然后按这种情形记个数.</p>
+<p>AC代码：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">//#define lowbit(x) ((x)&amp;-(x))</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ceil<span class="op">(</span><span class="dt">int</span> n<span class="op">,</span><span class="dt">int</span> m<span class="op">)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>n<span class="op">%</span>m<span class="op">==</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n<span class="op">/</span>m<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n<span class="op">/</span>m<span class="op">+</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n<span class="op">,</span>m<span class="op">;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">&gt;&gt;</span>n<span class="op">&gt;&gt;</span>m<span class="op">;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>m<span class="op">&lt;=</span>ceil<span class="op">(</span>n<span class="op">,</span><span class="dv">3</span><span class="op">))</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        cout<span class="op">&lt;&lt;</span><span class="dv">0</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        m<span class="op">-=</span>ceil<span class="op">(</span>n<span class="op">,</span><span class="dv">3</span><span class="op">);</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>n<span class="op">%</span><span class="dv">3</span><span class="op">==</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            <span class="dt">int</span> ans<span class="op">=</span>m<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span><span class="op">+(</span>m<span class="op">%</span><span class="dv">2</span><span class="op">==</span><span class="dv">0</span><span class="op">?-</span><span class="dv">1</span><span class="op">:</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            cout<span class="op">&lt;&lt;</span>min<span class="op">(</span>n<span class="op">-</span><span class="dv">2</span><span class="op">,</span>ans<span class="op">)&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="cf">if</span><span class="op">(</span>n<span class="op">%</span><span class="dv">3</span><span class="op">==</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            <span class="dt">int</span> ans<span class="op">=</span>m<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="dv">1</span><span class="op">+(</span>m<span class="op">%</span><span class="dv">2</span><span class="op">==</span><span class="dv">0</span><span class="op">?-</span><span class="dv">1</span><span class="op">:</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            cout<span class="op">&lt;&lt;</span>min<span class="op">(</span>n<span class="op">-</span><span class="dv">2</span><span class="op">,</span>ans<span class="op">)&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="cf">if</span><span class="op">(</span>n<span class="op">%</span><span class="dv">3</span><span class="op">==</span><span class="dv">2</span><span class="op">)</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span><span class="op">(</span>m<span class="op">==</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>                cout<span class="op">&lt;&lt;</span><span class="dv">1</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>                <span class="dt">int</span> ans<span class="op">=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>                m<span class="op">-=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>                ans<span class="op">+=</span>m<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="dv">1</span><span class="op">+(</span>m<span class="op">%</span><span class="dv">2</span><span class="op">==</span><span class="dv">0</span><span class="op">?-</span><span class="dv">1</span><span class="op">:</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>                cout<span class="op">&lt;&lt;</span>min<span class="op">(</span>n<span class="op">-</span><span class="dv">2</span><span class="op">,</span>ans<span class="op">)&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr>
 <h3 id="l.-本题主要考察了运气">L. 本题主要考察了运气</h3>
 <p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/46800/L">题面</a></p>
 <p>竟然算出来是3.50，但过不了.</p>
 <p><del>恼羞成怒下</del>开始枚举，罚了20次过了.</p>
 <p>AC代码：</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    cout<span class="op">&lt;&lt;</span><span class="dv">32</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    cout<span class="op">&lt;&lt;</span><span class="dv">32</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <hr>
 
     </div>
