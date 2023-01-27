@@ -304,42 +304,42 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/C/" style="color: #03a9f4">
+                <a href="/tags/C/" style="color: #00bcd4">
                     C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/算法竞赛/" style="color: #00a596">
+                <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                     算法竞赛
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/题解/" style="color: #00bcd4">
+                <a href="/tags/题解/" style="color: #ffa2c4">
                     题解
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/牛客/" style="color: #03a9f4">
+                <a href="/tags/牛客/" style="color: #00bcd4">
                     牛客
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/寒假算法集训营/" style="color: #00a596">
+                <a href="/tags/寒假算法集训营/" style="color: #ffa2c4">
                     寒假算法集训营
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/2023/" style="color: #ff7d73">
+                <a href="/tags/2023/" style="color: #03a9f4">
                     2023
                 </a>
             </span>
@@ -468,54 +468,104 @@ mjx-container[display="true"] + br {
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <hr>
+<h3 id="e.-鸡算几何">E. 鸡算几何</h3>
+<p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/46800/E">题面</a><br>
+题意就是一个L型铁丝ABC经合同变换变成DEF，问是否可以确定有对称的操作.</p>
+<p>等腰的时候不能判断.</p>
+<p>其他情况进行长度匹配，算一下叉乘的符号是否相同即可.</p>
+<p>AC代码：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> pair<span class="op">&lt;</span><span class="dt">double</span><span class="op">,</span><span class="dt">double</span><span class="op">&gt;</span> PDD<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span><span class="dt">int</span><span class="op">&gt;</span> PII<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">//#define lowbit(x) ((x)&amp;-(x))</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">double</span> eps<span class="op">=</span><span class="fl">1e-5</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> len<span class="op">(</span>PDD a<span class="op">)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">.</span>first<span class="op">*</span>a<span class="op">.</span>first<span class="op">+</span>a<span class="op">.</span>second<span class="op">*</span>a<span class="op">.</span>second<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> cross<span class="op">(</span>PDD a<span class="op">,</span>PDD b<span class="op">)</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">.</span>first<span class="op">*</span>b<span class="op">.</span>second<span class="op">-</span>a<span class="op">.</span>second<span class="op">*</span>b<span class="op">.</span>first<span class="op">;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> T<span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">&gt;&gt;</span>T<span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>T<span class="op">--)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        PII A<span class="op">,</span>B<span class="op">,</span>C<span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        PDD D<span class="op">,</span>E<span class="op">,</span>F<span class="op">;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        cin<span class="op">&gt;&gt;</span>A<span class="op">.</span>first<span class="op">&gt;&gt;</span>A<span class="op">.</span>second<span class="op">&gt;&gt;</span>B<span class="op">.</span>first<span class="op">&gt;&gt;</span>B<span class="op">.</span>second<span class="op">&gt;&gt;</span>C<span class="op">.</span>first<span class="op">&gt;&gt;</span>C<span class="op">.</span>second<span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        cin<span class="op">&gt;&gt;</span>D<span class="op">.</span>first<span class="op">&gt;&gt;</span>D<span class="op">.</span>second<span class="op">&gt;&gt;</span>E<span class="op">.</span>first<span class="op">&gt;&gt;</span>E<span class="op">.</span>second<span class="op">&gt;&gt;</span>F<span class="op">.</span>first<span class="op">&gt;&gt;</span>F<span class="op">.</span>second<span class="op">;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        PII BA<span class="op">={</span>A<span class="op">.</span>first<span class="op">-</span>B<span class="op">.</span>first<span class="op">,</span>A<span class="op">.</span>second<span class="op">-</span>B<span class="op">.</span>second<span class="op">},</span>BC<span class="op">={</span>C<span class="op">.</span>first<span class="op">-</span>B<span class="op">.</span>first<span class="op">,</span>C<span class="op">.</span>second<span class="op">-</span>B<span class="op">.</span>second<span class="op">};</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        PDD ED<span class="op">={</span>D<span class="op">.</span>first<span class="op">-</span>E<span class="op">.</span>first<span class="op">,</span>D<span class="op">.</span>second<span class="op">-</span>E<span class="op">.</span>second<span class="op">},</span>EF<span class="op">={</span>F<span class="op">.</span>first<span class="op">-</span>E<span class="op">.</span>first<span class="op">,</span>F<span class="op">.</span>second<span class="op">-</span>E<span class="op">.</span>second<span class="op">};</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>len<span class="op">(</span>BA<span class="op">)==</span>len<span class="op">(</span>BC<span class="op">))</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            cout<span class="op">&lt;&lt;</span><span class="st">"NO"</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span><span class="op">(</span>fabs<span class="op">(</span>len<span class="op">(</span>ED<span class="op">)-</span>len<span class="op">(</span>BA<span class="op">))&gt;=</span>eps<span class="op">)</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                swap<span class="op">(</span>BA<span class="op">,</span>BC<span class="op">);</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span><span class="op">(</span>cross<span class="op">(</span>BA<span class="op">,</span>BC<span class="op">)*</span>cross<span class="op">(</span>ED<span class="op">,</span>EF<span class="op">)&lt;</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                cout<span class="op">&lt;&lt;</span><span class="st">"YES"</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                cout<span class="op">&lt;&lt;</span><span class="st">"NO"</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr>
 <h3 id="h.-本题主要考察了dfs">H. 本题主要考察了DFS</h3>
 <p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/46800/H">题面</a></p>
 <p>看了题之后发现用不到DFS.</p>
 <p>总面积是一定的，最后只需要输出被隐藏拼图的价值，而这个价值与面积成正比，所以可以通过面积来算出答案.</p>
 <p>AC代码：</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> N<span class="op">=</span><span class="dv">500</span><span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>string s<span class="op">[</span>N<span class="op">];</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> T<span class="op">;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">&gt;&gt;</span>T<span class="op">;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>T<span class="op">--)</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> n<span class="op">;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        cin<span class="op">&gt;&gt;</span>n<span class="op">;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> ans<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span>i<span class="op">&lt;=</span>n<span class="op">*</span>n<span class="op">-</span><span class="dv">1</span><span class="op">;</span>i<span class="op">++)</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            cin<span class="op">&gt;&gt;</span>s<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> j<span class="op">=</span><span class="dv">0</span><span class="op">;</span>j<span class="op">&lt;</span><span class="dv">4</span><span class="op">;</span>j<span class="op">++)</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span><span class="op">(</span>s<span class="op">[</span>i<span class="op">][</span>j<span class="op">]==</span><span class="ch">'2'</span><span class="op">)</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                    ans<span class="op">++;</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span> <span class="cf">if</span><span class="op">(</span>s<span class="op">[</span>i<span class="op">][</span>j<span class="op">]==</span><span class="ch">'1'</span><span class="op">)</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                    ans<span class="op">--;</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        cout<span class="op">&lt;&lt;</span><span class="dv">10</span><span class="op">-</span>ans<span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> N<span class="op">=</span><span class="dv">500</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>string s<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> T<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">&gt;&gt;</span>T<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>T<span class="op">--)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> n<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        cin<span class="op">&gt;&gt;</span>n<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> ans<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span>i<span class="op">&lt;=</span>n<span class="op">*</span>n<span class="op">-</span><span class="dv">1</span><span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            cin<span class="op">&gt;&gt;</span>s<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> j<span class="op">=</span><span class="dv">0</span><span class="op">;</span>j<span class="op">&lt;</span><span class="dv">4</span><span class="op">;</span>j<span class="op">++)</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span><span class="op">(</span>s<span class="op">[</span>i<span class="op">][</span>j<span class="op">]==</span><span class="ch">'2'</span><span class="op">)</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>                    ans<span class="op">++;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span> <span class="cf">if</span><span class="op">(</span>s<span class="op">[</span>i<span class="op">][</span>j<span class="op">]==</span><span class="ch">'1'</span><span class="op">)</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                    ans<span class="op">--;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        cout<span class="op">&lt;&lt;</span><span class="dv">10</span><span class="op">-</span>ans<span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <hr>
 <h3 id="l.-本题主要考察了运气">L. 本题主要考察了运气</h3>
 <p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/46800/L">题面</a></p>
 <p>竟然算出来是3.50，但过不了.</p>
 <p><del>恼羞成怒下</del>开始枚举，罚了20次过了.</p>
 <p>AC代码：</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    cout<span class="op">&lt;&lt;</span><span class="dv">32</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    cout<span class="op">&lt;&lt;</span><span class="dv">32</span><span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <hr>
 
     </div>
