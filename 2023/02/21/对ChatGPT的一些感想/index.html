@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <title>
-            VSCode自动配置头文件 | Hxy(慌糖盐)
+            对ChatGPT的一些感想 | Hxy(慌糖盐)
         </title>
         <meta name="author" content="EthanH3514">
         <meta name="description" content="Get busy living or get busy dying">
@@ -286,14 +286,14 @@ mjx-container[display="true"] + br {
                         
 <div class="article">
     <div>
-        <h1>VSCode自动配置头文件 </h1>
+        <h1>对ChatGPT的一些感想 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2023/1/25
+            2023/2/21
         </span>
         
         
@@ -304,22 +304,15 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/VSCode/" style="color: #ff7d73">
-                    VSCode
+                <a href="/tags/随记/" style="color: #ff7d73">
+                    随记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/头文件/" style="color: #03a9f4">
-                    头文件
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/模板/" style="color: #00a596">
-                    模板
+                <a href="/tags/ChatGPT/" style="color: #00bcd4">
+                    ChatGPT
                 </a>
             </span>
             
@@ -327,47 +320,15 @@ mjx-container[display="true"] + br {
         
     </div>
     <div class="content" v-pre>
-        <p>自动配置后可以在做题时节省很大的时间.</p>
+        <p>ChatGPT的强大，足以改变大众的生活。</p>
 <hr>
 <span id="more"></span>
-<ol type="1">
-<li>按<code>Ctrl+Shift+P</code>进入主命令框</li>
-<li>输入<code>Snippets: Configure User Snippets</code>(配置用户代码片段)</li>
-<li>新建全局代码片段文件</li>
-<li>输入一个代码片段名(例如<code>bits</code>)</li>
-<li>里面有一段示例</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Example</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Print to console"</span><span class="op">:</span> {                  </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scope"</span><span class="op">:</span> <span class="st">"javascript,typescript"</span><span class="op">,</span>       <span class="co">//文件类型</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prefix"</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span>                        <span class="co">//触发指令</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"body"</span><span class="op">:</span> [                               <span class="co">//模板主体</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"console.log('$1');"</span><span class="op">,</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"$2"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"description"</span><span class="op">:</span> <span class="st">"Log output to console"</span>  <span class="co">//可以去掉</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     }</span></code></pre></div>
-<hr>
-<p>例如我目前做题用的模板就是</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">"C header"</span><span class="op">:</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scope"</span><span class="op">:</span><span class="st">"c, cpp"</span><span class="op">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"prefix"</span><span class="op">:</span> <span class="st">"header"</span><span class="op">,</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"body"</span><span class="op">:</span> <span class="op">[</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#include&lt;bits/stdc++.h&gt;"</span><span class="op">,</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"using namespace std;"</span><span class="op">,</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"typedef long long ll;"</span><span class="op">,</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#define lowbit(x) ((x)&amp;-(x))"</span><span class="op">,</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"int main() {"</span><span class="op">,</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"</span><span class="sc">\t</span><span class="st">ios::sync_with_stdio(false);"</span><span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"</span><span class="sc">\t</span><span class="st">$0"</span><span class="op">,</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"</span><span class="sc">\t</span><span class="st">return 0;"</span><span class="op">,</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"}"</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">]</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
-<hr>
-<p>在新建的<code>.cpp</code>文件中输入<code>header</code>就会生成模板了</p>
-<hr>
-<p>后期可以一点点完善自己的模板，总的来说还是很方便的.</p>
+<p>之前在学习过程中碰到什么问题，都是去查书、翻网站，通过搜索引擎查找相关资料，学习各种格式的知识以及他人的经验最后吸收，才能解决问题。</p>
+<p>而有了ChatGPT，我甚至不需要去全网搜集别人的经验贴，不需要去网络的各个边边角角搜集筛选有用的信息，只需要问一下GPT，GPT会将消化好的知识教给我，甚至可以自己选定知识的格式与深度。</p>
+<p>如果有不懂的，接着问就行了，GPT就像是一个一对一的接近全知的老师，任何不懂的知识在他的帮助下都可以在很小的时间成本下学习吸收。</p>
+<p>最近用GPT学习了很多知识，深感GPT的强大。如果能用好AI，那么人类学习的速度和最终的高度又将跨上一个大台阶。</p>
+<p>甚至都不想听课了。。看书自学不会的问GPT这不比听课效率高？</p>
+<p>Why there is a university?</p>
 <hr>
 
     </div>
