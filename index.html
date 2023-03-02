@@ -337,14 +337,14 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/随记/" style="color: #03a9f4">
+            <a href="/tags/随记/" style="color: #00bcd4">
                 随记
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/ChatGPT/" style="color: #00a596">
+            <a href="/tags/ChatGPT/" style="color: #03a9f4">
                 ChatGPT
             </a>
         </span>
@@ -371,93 +371,6 @@ mjx-container[display="true"] + br {
             
             <p>体验真的很微妙</p>
 <hr>
-<h3 id="比赛回顾">比赛回顾</h3>
-<h3 id="赛前拟定的时间表">赛前拟定的时间表</h3>
-<ul>
-<li>9:00-12:00 工作</li>
-<li>12:00-13:00 吃饭+午休(比赛的四天里实际并没有午休)</li>
-<li>13:00-17:00 工作</li>
-<li>17:00-18:00 晚饭</li>
-<li>18:00-次日1:00 工作</li>
-<li>1:00-9:00 洗漱+休息(睡眠时间可以满足七个小时)</li>
-</ul>
-<hr>
-<p>美赛结束已经很久了，根据记忆重写的过程也会有模糊与损失。\</p>
-<h4 id="day-1">Day 1</h4>
-<ul>
-<li>拿题看题，经过一上午加上半个下午的分析，决定选C题。</li>
-<li>晚上解决了matlab导入数据的问题，并且用拟合的方法解决掉了第一个问题的第一问</li>
-<li>深夜，将第一题的第二问进行了深入的分析，通过画图的方式初步排除了一些可能的影响因素(单词词性、是否元音开头)，并且对于最有可能的影响因素(单词重复次数)作出了突破性的进展(图像显示影响明显)</li>
-</ul>
-<h4 id="day-2">Day 2</h4>
-<ul>
-<li>先对(1,2,3,4,5,6,X)的总体平均分布画了一个图，并用正态性检验验证了总体服从正态分布</li>
-<li>上午学习了方差分析，通过此方法成功排除掉单词词性和是否元音开头这两个因素的影响</li>
-<li>午饭前，试图用方差分析验证单词重复次数的影响显著，但遭遇了失败，p-value甚至十分接近1</li>
-<li>半个下午一直在这一个问题上折磨着，十分疑惑为什么方差分析会失效，怀疑单词重复次数这个特别可能的因素是否真的没有显著影响，反复筛查之前的数据，确认数据无误</li>
-<li>之后转向方差分析这个方法的局限性，发现使用方差分析之前需要检验方差齐性，重新检验三种可能因素的方差齐性，发现前两个因素都满足方差齐性，而最后一个不满足方差齐性</li>
-<li>豁然开朗，转换检验方法，使用Welch's
-t-test方法检验，得到显著性！</li>
-<li>晚上进入第二个问题，学习遗传算法和BP神经网络，并成功在matlab上实现，可能是数据的量太小，每次训练出来的神经网络给出的预测值变化还是较大，只能通过多次训练找到一次比较成功的训练结果，记录预测数据，与预期较为吻合</li>
-<li>剩下的时间就应该是在画图了吧</li>
-</ul>
-<h4 id="day-3">Day 3</h4>
-<ul>
-<li>上午将之前的思路重写了一遍，方便写论文的队友写论文</li>
-<li>接近中午的时候开始第三个问题，先是直接使用Gaussian聚类，发现作出的图效果并不好，继续进入折磨阶段</li>
-<li>下午终于想到通过主成分分析法将数据降维(7-&gt;3)，然后可以通过可视化说明聚类效果。最终选择的聚类方法为K-means聚类方法</li>
-<li>成功聚出三类，但在找这三类所对应的原数据时卡了一段时间，好在经过接近两个小时的折磨之后找到了方法，给原数据打上了分类标记！</li>
-<li>之后给每一类画出了(1,2,3,4,5,6,X)的分布的图，发现差异明显，可以认为聚类很成功！成功按难度分类！</li>
-<li>然后分析每一类内部的不同影响因素的单词占比，最后可以发现字母重复次数这个因素在不同的分类内差异十分明显，并且与预期高度一致！</li>
-<li>晚上应该是重写思路，并且完善之前的图表，然后做了模型的灵敏度分析</li>
-</ul>
-<h4 id="day-4">Day 4</h4>
-<ul>
-<li>最后一天，论文还差很多，已经基本确定需要通宵</li>
-<li>我去画了总的流程图，之后一起写论文，写信</li>
-<li>下午我又重新登入了比赛的网站，发现C题之后有修改：允许使用题目之外的数据库(这意味着可以分析词频对结果的影响，而这种影响一定是显著的)、修改了一些错误数据(这些错误数据之前我们直接清理掉了)，但是<strong>比赛过程中我们没有收到任何有关于题目更改的信息</strong>(比如邮件)，组委会只在发题的网站上最后加了一段话(详见附)，并且可以确定的是<strong>在我们下载题面的时候是没有这段话的</strong>。悲伤与愤怒之下，给组委会写了一封很长的邮件。可是时间已经不足以我们去修改，只有完善论文了。</li>
-</ul>
-<h4 id="day-5">Day 5</h4>
-<ul>
-<li>凌晨，将论文写到了23页，重新过了一遍，修改了一大堆的语法错误以及逻辑错误。</li>
-<li>七点半左右，选择提交，看到邮件发送成功之后，如释重负</li>
-</ul>
-<hr>
-<h3 id="学习与成长">学习与成长</h3>
-<p>刚开始甚至matlab导入数据都费劲，但经过这四天的洗礼，已经学会了正态检验、方差齐性检验、方差分析、稳定性检验、自相关性检验、BP神经网络、遗传算法、Gaussian拟合、主成分分析、K-means聚类等等数据分析方法与模型，实力有了一个质的突破。\<br>
-\<br>
-比赛的四天里，我们三个人都做到了全力以赴，每天都在面对一个又一个的问题，这几天除了必要的通讯几乎没有使用过手机，我们做到了极致的专注，我们每个人的坚持都给我留下了极深的印象。\<br>
-\<br>
-至于结果如何，已经不那么重要了，我们来了，我们成长了，便是极好的。</p>
-<hr>
-<h3 id="感受">感受</h3>
-<p>几个人为一个问题持续专注与努力的样子真的很美，突然对科研又重燃向往了。</p>
-<hr>
-<h3 id="附">附</h3>
-<h4 id="原题内对数据集的限制">原题内对数据集的限制</h4>
-<p><img src="https://user-images.githubusercontent.com/103171084/222326916-1949870e-ba1f-4422-b5c3-26bad4547b09.png" alt="restriction"><br>
-可以看到是全大写的一句话限制了数据集<br>
----</p>
-<h4 id="发布题目的网站上对c题的修改">发布题目的网站上对C题的修改</h4>
-<p><img src="https://user-images.githubusercontent.com/103171084/222326749-d60d4fa7-b48b-4a31-8b9e-3a11cd692ccb.png" alt="change"></p>
-<hr>
-<h4 id="给美赛组委会写的一封信">给美赛组委会写的一封信</h4>
-<p><img src="https://user-images.githubusercontent.com/103171084/222325580-9ab975d9-348a-4ffb-8370-69bc6412c59a.png" alt="letter"></p>
-<hr>
-<h4 id="组委会回信">组委会回信</h4>
-<p><img src="https://user-images.githubusercontent.com/103171084/222325638-e04a76aa-3a33-4bb1-9a66-179bd8c6810e.png" alt="re"><br>
-总结：全是套话😅</p>
-<hr>
-<h4 id="提交邮件">提交邮件</h4>
-<p><img src="https://user-images.githubusercontent.com/103171084/222325538-6ca6d879-2b69-4b35-840c-0d9a7a8c1504.jpg" alt="提交邮件"></p>
-<hr>
-<h4 id="部分图表">部分图表</h4>
-<p><img src="https://user-images.githubusercontent.com/103171084/222326007-696657a7-7684-493e-a623-f1af5dfa5a34.png" alt="images"></p>
-<hr>
-<h4 id="部分代码">部分代码</h4>
-<p><img src="https://user-images.githubusercontent.com/103171084/222326179-55b31222-b5d0-4f93-80db-35c1fa529db2.png" alt="codes"></p>
-<hr>
-
             
         </div>
     </div>
@@ -470,21 +383,21 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/记录/" style="color: #00a596">
+            <a href="/tags/记录/" style="color: #03a9f4">
                 记录
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/2023/" style="color: #ff7d73">
+            <a href="/tags/2023/" style="color: #00a596">
                 2023
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/美赛/" style="color: #00a596">
+            <a href="/tags/美赛/" style="color: #ff7d73">
                 美赛
             </a>
         </span>
@@ -523,28 +436,28 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #00bcd4">
+            <a href="/tags/C/" style="color: #00a596">
                 C++
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #03a9f4">
+            <a href="/tags/算法竞赛/" style="color: #ff7d73">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/模板/" style="color: #ffa2c4">
+            <a href="/tags/模板/" style="color: #00a596">
                 模板
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/FFT/" style="color: #00bcd4">
+            <a href="/tags/FFT/" style="color: #ffa2c4">
                 FFT
             </a>
         </span>
@@ -583,21 +496,21 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+            <a href="/tags/算法竞赛/" style="color: #ff7d73">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/题解/" style="color: #00bcd4">
+            <a href="/tags/题解/" style="color: #ff7d73">
                 题解
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/图灵杯/" style="color: #03a9f4">
+            <a href="/tags/图灵杯/" style="color: #ff7d73">
                 图灵杯
             </a>
         </span>
@@ -643,42 +556,42 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ff7d73">
+            <a href="/tags/C/" style="color: #ffa2c4">
                 C++
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Codeforces/" style="color: #00a596">
+            <a href="/tags/Codeforces/" style="color: #00bcd4">
                 Codeforces
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+            <a href="/tags/算法竞赛/" style="color: #00a596">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/题解/" style="color: #00a596">
+            <a href="/tags/题解/" style="color: #ffa2c4">
                 题解
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Round-849/" style="color: #03a9f4">
+            <a href="/tags/Round-849/" style="color: #ff7d73">
                 Round 849
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Div-4/" style="color: #00bcd4">
+            <a href="/tags/Div-4/" style="color: #03a9f4">
                 Div. 4
             </a>
         </span>
@@ -717,35 +630,35 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/题解/" style="color: #00a596">
+            <a href="/tags/题解/" style="color: #ffa2c4">
                 题解
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/高等数学竞赛/" style="color: #03a9f4">
+            <a href="/tags/高等数学竞赛/" style="color: #00bcd4">
                 高等数学竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/数学/" style="color: #03a9f4">
+            <a href="/tags/数学/" style="color: #ffa2c4">
                 数学
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/上海大学/" style="color: #00a596">
+            <a href="/tags/上海大学/" style="color: #03a9f4">
                 上海大学
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/2022/" style="color: #00a596">
+            <a href="/tags/2022/" style="color: #00bcd4">
                 2022
             </a>
         </span>
@@ -784,7 +697,7 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/教程/" style="color: #00bcd4">
+            <a href="/tags/教程/" style="color: #ff7d73">
                 教程
             </a>
         </span>
@@ -836,28 +749,28 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/Codeforces/" style="color: #ff7d73">
+            <a href="/tags/Codeforces/" style="color: #00a596">
                 Codeforces
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #00bcd4">
+            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/题解/" style="color: #03a9f4">
+            <a href="/tags/题解/" style="color: #00bcd4">
                 题解
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Round-844/" style="color: #00a596">
+            <a href="/tags/Round-844/" style="color: #00bcd4">
                 Round 844
             </a>
         </span>
@@ -903,21 +816,21 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/VSCode/" style="color: #03a9f4">
+            <a href="/tags/VSCode/" style="color: #00bcd4">
                 VSCode
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/头文件/" style="color: #ffa2c4">
+            <a href="/tags/头文件/" style="color: #03a9f4">
                 头文件
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/模板/" style="color: #00a596">
+            <a href="/tags/模板/" style="color: #ffa2c4">
                 模板
             </a>
         </span>
@@ -959,7 +872,7 @@ t-test方法检验，得到显著性！</li>
         
         <span class="tag">
             
-            <a href="/tags/随记/" style="color: #00bcd4">
+            <a href="/tags/随记/" style="color: #00a596">
                 随记
             </a>
         </span>
