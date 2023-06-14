@@ -20,8 +20,7 @@
                 <link rel="stylesheet" href="/css/particlex.css">
                 
                     <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
-    <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
-<style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -133,7 +132,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style></head>
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
 
     <body>
         <div id="L2dCanvas"></div>
@@ -311,14 +311,14 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/算法竞赛/" style="color: #03a9f4">
+                <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                     算法竞赛
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/并查集/" style="color: #00bcd4">
+                <a href="/tags/并查集/" style="color: #03a9f4">
                     并查集
                 </a>
             </span>
@@ -487,6 +487,10 @@ mjx-container[display="true"] + br {
 <hr>
 <p>当谨记这次的惨痛教训</p>
 <hr>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> find<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">==</span>f<span class="op">[</span>x<span class="op">]?</span>x<span class="op">:</span>f<span class="op">[</span>x<span class="op">]=</span>find<span class="op">(</span>f<span class="op">[</span>x<span class="op">]);</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 
     </div>
     
