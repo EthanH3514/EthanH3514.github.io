@@ -20,8 +20,7 @@
                 <link rel="stylesheet" href="/css/particlex.css">
                 
                     <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
-    <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
-<style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -133,7 +132,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style></head>
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
 
     <body>
         <div id="L2dCanvas"></div>
@@ -311,21 +311,21 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/算法竞赛/" style="color: #00bcd4">
+                <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                     算法竞赛
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Div-3/" style="color: #00a596">
+                <a href="/tags/Div-3/" style="color: #03a9f4">
                     Div. 3
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/CodeForce/" style="color: #ff7d73">
+                <a href="/tags/CodeForce/" style="color: #00a596">
                     CodeForce
                 </a>
             </span>
@@ -579,6 +579,81 @@ mjx-container[display="true"] + br {
 <span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr>
+<h3 id="e.-tracking-segments">E. Tracking Segments</h3>
+<h4 id="section"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1843/problem/E">����</a></h4>
+<p>��������ҵĶ���д��</p>
+<p>֮ǰд����</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> l<span class="op">=</span><span class="dv">1</span><span class="op">,</span>r<span class="op">=</span>q<span class="op">,</span>ans<span class="op">=-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>l<span class="op">&lt;</span>r<span class="op">)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> mid<span class="op">=(</span>l<span class="op">+</span>r<span class="op">)&gt;&gt;</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>judge<span class="op">(</span>mid<span class="op">))</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            r<span class="op">=</span>mid<span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            ans<span class="op">=</span>mid<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            l<span class="op">=</span>mid<span class="op">+</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>֮ǰ��д��A�������⣬��֪������д����</p>
+<p>����һ��д�����ܹ�</p>
+<p>AC���룺</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    ios<span class="op">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span>cin<span class="op">.</span>tie<span class="op">(</span><span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> T<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">&gt;&gt;</span>T<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>T<span class="op">--)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> n<span class="op">,</span>m<span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        cin<span class="op">&gt;&gt;</span>n<span class="op">&gt;&gt;</span>m<span class="op">;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        vector<span class="op">&lt;</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span><span class="dt">int</span><span class="op">&gt;&gt;</span>s<span class="op">(</span>m<span class="op">);</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>m<span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            cin<span class="op">&gt;&gt;</span>s<span class="op">[</span>i<span class="op">].</span>first<span class="op">&gt;&gt;</span>s<span class="op">[</span>i<span class="op">].</span>second<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> q<span class="op">;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        cin<span class="op">&gt;&gt;</span>q<span class="op">;</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span>p<span class="op">(</span>q<span class="op">);</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>q<span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            cin<span class="op">&gt;&gt;</span>p<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> l<span class="op">=</span><span class="dv">1</span><span class="op">,</span>r<span class="op">=</span>q<span class="op">,</span>ans<span class="op">=-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span><span class="op">(</span>l<span class="op">&lt;=</span>r<span class="op">)</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            <span class="dt">int</span> mid<span class="op">=(</span>l<span class="op">+</span>r<span class="op">)&gt;&gt;</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>            vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span>sum<span class="op">(</span>n<span class="op">+</span><span class="dv">1</span><span class="op">,-</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>mid<span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                sum<span class="op">[</span>p<span class="op">[</span>i<span class="op">]]=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            sum<span class="op">[</span><span class="dv">0</span><span class="op">]=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span>i<span class="op">&lt;=</span>n<span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>                sum<span class="op">[</span>i<span class="op">]+=</span>sum<span class="op">[</span>i<span class="op">-</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            <span class="dt">bool</span> flag<span class="op">=</span><span class="kw">false</span><span class="op">;</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>m<span class="op">;</span>i<span class="op">++)</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span><span class="op">(</span>sum<span class="op">[</span>s<span class="op">[</span>i<span class="op">].</span>second<span class="op">]-</span>sum<span class="op">[</span>s<span class="op">[</span>i<span class="op">].</span>first<span class="op">-</span><span class="dv">1</span><span class="op">]&gt;</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                <span class="op">{</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                    flag<span class="op">=</span><span class="kw">true</span><span class="op">;</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span><span class="op">(</span>flag<span class="op">)</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>                r<span class="op">=</span>mid<span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>                ans<span class="op">=</span>mid<span class="op">;</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>                l<span class="op">=</span>mid<span class="op">+</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>        cout<span class="op">&lt;&lt;</span>ans<span class="op">&lt;&lt;</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <hr>
 
     </div>
