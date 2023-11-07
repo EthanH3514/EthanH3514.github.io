@@ -1,0 +1,456 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            2023 ICPC 南京区域赛 体验 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+        
+                <link rel="stylesheet" href="/css/fonts.min.css">
+                <link rel="stylesheet" href="/css/particlex.css">
+                
+                    <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+    <body>
+        <div id="L2dCanvas"></div>
+        <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script>
+        <canvas id="fireworks" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483647">
+        </canvas>
+        <script src="../source/js/firework.js"></script>
+        <div id="cursor"></div>
+        <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>2023 ICPC 南京区域赛 体验 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/11/7
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/算法竞赛/" style="color: #03a9f4">
+                    算法竞赛
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/2023/" style="color: #ffa2c4">
+                    2023
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/ICPC/" style="color: #ff7d73">
+                    ICPC
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Region/" style="color: #00a596">
+                    Region
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/南京/" style="color: #ffa2c4">
+                    南京
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>第一次真正地参加ICPC区域赛，有幸能来南京体验SUA的nb题目和南航的nb体验</p>
+<hr>
+<span id="more"></span>
+<h3 id="赛前学校状态">赛前学校状态</h3>
+<p>SHU逆天四学期制，南京站在第十周的周末，而第十一周和第十二周就是考试周，考试周的压力使得我们赛前训练量骤减，甚至在去南京的高铁上还在看计网（真的没谁了</p>
+<h3 id="section">11.4</h3>
+<h5 id="报道">报道</h5>
+<p>感觉南航真的nb，南航很大，南京的空气和天气状况也很舒适，走在南航的路上才真正感到了大学的气息，把鼠鼠羡慕疯了（感觉前两年上了个大砖），知乎上搜了一下南航竟然感到了学生的评价中的认同感，而这种认同感在SHU是绝不可能有的。感慨</p>
+<p>在南航体育馆报了到，领了物资（衣服是真的好看，白色主调、图案不张扬的衣服很符合我的审美，icpc系列衣服++），拍了照片（摄影师要求的三个姿势非常幽默），和学校里派过去的其他三个队以及教练合了影</p>
+<h5 id="热身赛">热身赛</h5>
+<p>拿到热身赛题翻了一下发现全是历年的袋鼠题，本来赛前还想过要不要把之前的袋鼠题全刷一遍，后来偷懒了没刷，结果热身赛就碰上了。第一个题是18年南京的袋鼠题，后来看了有一段时间，突然我和队友一起想到了随机的方法。</p>
+<p>我想到随机是因为想起之前看到的一个知乎回答有提及某一年的袋鼠题交随机数都能过，我的队友是因为感到50000次以及无环的限制很强，随机完全够，写了一发A了。这个题在A之前已经罚了好几发，在A了之后发现B里就有A的代码，感慨</p>
+<p>后来看了一下榜开始看C，C我是有印象的，于是直接写，但是由于训练量骤降、很久没写代码还是WA了两发才过</p>
+<p>D的原题是补过的，但时间有点久远已经忘得差不多了，只记得当时陷入了“错误”做法（后来发现这个错误做法只是因为没有对状态判重），看了半天不敢写，因为想不出来当时的做法是为什么错，感觉思路很直接，就是把袋鼠被边界抹掉之后的小矩形移动然后二维差分，想了半天不敢写，于是一起看B</p>
+<p>B也想出来一些可能的构造，比如构造一个很长的路径，这样也许可以卡掉随机。先写了一个回字形WA了。队友提出既然只需要25%的概率卡掉随机，那么可以用随机卡随机，可以尝试对拍，然后对拍也写挂了（当时真的感觉代码能力退化严重，甚至对第二天的比赛十分担忧，评价为学计网学的），然后试了试S形也WA了，期间听到别的队在说什么S形不行、回字形也不行，感觉非常有趣。后来队友提出尝试使用分治去构造，在小范围内构造迷宫，各个块之间单通道连接，但直到最后也没过</p>
+<p>结果显而易见，因为高额罚时喜提全校倒数rk1</p>
+<h5 id="夜晚">夜晚</h5>
+<p>赛前感觉啥都会是伏笔，一直小心翼翼的</p>
+<p>因为白天状态太差，晚上不敢继续复习计网了，于是和队友聚集在一个房间里开始写写题尝试找回状态。一个队友一直在搞makefile（因为热身赛的样例都是以压缩包的形式给的，makefile会很方便），但我比较反对，认为使用makefile这样的工具需要平时就养成一种习惯，赛前临时学会对比赛造成很大的影响，甚至很有可能在比赛的时候还在debug
+makefile。我和另一个队友在一起做题，看了看21年南京（是我们少数没有vp的SUA场），一直盯着题看也没拿草稿纸写，导致签到题甚至被卡，信心进一步受挫，之前vp攒下的自信也有点见底了</p>
+<p>去酒店打了板子，50页的板子收了49，倒霉的事++，因为最近一直有点倒霉，队友更是倒霉（电脑坏了），让我感觉有点运势不妙</p>
+<p>晚上睡觉前给队友加油打气，抚慰了一下某个已经开始紧张的队友，然后洗澡睡觉。</p>
+<p>那个晚上睡得还算不错，应该有7个小时的睡眠</p>
+<h3 id="section-1">11.5</h3>
+<h5 id="早上">早上</h5>
+<p>7点半起来收拾行李，出去退房，有点想不明白既然报销为什么当初不多订一天酒店反而给学校省钱，退了房寄存了行李走路去学校。先去食堂吃了饭然后小小集合了一下就去了赛场。</p>
+<p>一个队友说昨天梦见了tar老师（SHU的非常nb的队员），说是我们只做了两个题（第二个题还是最后才过的），tar老师表示非常的失望</p>
+<p>8点半进的赛场，9点半才开赛，这一个小时大部分时间都在找厕所，不出意料比赛之前厕所爆满，好在在比赛开始前十五分钟回到了座位上</p>
+<h5 id="赛时">赛时</h5>
+<p>比赛开始地非常平淡，倒计时结束时主持人只说了一句比赛开始，然后大家就忙碌了起来，开始看题</p>
+<p>在四分钟左右看到了大屏幕上山东大学有一队过了I，然后就去看I，发现确实是个签到题，我上机直接开始写，写完测了测样例和队友对了对思路发现没问题就交了，但我习惯性将第一个题的cpp文件命名成了A.cpp，DOMJudge又是提交文件，通过文件的名称来匹配提交的题目，导致直接交到了A题上面，光速WA了（直接成为了A题的first
+submit），发现之后十分自责，改了名之后立刻提交，I题13min 1A，rk55</p>
+<p>然后看榜发现G题是我们可以做的下一个题，于是集体看G题，一开始猜了一个结论，但这个结论很难证明，但我们三个都感觉是对的，就是先dp背包选完再选剩下的k个，都感觉非常的对，于是开始写，写完过样例，交上去WA了。感觉不对劲，开始反思是不是哪里写错了，改了改还是WA。开始自闭，这个时候已经过去半个多小时了。</p>
+<p>这个时候感觉已经有点印证我的队友的梦了，有点害怕真的最后才能过G题。为了打开局面，同时鼓舞队友士气，我选择开下一道题（C题，一个数学题），看了10min感觉会了，然后上机开写，直接过样例，和队友交流了一下思路，感觉差不多直接交，C
+67min 1A</p>
+<p>看了下榜发现rk90左右，感觉这一场十分的抽象，打成这样竟然还能进银牌区，这一点大大鼓舞了我们的士气</p>
+<p>后来就是漫长的对拍，期间各种暴力写错，对拍写错，大约2h左右对出来的一组强的数据才发现做法错了，然后开始重新想，好在没想多久就想到了正确做法，队友上机写完之后就A了，
+G 146min 4A</p>
+<p>这个时候三个题rk140名，进一步感觉到这一场的抽象，然后看榜发现下一个题是F，于是开F，三个人想了很久，一直没能给一个对的做法，一直到封榜都没搞出来，封榜过了差不多20min的时候我突然想到了一个性质，和队友说了一下这个性质的证明，然后上机写完就A了，F
+271min 3A。</p>
+<p>剩下的半个多小时开A没开出来，最后算了算罚时感觉稳铜，最后确实稳铜了，甚至F题不出都能铜</p>
+<p>拿到奖牌还是很激动的，虽然是个铜，但是是我们队三个人的xcpc的第一个牌子，还是蛮开心的</p>
+<p>希望之后能越打越好吧</p>
+<h3 id="一些图片">一些图片</h3>
+<p><img src="https://user-images.githubusercontent.com/103171084/281065984-75f7f029-0d17-41f1-8b6c-be9b256f7c04.jpg"><br>
+<img src="https://user-images.githubusercontent.com/103171084/281066034-9d3ebce9-cc29-4d7d-9c0f-03db8a17d866.jpg"><br>
+<img src="https://user-images.githubusercontent.com/103171084/281066070-7d5e1472-11cb-436f-a2f5-7bf00f6bafc4.jpg"><br>
+<img src="https://user-images.githubusercontent.com/103171084/281066085-6d147071-ef18-4a3e-a9fa-9c47aa0c9410.jpg"><br>
+<img src="https://user-images.githubusercontent.com/103171084/281066107-272310ab-c8bd-4f3b-8ee4-068d84da38ba.jpg"><br>
+<img src="https://user-images.githubusercontent.com/103171084/281066131-85b6638c-9a06-47bc-b5f8-865442ae9170.jpg"><br>
+<img src="https://user-images.githubusercontent.com/103171084/281066154-6040dcf5-3448-40ed-abef-da7aa543c275.jpg"><br>
+<img src="https://user-images.githubusercontent.com/103171084/281066182-11319bf4-6316-46c0-a422-836916151802.jpg"></p>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2023 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+
+    </html>
