@@ -16,7 +16,12 @@
         <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
         <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
         <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
-        <script src="../source/js/firework.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+        <script src="../source/js/firework.min.js"></script>
         
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
@@ -138,7 +143,6 @@ mjx-container[display="true"] + br {
                 
     <body>
         <!-- <div id="L2dCanvas"></div> -->
-        <canvas id="fireworks" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:32767"></canvas>
         <!-- <script src="/js/live2d.min.js"></script>
         <script src="/css/live2d.css"></script>
         <script>
@@ -345,14 +349,14 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/Codeforces/" style="color: #ff7d73">
+            <a href="/tags/Codeforces/" style="color: #00bcd4">
                 Codeforces
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #00bcd4">
+            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                 算法竞赛
             </a>
         </span>
@@ -366,14 +370,14 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/Div-2/" style="color: #00a596">
+            <a href="/tags/Div-2/" style="color: #ff7d73">
                 Div. 2
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/题解/" style="color: #03a9f4">
+            <a href="/tags/题解/" style="color: #00bcd4">
                 题解
             </a>
         </span>
@@ -412,35 +416,35 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #00bcd4">
+            <a href="/tags/C/" style="color: #ffa2c4">
                 C++
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Codeforces/" style="color: #00a596">
+            <a href="/tags/Codeforces/" style="color: #03a9f4">
                 Codeforces
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #ff7d73">
+            <a href="/tags/算法竞赛/" style="color: #00bcd4">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/题解/" style="color: #00bcd4">
+            <a href="/tags/题解/" style="color: #ffa2c4">
                 题解
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Hello-2023/" style="color: #00a596">
+            <a href="/tags/Hello-2023/" style="color: #00bcd4">
                 Hello 2023
             </a>
         </span>
@@ -493,7 +497,7 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/TLE/" style="color: #ffa2c4">
+            <a href="/tags/TLE/" style="color: #00bcd4">
                 TLE
             </a>
         </span>
@@ -532,28 +536,28 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ffa2c4">
+            <a href="/tags/C/" style="color: #00bcd4">
                 C++
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/算法/" style="color: #03a9f4">
+            <a href="/tags/算法/" style="color: #ff7d73">
                 算法
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Stein算法/" style="color: #03a9f4">
+            <a href="/tags/Stein算法/" style="color: #00a596">
                 Stein算法
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/gcd/" style="color: #ff7d73">
+            <a href="/tags/gcd/" style="color: #ffa2c4">
                 gcd
             </a>
         </span>
@@ -592,28 +596,28 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ff7d73">
+            <a href="/tags/C/" style="color: #00bcd4">
                 C++
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/算法/" style="color: #00bcd4">
+            <a href="/tags/算法/" style="color: #ffa2c4">
                 算法
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/龟速乘/" style="color: #03a9f4">
+            <a href="/tags/龟速乘/" style="color: #ffa2c4">
                 龟速乘
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/乘法优化/" style="color: #00bcd4">
+            <a href="/tags/乘法优化/" style="color: #ff7d73">
                 乘法优化
             </a>
         </span>
@@ -654,7 +658,7 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/markdown/" style="color: #03a9f4">
+            <a href="/tags/markdown/" style="color: #00bcd4">
                 markdown
             </a>
         </span>
@@ -701,7 +705,7 @@ Readme中加入最近发布的博客链接，并作展示</p>
         
         <span class="tag">
             
-            <a href="/tags/Profile-Readme/" style="color: #00a596">
+            <a href="/tags/Profile-Readme/" style="color: #ffa2c4">
                 Profile Readme
             </a>
         </span>
@@ -747,14 +751,14 @@ Readme中加入最近发布的博客链接，并作展示</p>
         
         <span class="tag">
             
-            <a href="/tags/RSS/" style="color: #ffa2c4">
+            <a href="/tags/RSS/" style="color: #00bcd4">
                 RSS
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/particlex/" style="color: #ffa2c4">
+            <a href="/tags/particlex/" style="color: #00bcd4">
                 particlex
             </a>
         </span>
@@ -793,7 +797,7 @@ Readme中加入最近发布的博客链接，并作展示</p>
         
         <span class="tag">
             
-            <a href="/tags/搜索/" style="color: #00bcd4">
+            <a href="/tags/搜索/" style="color: #03a9f4">
                 搜索
             </a>
         </span>
@@ -834,14 +838,14 @@ Readme中加入最近发布的博客链接，并作展示</p>
         
         <span class="tag">
             
-            <a href="/tags/记录/" style="color: #00a596">
+            <a href="/tags/记录/" style="color: #03a9f4">
                 记录
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/新冠/" style="color: #00bcd4">
+            <a href="/tags/新冠/" style="color: #00a596">
                 新冠
             </a>
         </span>

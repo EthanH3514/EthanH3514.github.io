@@ -16,7 +16,12 @@
         <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
         <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
         <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
-        <script src="../source/js/firework.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+        <script src="../source/js/firework.min.js"></script>
         
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
@@ -138,7 +143,6 @@ mjx-container[display="true"] + br {
                 
     <body>
         <!-- <div id="L2dCanvas"></div> -->
-        <canvas id="fireworks" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:32767"></canvas>
         <!-- <script src="/js/live2d.min.js"></script>
         <script src="/css/live2d.css"></script>
         <script>
@@ -304,14 +308,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/随记/" style="color: #00bcd4">
+                        <a href="/tags/随记/" style="color: #00a596">
                             随记
                         </a>
                     </span>
@@ -346,14 +350,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/2022/" style="color: #03a9f4">
+                        <a href="/tags/2022/" style="color: #00a596">
                             2022
                         </a>
                     </span>
@@ -367,14 +371,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/记忆化搜索/" style="color: #00bcd4">
+                        <a href="/tags/记忆化搜索/" style="color: #03a9f4">
                             记忆化搜索
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/期望dp/" style="color: #00a596">
+                        <a href="/tags/期望dp/" style="color: #ff7d73">
                             期望dp
                         </a>
                     </span>
@@ -402,28 +406,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #00bcd4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/gcd/" style="color: #00a596">
+                        <a href="/tags/gcd/" style="color: #ffa2c4">
                             gcd
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
+                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ffa2c4">
+                        <a href="/tags/题解/" style="color: #00a596">
                             题解
                         </a>
                     </span>
@@ -437,14 +441,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/小白月赛/" style="color: #03a9f4">
+                        <a href="/tags/小白月赛/" style="color: #00bcd4">
                             小白月赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/思维/" style="color: #03a9f4">
+                        <a href="/tags/思维/" style="color: #ff7d73">
                             思维
                         </a>
                     </span>
@@ -472,7 +476,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+                        <a href="/tags/算法竞赛/" style="color: #00a596">
                             算法竞赛
                         </a>
                     </span>
@@ -486,28 +490,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/CCPC/" style="color: #ffa2c4">
+                        <a href="/tags/CCPC/" style="color: #ff7d73">
                             CCPC
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/2021/" style="color: #00a596">
+                        <a href="/tags/2021/" style="color: #ff7d73">
                             2021
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/威海/" style="color: #ff7d73">
+                        <a href="/tags/威海/" style="color: #00a596">
                             威海
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/生成函数/" style="color: #03a9f4">
+                        <a href="/tags/生成函数/" style="color: #ff7d73">
                             生成函数
                         </a>
                     </span>
@@ -535,14 +539,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
+                        <a href="/tags/算法竞赛/" style="color: #00a596">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/2023/" style="color: #00bcd4">
+                        <a href="/tags/2023/" style="color: #00a596">
                             2023
                         </a>
                     </span>
@@ -556,14 +560,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/CCPC/" style="color: #ff7d73">
+                        <a href="/tags/CCPC/" style="color: #ffa2c4">
                             CCPC
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/深圳/" style="color: #ff7d73">
+                        <a href="/tags/深圳/" style="color: #00bcd4">
                             深圳
                         </a>
                     </span>
@@ -591,28 +595,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00a596">
+                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/2023/" style="color: #00a596">
+                        <a href="/tags/2023/" style="color: #ffa2c4">
                             2023
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/ICPC/" style="color: #ffa2c4">
+                        <a href="/tags/ICPC/" style="color: #00bcd4">
                             ICPC
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Region/" style="color: #ffa2c4">
+                        <a href="/tags/Region/" style="color: #00a596">
                             Region
                         </a>
                     </span>
@@ -647,28 +651,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #ffa2c4">
+                        <a href="/tags/C/" style="color: #00a596">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00a596">
+                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/数论/" style="color: #ff7d73">
+                        <a href="/tags/数论/" style="color: #00bcd4">
                             数论
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/洛谷/" style="color: #00a596">
+                        <a href="/tags/洛谷/" style="color: #ff7d73">
                             洛谷
                         </a>
                     </span>
@@ -696,7 +700,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #ff7d73">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
@@ -710,14 +714,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/数论/" style="color: #03a9f4">
+                        <a href="/tags/数论/" style="color: #ffa2c4">
                             数论
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/洛谷/" style="color: #00bcd4">
+                        <a href="/tags/洛谷/" style="color: #00a596">
                             洛谷
                         </a>
                     </span>
@@ -752,21 +756,21 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #03a9f4">
+                        <a href="/tags/算法竞赛/" style="color: #00a596">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/数论/" style="color: #ff7d73">
+                        <a href="/tags/数论/" style="color: #00a596">
                             数论
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/逆元/" style="color: #ffa2c4">
+                        <a href="/tags/逆元/" style="color: #00a596">
                             逆元
                         </a>
                     </span>
@@ -801,21 +805,21 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/快读/" style="color: #03a9f4">
+                        <a href="/tags/快读/" style="color: #ff7d73">
                             快读
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/数论/" style="color: #ffa2c4">
+                        <a href="/tags/数论/" style="color: #ff7d73">
                             数论
                         </a>
                     </span>
@@ -843,28 +847,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #ff7d73">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #03a9f4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #03a9f4">
+                        <a href="/tags/题解/" style="color: #ff7d73">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/CodeForce/" style="color: #ff7d73">
+                        <a href="/tags/CodeForce/" style="color: #00bcd4">
                             CodeForce
                         </a>
                     </span>
@@ -899,28 +903,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Div-2/" style="color: #00a596">
+                        <a href="/tags/Div-2/" style="color: #ff7d73">
                             Div. 2
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ffa2c4">
+                        <a href="/tags/题解/" style="color: #ff7d73">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/CodeForce/" style="color: #00bcd4">
+                        <a href="/tags/CodeForce/" style="color: #00a596">
                             CodeForce
                         </a>
                     </span>
@@ -948,35 +952,35 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #ff7d73">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #03a9f4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Div-2/" style="color: #00a596">
+                        <a href="/tags/Div-2/" style="color: #ffa2c4">
                             Div. 2
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #03a9f4">
+                        <a href="/tags/题解/" style="color: #ff7d73">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/CodeForce/" style="color: #03a9f4">
+                        <a href="/tags/CodeForce/" style="color: #ffa2c4">
                             CodeForce
                         </a>
                     </span>
@@ -1011,21 +1015,21 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00a596">
+                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Div-3/" style="color: #ffa2c4">
+                        <a href="/tags/Div-3/" style="color: #00bcd4">
                             Div. 3
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/CodeForce/" style="color: #ff7d73">
+                        <a href="/tags/CodeForce/" style="color: #00bcd4">
                             CodeForce
                         </a>
                     </span>
@@ -1053,14 +1057,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
+                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                             算法竞赛
                         </a>
                     </span>
@@ -1088,14 +1092,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/系统/" style="color: #00bcd4">
+                        <a href="/tags/系统/" style="color: #03a9f4">
                             系统
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/清理残留/" style="color: #00bcd4">
+                        <a href="/tags/清理残留/" style="color: #ffa2c4">
                             清理残留
                         </a>
                     </span>
@@ -1123,7 +1127,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #00bcd4">
                             C++
                         </a>
                     </span>
@@ -1137,7 +1141,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #00a596">
+                        <a href="/tags/题解/" style="color: #00bcd4">
                             题解
                         </a>
                     </span>
@@ -1172,35 +1176,35 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #03a9f4">
+                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #00a596">
+                        <a href="/tags/题解/" style="color: #ffa2c4">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/牛客/" style="color: #00bcd4">
+                        <a href="/tags/牛客/" style="color: #03a9f4">
                             牛客
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/寒假算法集训营/" style="color: #00bcd4">
+                        <a href="/tags/寒假算法集训营/" style="color: #00a596">
                             寒假算法集训营
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/2023/" style="color: #00a596">
+                        <a href="/tags/2023/" style="color: #00bcd4">
                             2023
                         </a>
                     </span>
@@ -1228,21 +1232,21 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #ff7d73">
+                        <a href="/tags/C/" style="color: #00bcd4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00a596">
+                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #03a9f4">
+                        <a href="/tags/题解/" style="color: #00a596">
                             题解
                         </a>
                     </span>
@@ -1291,14 +1295,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/并查集/" style="color: #03a9f4">
+                        <a href="/tags/并查集/" style="color: #00bcd4">
                             并查集
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/查询优化/" style="color: #00bcd4">
+                        <a href="/tags/查询优化/" style="color: #ff7d73">
                             查询优化
                         </a>
                     </span>
@@ -1326,28 +1330,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #00bcd4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
+                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ff7d73">
+                        <a href="/tags/题解/" style="color: #ffa2c4">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/考试周欢乐赛/" style="color: #03a9f4">
+                        <a href="/tags/考试周欢乐赛/" style="color: #ffa2c4">
                             考试周欢乐赛
                         </a>
                     </span>
@@ -1375,7 +1379,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
@@ -1389,7 +1393,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/线段树/" style="color: #03a9f4">
+                        <a href="/tags/线段树/" style="color: #00bcd4">
                             线段树
                         </a>
                     </span>
@@ -1417,7 +1421,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #03a9f4">
                             C++
                         </a>
                     </span>
@@ -1431,14 +1435,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #00bcd4">
+                        <a href="/tags/题解/" style="color: #03a9f4">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/GCPC/" style="color: #ffa2c4">
+                        <a href="/tags/GCPC/" style="color: #03a9f4">
                             GCPC
                         </a>
                     </span>
@@ -1466,35 +1470,35 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #03a9f4">
+                        <a href="/tags/C/" style="color: #00a596">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Codeforces/" style="color: #ffa2c4">
+                        <a href="/tags/Codeforces/" style="color: #00bcd4">
                             Codeforces
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #00a596">
+                        <a href="/tags/题解/" style="color: #ff7d73">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Div-3/" style="color: #ff7d73">
+                        <a href="/tags/Div-3/" style="color: #03a9f4">
                             Div. 3
                         </a>
                     </span>
@@ -1522,7 +1526,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/随记/" style="color: #03a9f4">
+                        <a href="/tags/随记/" style="color: #00a596">
                             随记
                         </a>
                     </span>
@@ -1578,35 +1582,35 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #ff7d73">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #03a9f4">
+                        <a href="/tags/算法竞赛/" style="color: #00a596">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #03a9f4">
+                        <a href="/tags/题解/" style="color: #ff7d73">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/2023/" style="color: #ff7d73">
+                        <a href="/tags/2023/" style="color: #00a596">
                             2023
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/XJTUPC/" style="color: #00bcd4">
+                        <a href="/tags/XJTUPC/" style="color: #00a596">
                             XJTUPC
                         </a>
                     </span>
@@ -1634,14 +1638,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00bcd4">
+                        <a href="/tags/C/" style="color: #03a9f4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #00a596">
                             算法竞赛
                         </a>
                     </span>
@@ -1711,14 +1715,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+                        <a href="/tags/算法竞赛/" style="color: #00a596">
                             算法竞赛
                         </a>
                     </span>
@@ -1732,14 +1736,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/2022/" style="color: #ff7d73">
+                        <a href="/tags/2022/" style="color: #03a9f4">
                             2022
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/HNCPC/" style="color: #03a9f4">
+                        <a href="/tags/HNCPC/" style="color: #ff7d73">
                             HNCPC
                         </a>
                     </span>
@@ -1767,7 +1771,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/Linux/" style="color: #03a9f4">
+                        <a href="/tags/Linux/" style="color: #ff7d73">
                             Linux
                         </a>
                     </span>
@@ -1781,14 +1785,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/命令/" style="color: #ff7d73">
+                        <a href="/tags/命令/" style="color: #03a9f4">
                             命令
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/快捷键/" style="color: #00a596">
+                        <a href="/tags/快捷键/" style="color: #ff7d73">
                             快捷键
                         </a>
                     </span>
@@ -1823,7 +1827,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/ChatGPT/" style="color: #ff7d73">
+                        <a href="/tags/ChatGPT/" style="color: #ffa2c4">
                             ChatGPT
                         </a>
                     </span>
@@ -1851,7 +1855,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/记录/" style="color: #ffa2c4">
+                        <a href="/tags/记录/" style="color: #00a596">
                             记录
                         </a>
                     </span>
@@ -1865,7 +1869,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/美赛/" style="color: #ffa2c4">
+                        <a href="/tags/美赛/" style="color: #00a596">
                             美赛
                         </a>
                     </span>
@@ -1893,28 +1897,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #03a9f4">
+                        <a href="/tags/C/" style="color: #ff7d73">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+                        <a href="/tags/算法竞赛/" style="color: #03a9f4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/模板/" style="color: #00a596">
+                        <a href="/tags/模板/" style="color: #03a9f4">
                             模板
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/FFT/" style="color: #00a596">
+                        <a href="/tags/FFT/" style="color: #00bcd4">
                             FFT
                         </a>
                     </span>
@@ -1942,7 +1946,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                             算法竞赛
                         </a>
                     </span>
@@ -1956,14 +1960,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/图灵杯/" style="color: #03a9f4">
+                        <a href="/tags/图灵杯/" style="color: #ffa2c4">
                             图灵杯
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/NEUQ/" style="color: #ff7d73">
+                        <a href="/tags/NEUQ/" style="color: #00bcd4">
                             NEUQ
                         </a>
                     </span>
@@ -1991,42 +1995,42 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #ffa2c4">
+                        <a href="/tags/C/" style="color: #00a596">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Codeforces/" style="color: #00bcd4">
+                        <a href="/tags/Codeforces/" style="color: #ff7d73">
                             Codeforces
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00a596">
+                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ff7d73">
+                        <a href="/tags/题解/" style="color: #00bcd4">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Round-849/" style="color: #03a9f4">
+                        <a href="/tags/Round-849/" style="color: #ffa2c4">
                             Round 849
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Div-4/" style="color: #ffa2c4">
+                        <a href="/tags/Div-4/" style="color: #ff7d73">
                             Div. 4
                         </a>
                     </span>
@@ -2054,21 +2058,21 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ffa2c4">
+                        <a href="/tags/题解/" style="color: #00bcd4">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/高等数学竞赛/" style="color: #03a9f4">
+                        <a href="/tags/高等数学竞赛/" style="color: #00bcd4">
                             高等数学竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/数学/" style="color: #00bcd4">
+                        <a href="/tags/数学/" style="color: #ff7d73">
                             数学
                         </a>
                     </span>
@@ -2082,7 +2086,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/2022/" style="color: #03a9f4">
+                        <a href="/tags/2022/" style="color: #ff7d73">
                             2022
                         </a>
                     </span>
@@ -2110,14 +2114,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/教程/" style="color: #ffa2c4">
+                        <a href="/tags/教程/" style="color: #00a596">
                             教程
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/VSCode/" style="color: #00a596">
+                        <a href="/tags/VSCode/" style="color: #00bcd4">
                             VSCode
                         </a>
                     </span>
@@ -2145,42 +2149,42 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Codeforces/" style="color: #00bcd4">
+                        <a href="/tags/Codeforces/" style="color: #03a9f4">
                             Codeforces
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #03a9f4">
+                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ffa2c4">
+                        <a href="/tags/题解/" style="color: #ff7d73">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Round-844/" style="color: #00a596">
+                        <a href="/tags/Round-844/" style="color: #ff7d73">
                             Round 844
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Div-3/" style="color: #ff7d73">
+                        <a href="/tags/Div-3/" style="color: #ffa2c4">
                             Div. 3
                         </a>
                     </span>
@@ -2208,14 +2212,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/VSCode/" style="color: #00a596">
+                        <a href="/tags/VSCode/" style="color: #03a9f4">
                             VSCode
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/头文件/" style="color: #03a9f4">
+                        <a href="/tags/头文件/" style="color: #ff7d73">
                             头文件
                         </a>
                     </span>
@@ -2278,7 +2282,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #00bcd4">
                             C++
                         </a>
                     </span>
@@ -2292,14 +2296,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ffa2c4">
+                        <a href="/tags/题解/" style="color: #00a596">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/牛客/" style="color: #03a9f4">
+                        <a href="/tags/牛客/" style="color: #ff7d73">
                             牛客
                         </a>
                     </span>
@@ -2313,7 +2317,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/2023/" style="color: #ffa2c4">
+                        <a href="/tags/2023/" style="color: #00bcd4">
                             2023
                         </a>
                     </span>
@@ -2341,14 +2345,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #03a9f4">
+                        <a href="/tags/C/" style="color: #00bcd4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #03a9f4">
                             算法竞赛
                         </a>
                     </span>
@@ -2362,21 +2366,21 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/牛客/" style="color: #00bcd4">
+                        <a href="/tags/牛客/" style="color: #ff7d73">
                             牛客
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/寒假算法集训营/" style="color: #ffa2c4">
+                        <a href="/tags/寒假算法集训营/" style="color: #ff7d73">
                             寒假算法集训营
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/2023/" style="color: #00a596">
+                        <a href="/tags/2023/" style="color: #03a9f4">
                             2023
                         </a>
                     </span>
@@ -2404,7 +2408,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00a596">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
@@ -2418,14 +2422,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #00bcd4">
+                        <a href="/tags/题解/" style="color: #ff7d73">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/牛客/" style="color: #00bcd4">
+                        <a href="/tags/牛客/" style="color: #ff7d73">
                             牛客
                         </a>
                     </span>
@@ -2439,7 +2443,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/2023/" style="color: #ff7d73">
+                        <a href="/tags/2023/" style="color: #ffa2c4">
                             2023
                         </a>
                     </span>
@@ -2474,14 +2478,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/Codeforces/" style="color: #00a596">
+                        <a href="/tags/Codeforces/" style="color: #ff7d73">
                             Codeforces
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
                             算法竞赛
                         </a>
                     </span>
@@ -2495,14 +2499,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/Round-844/" style="color: #00a596">
+                        <a href="/tags/Round-844/" style="color: #03a9f4">
                             Round 844
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Div-1-Div-2/" style="color: #ffa2c4">
+                        <a href="/tags/Div-1-Div-2/" style="color: #ff7d73">
                             Div. 1+Div. 2
                         </a>
                     </span>
@@ -2530,7 +2534,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #ffa2c4">
+                        <a href="/tags/C/" style="color: #03a9f4">
                             C++
                         </a>
                     </span>
@@ -2544,7 +2548,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #00bcd4">
+                        <a href="/tags/题解/" style="color: #00a596">
                             题解
                         </a>
                     </span>
@@ -2565,7 +2569,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/153/" style="color: #00a596">
+                        <a href="/tags/153/" style="color: #00bcd4">
                             153
                         </a>
                     </span>
@@ -2593,28 +2597,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #03a9f4">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00a596">
+                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ff7d73">
+                        <a href="/tags/题解/" style="color: #00a596">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/NEERC/" style="color: #00bcd4">
+                        <a href="/tags/NEERC/" style="color: #ffa2c4">
                             NEERC
                         </a>
                     </span>
@@ -2642,28 +2646,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00bcd4">
+                        <a href="/tags/C/" style="color: #00a596">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Codeforces/" style="color: #ff7d73">
+                        <a href="/tags/Codeforces/" style="color: #00bcd4">
                             Codeforces
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
+                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ffa2c4">
+                        <a href="/tags/题解/" style="color: #ff7d73">
                             题解
                         </a>
                     </span>
@@ -2698,35 +2702,35 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00a596">
+                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #03a9f4">
+                        <a href="/tags/题解/" style="color: #00bcd4">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/AtCoder/" style="color: #ff7d73">
+                        <a href="/tags/AtCoder/" style="color: #ffa2c4">
                             AtCoder
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Beginner-Contest/" style="color: #03a9f4">
+                        <a href="/tags/Beginner-Contest/" style="color: #ff7d73">
                             Beginner Contest
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/284/" style="color: #ff7d73">
+                        <a href="/tags/284/" style="color: #03a9f4">
                             284
                         </a>
                     </span>
@@ -2754,35 +2758,35 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #03a9f4">
+                        <a href="/tags/C/" style="color: #00a596">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+                        <a href="/tags/算法竞赛/" style="color: #ff7d73">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #00a596">
+                        <a href="/tags/题解/" style="color: #00bcd4">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/牛客/" style="color: #00bcd4">
+                        <a href="/tags/牛客/" style="color: #ffa2c4">
                             牛客
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/小白月赛/" style="color: #00bcd4">
+                        <a href="/tags/小白月赛/" style="color: #00a596">
                             小白月赛
                         </a>
                     </span>
@@ -2810,14 +2814,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00bcd4">
+                        <a href="/tags/C/" style="color: #ff7d73">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Codeforces/" style="color: #03a9f4">
+                        <a href="/tags/Codeforces/" style="color: #ffa2c4">
                             Codeforces
                         </a>
                     </span>
@@ -2831,21 +2835,21 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/Round-842/" style="color: #00bcd4">
+                        <a href="/tags/Round-842/" style="color: #ffa2c4">
                             Round 842
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Div-2/" style="color: #ff7d73">
+                        <a href="/tags/Div-2/" style="color: #ffa2c4">
                             Div. 2
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ff7d73">
+                        <a href="/tags/题解/" style="color: #03a9f4">
                             题解
                         </a>
                     </span>
@@ -2873,35 +2877,35 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #00bcd4">
+                        <a href="/tags/C/" style="color: #ffa2c4">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Codeforces/" style="color: #ffa2c4">
+                        <a href="/tags/Codeforces/" style="color: #00bcd4">
                             Codeforces
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法竞赛/" style="color: #00bcd4">
+                        <a href="/tags/算法竞赛/" style="color: #00a596">
                             算法竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/题解/" style="color: #ff7d73">
+                        <a href="/tags/题解/" style="color: #00a596">
                             题解
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Hello-2023/" style="color: #ff7d73">
+                        <a href="/tags/Hello-2023/" style="color: #00a596">
                             Hello 2023
                         </a>
                     </span>
@@ -2936,7 +2940,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/代码规范/" style="color: #03a9f4">
+                        <a href="/tags/代码规范/" style="color: #00bcd4">
                             代码规范
                         </a>
                     </span>
@@ -2992,7 +2996,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/gcd/" style="color: #00bcd4">
+                        <a href="/tags/gcd/" style="color: #ff7d73">
                             gcd
                         </a>
                     </span>
@@ -3020,28 +3024,28 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/C/" style="color: #03a9f4">
+                        <a href="/tags/C/" style="color: #00a596">
                             C++
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/算法/" style="color: #ff7d73">
+                        <a href="/tags/算法/" style="color: #00bcd4">
                             算法
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/龟速乘/" style="color: #ff7d73">
+                        <a href="/tags/龟速乘/" style="color: #00a596">
                             龟速乘
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/乘法优化/" style="color: #00a596">
+                        <a href="/tags/乘法优化/" style="color: #03a9f4">
                             乘法优化
                         </a>
                     </span>
@@ -3069,7 +3073,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/markdown/" style="color: #ffa2c4">
+                        <a href="/tags/markdown/" style="color: #00bcd4">
                             markdown
                         </a>
                     </span>
@@ -3104,14 +3108,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/Profile-Readme/" style="color: #00a596">
+                        <a href="/tags/Profile-Readme/" style="color: #ff7d73">
                             Profile Readme
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/博客自动拉取/" style="color: #ffa2c4">
+                        <a href="/tags/博客自动拉取/" style="color: #00a596">
                             博客自动拉取
                         </a>
                     </span>
@@ -3139,14 +3143,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/RSS/" style="color: #03a9f4">
+                        <a href="/tags/RSS/" style="color: #00a596">
                             RSS
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/particlex/" style="color: #00a596">
+                        <a href="/tags/particlex/" style="color: #00bcd4">
                             particlex
                         </a>
                     </span>
@@ -3174,7 +3178,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/搜索/" style="color: #ffa2c4">
+                        <a href="/tags/搜索/" style="color: #00bcd4">
                             搜索
                         </a>
                     </span>
@@ -3272,7 +3276,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/数学/" style="color: #ffa2c4">
+                        <a href="/tags/数学/" style="color: #00a596">
                             数学
                         </a>
                     </span>
@@ -3307,7 +3311,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/数学/" style="color: #00a596">
+                        <a href="/tags/数学/" style="color: #ffa2c4">
                             数学
                         </a>
                     </span>
@@ -3335,14 +3339,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/教程/" style="color: #ffa2c4">
+                        <a href="/tags/教程/" style="color: #03a9f4">
                             教程
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/踩坑/" style="color: #ff7d73">
+                        <a href="/tags/踩坑/" style="color: #ffa2c4">
                             踩坑
                         </a>
                     </span>
@@ -3370,7 +3374,7 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/数学/" style="color: #00bcd4">
+                        <a href="/tags/数学/" style="color: #00a596">
                             数学
                         </a>
                     </span>
@@ -3398,14 +3402,14 @@ mjx-container[display="true"] + br {
                     
                     <span class="tag">
                         
-                        <a href="/tags/高等数学竞赛/" style="color: #00a596">
+                        <a href="/tags/高等数学竞赛/" style="color: #ff7d73">
                             高等数学竞赛
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/数学/" style="color: #ff7d73">
+                        <a href="/tags/数学/" style="color: #ffa2c4">
                             数学
                         </a>
                     </span>
