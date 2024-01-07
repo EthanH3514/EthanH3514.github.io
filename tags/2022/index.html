@@ -20,6 +20,9 @@
                 <link rel="stylesheet" href="/css/particlex.css">
                 
                     <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <canvas id="fireworks" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:32767">
+        </canvas>
+        <script src="../source/js/firework.js"></script>
     <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
@@ -150,9 +153,6 @@ mjx-container[display="true"] + br {
                 mobile: true,
             });
         </script> -->
-        <!-- <canvas id="fireworks" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:32767">
-        </canvas>
-        <script src="../source/js/firework.js"></script> -->
         <!-- <div id="cursor"></div> -->
         <!-- <script src="../source/css/cursor.css"></script>
         <script src="../source/js/cursor.js"></script> -->
@@ -168,7 +168,7 @@ mjx-container[display="true"] + br {
                 </div>
             </div>
         </div> -->
-        
+
         <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
         <script src="../source/js/background.js"></script> -->
         <div id="layout">
@@ -292,7 +292,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/C/" style="background: #ffa2c4">
+            <a href="/tags/C/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -302,7 +302,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/算法/" style="background: #ff7d73">
+            <a href="/tags/算法/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -312,7 +312,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Stein算法/" style="background: #00a596">
+            <a href="/tags/Stein算法/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -322,7 +322,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/gcd/" style="background: #00bcd4">
+            <a href="/tags/gcd/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -332,7 +332,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/龟速乘/" style="background: #ff7d73">
+            <a href="/tags/龟速乘/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -342,7 +342,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/乘法优化/" style="background: #ffa2c4">
+            <a href="/tags/乘法优化/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -362,7 +362,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/算法竞赛/" style="background: #00bcd4">
+            <a href="/tags/算法竞赛/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -382,7 +382,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Div-2/" style="background: #ffa2c4">
+            <a href="/tags/Div-2/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -392,7 +392,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/题解/" style="background: #03a9f4">
+            <a href="/tags/题解/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -402,7 +402,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Hello-2023/" style="background: #00a596">
+            <a href="/tags/Hello-2023/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -412,7 +412,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/教程/" style="background: #03a9f4">
+            <a href="/tags/教程/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -422,7 +422,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/踩坑/" style="background: #00bcd4">
+            <a href="/tags/踩坑/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -442,7 +442,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/数学/" style="background: #ff7d73">
+            <a href="/tags/数学/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -452,7 +452,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/markdown/" style="background: #00a596">
+            <a href="/tags/markdown/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -462,7 +462,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/指令/" style="background: #ff7d73">
+            <a href="/tags/指令/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -472,7 +472,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/代码规范/" style="background: #03a9f4">
+            <a href="/tags/代码规范/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -482,7 +482,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/TLE/" style="background: #03a9f4">
+            <a href="/tags/TLE/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -502,7 +502,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/particlex/" style="background: #03a9f4">
+            <a href="/tags/particlex/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -512,7 +512,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Profile-Readme/" style="background: #ff7d73">
+            <a href="/tags/Profile-Readme/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -522,7 +522,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/博客自动拉取/" style="background: #ff7d73">
+            <a href="/tags/博客自动拉取/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -542,7 +542,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/新冠/" style="background: #00a596">
+            <a href="/tags/新冠/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -552,7 +552,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/搜索/" style="background: #00a596">
+            <a href="/tags/搜索/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -562,7 +562,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/随记/" style="background: #ff7d73">
+            <a href="/tags/随记/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -572,7 +572,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/牛客/" style="background: #00bcd4">
+            <a href="/tags/牛客/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -582,7 +582,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/小白月赛/" style="background: #00a596">
+            <a href="/tags/小白月赛/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -592,7 +592,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/AtCoder/" style="background: #03a9f4">
+            <a href="/tags/AtCoder/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -602,7 +602,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Beginner-Contest/" style="background: #00bcd4">
+            <a href="/tags/Beginner-Contest/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -622,7 +622,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/NEERC/" style="background: #ff7d73">
+            <a href="/tags/NEERC/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -632,7 +632,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Regular-Contest/" style="background: #03a9f4">
+            <a href="/tags/Regular-Contest/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -642,7 +642,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/153/" style="background: #00a596">
+            <a href="/tags/153/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -662,7 +662,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Div-1-Div-2/" style="background: #00bcd4">
+            <a href="/tags/Div-1-Div-2/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -682,7 +682,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/2023/" style="background: #00bcd4">
+            <a href="/tags/2023/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -702,7 +702,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/头文件/" style="background: #03a9f4">
+            <a href="/tags/头文件/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -712,7 +712,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/模板/" style="background: #ff7d73">
+            <a href="/tags/模板/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -722,7 +722,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Div-3/" style="background: #03a9f4">
+            <a href="/tags/Div-3/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -752,7 +752,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Round-849/" style="background: #00a596">
+            <a href="/tags/Round-849/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -762,7 +762,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Div-4/" style="background: #ff7d73">
+            <a href="/tags/Div-4/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -782,7 +782,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/NEUQ/" style="background: #00a596">
+            <a href="/tags/NEUQ/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -792,7 +792,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/FFT/" style="background: #00bcd4">
+            <a href="/tags/FFT/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -822,7 +822,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/Linux/" style="background: #00a596">
+            <a href="/tags/Linux/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -832,7 +832,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/基础/" style="background: #00bcd4">
+            <a href="/tags/基础/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -842,7 +842,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/命令/" style="background: #00bcd4">
+            <a href="/tags/命令/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -852,7 +852,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/快捷键/" style="background: #03a9f4">
+            <a href="/tags/快捷键/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -862,7 +862,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/host/" style="background: #ffa2c4">
+            <a href="/tags/host/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -882,7 +882,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/归并排序/" style="background: #00a596">
+            <a href="/tags/归并排序/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -892,7 +892,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/XJTUPC/" style="background: #ff7d73">
+            <a href="/tags/XJTUPC/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -902,7 +902,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/GCPC/" style="background: #03a9f4">
+            <a href="/tags/GCPC/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -922,7 +922,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/考试周欢乐赛/" style="background: #03a9f4">
+            <a href="/tags/考试周欢乐赛/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -952,7 +952,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/牛客小白月赛/" style="background: #ff7d73">
+            <a href="/tags/牛客小白月赛/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -962,7 +962,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/系统/" style="background: #ffa2c4">
+            <a href="/tags/系统/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -982,7 +982,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/CodeForce/" style="background: #00a596">
+            <a href="/tags/CodeForce/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1002,7 +1002,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/数论/" style="background: #00a596">
+            <a href="/tags/数论/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1022,7 +1022,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/洛谷/" style="background: #00a596">
+            <a href="/tags/洛谷/" style="background: #00bcd4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1032,7 +1032,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/ICPC/" style="background: #03a9f4">
+            <a href="/tags/ICPC/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1062,7 +1062,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/CCPC/" style="background: #03a9f4">
+            <a href="/tags/CCPC/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1072,7 +1072,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/深圳/" style="background: #ff7d73">
+            <a href="/tags/深圳/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1082,7 +1082,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/2021/" style="background: #00a596">
+            <a href="/tags/2021/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1112,7 +1112,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/上海市赛/" style="background: #ffa2c4">
+            <a href="/tags/上海市赛/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1122,7 +1122,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/记忆化搜索/" style="background: #00a596">
+            <a href="/tags/记忆化搜索/" style="background: #03a9f4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1142,7 +1142,7 @@ mjx-container[display="true"] + br {
         
         
         <span>
-            <a href="/tags/思维/" style="background: #00bcd4">
+            <a href="/tags/思维/" style="background: #00a596">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
@@ -1177,28 +1177,28 @@ mjx-container[display="true"] + br {
                         
                         <span class="tag">
                             
-                            <a href="/tags/高等数学竞赛/" style="color: #ffa2c4">
+                            <a href="/tags/高等数学竞赛/" style="color: #ff7d73">
                                 高等数学竞赛
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/数学/" style="color: #ff7d73">
+                            <a href="/tags/数学/" style="color: #03a9f4">
                                 数学
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/上海大学/" style="color: #03a9f4">
+                            <a href="/tags/上海大学/" style="color: #ffa2c4">
                                 上海大学
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/2022/" style="color: #00a596">
+                            <a href="/tags/2022/" style="color: #ffa2c4">
                                 2022
                             </a>
                         </span>
@@ -1226,7 +1226,7 @@ mjx-container[display="true"] + br {
                         
                         <span class="tag">
                             
-                            <a href="/tags/C/" style="color: #00a596">
+                            <a href="/tags/C/" style="color: #ff7d73">
                                 C++
                             </a>
                         </span>
@@ -1240,14 +1240,14 @@ mjx-container[display="true"] + br {
                         
                         <span class="tag">
                             
-                            <a href="/tags/题解/" style="color: #ff7d73">
+                            <a href="/tags/题解/" style="color: #ffa2c4">
                                 题解
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/2022/" style="color: #00a596">
+                            <a href="/tags/2022/" style="color: #03a9f4">
                                 2022
                             </a>
                         </span>
@@ -1282,28 +1282,28 @@ mjx-container[display="true"] + br {
                         
                         <span class="tag">
                             
-                            <a href="/tags/C/" style="color: #03a9f4">
+                            <a href="/tags/C/" style="color: #ffa2c4">
                                 C++
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/算法竞赛/" style="color: #03a9f4">
+                            <a href="/tags/算法竞赛/" style="color: #00a596">
                                 算法竞赛
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/2022/" style="color: #ff7d73">
+                            <a href="/tags/2022/" style="color: #00bcd4">
                                 2022
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/上海市赛/" style="color: #ff7d73">
+                            <a href="/tags/上海市赛/" style="color: #03a9f4">
                                 上海市赛
                             </a>
                         </span>
@@ -1317,7 +1317,7 @@ mjx-container[display="true"] + br {
                         
                         <span class="tag">
                             
-                            <a href="/tags/期望dp/" style="color: #03a9f4">
+                            <a href="/tags/期望dp/" style="color: #ff7d73">
                                 期望dp
                             </a>
                         </span>
