@@ -1,0 +1,394 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            清理草稿纸有感 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+        <script src="../source/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>清理草稿纸有感 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/1/31
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/随记/" style="color: #00bcd4">
+                    随记
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>前天返乡之前收拾东西，将大学三年所用的草稿纸全部丢掉了。</p>
+<span id="more"></span>
+<blockquote>
+<p>初中高中，草稿纸我一直都不舍得扔，尽可能地将草稿纸收集起来。</p>
+</blockquote>
+<p>每当我回首过去，所想起的大多是痛苦的记忆。美好的瞬间在时间长河中很快便模糊了，而一些尴尬的、痛苦的、不幸的、哀伤的记忆，经常会在深夜不眠时拜访我，一遍一遍地加深印象，从而再也遗忘不掉。</p>
+<p>而当我翻阅堆叠的草稿纸，看着上面或青涩、或踌躇、或汹涌的思绪，便也仿佛回到了写下字迹的那刻。看着一笔一画，跟随纸上的推导，我逐步走回了遥不可忆的过去。这一瞬，心湖泛涟漪，字迹诞生的时空邻域内的回忆，通通涌现了。</p>
+<p>我由此可以透过漫长的时间，注视着那个少年，他的喜乐哀愁、他的幸运与不幸、他的命运我都尽收眼底。一页一页，许多遗失的记忆碎片被重新拾起，我又重温了一遍字迹所覆盖的人生。</p>
+<p>扔掉了这些草稿纸，可能所对应的记忆将再也没有机会再回忆起，所以一直以来都想把草稿纸尽可能地存下。但又转念一想，发现我这样的行为其实是对时间流逝的抗拒，是在怀念过去。但我不应沉湎于过去，现在和未来还有无限多的可能，如果时间都用于沉溺过去，那么最珍贵的现在也会悄悄溜走，变成无法访问的过去。</p>
+<p>想通了，便把大学以来的草稿纸都扔掉了。</p>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2024 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+
+    </html>
