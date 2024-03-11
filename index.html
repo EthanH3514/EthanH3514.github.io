@@ -312,6 +312,191 @@ mjx-container[display="true"] + br {
             
 
 <div class="post">
+    <a href="/2024/03/10/爬虫学习笔记/">
+        <h2 class="post-title">爬虫学习笔记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/10
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <span id="more"></span>
+<h3 id="示例代码">示例代码</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">regex</span><span class="op">.</span><span class="im">Matcher</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">regex</span><span class="op">.</span><span class="im">Pattern</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> str <span class="op">=</span> <span class="st">"待匹配文本"</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">//Pattern: 表示正则表达式</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">Pattern</span> p <span class="op">=</span> <span class="bu">Pattern</span><span class="op">.</span><span class="fu">compile</span><span class="op">(</span><span class="st">"正则表达式"</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">//Matcher: 文本匹配器，按照正则表达式的规则去读取字符串，从头开始找符合规则的子串</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">Matcher</span> m <span class="op">=</span> p<span class="op">.</span><span class="fu">matcher</span><span class="op">(</span>str<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">//如果没有符合的子串，返回false</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">//如果有，返回true。在底层记录子串的起始索引和结束索引+1</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">(</span>m<span class="op">.</span><span class="fu">find</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span> res <span class="op">=</span> m<span class="op">.</span><span class="fu">group</span><span class="op">();</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>res<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">//?理解为前面的数据Java</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">//=表示在Java后面要跟随的数据</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">//但是在获取的时候，只获取前半部分</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> regex <span class="op">=</span> <span class="st">"Java(?=8|11|17)"</span><span class="op">;</span></span></code></pre></div>
+<h3 id="贪婪捕获和非贪婪捕获">贪婪捕获和非贪婪捕获</h3>
+<ul>
+<li>贪婪捕获：尽可能多地获取（Java中<code>+</code>默认）</li>
+<li>非贪婪捕获：尽可能少地获取</li>
+</ul>
+<h3 id="捕获分组和非捕获分组">捕获分组和非捕获分组</h3>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Java/" style="color: #ff7d73">
+                Java
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/笔记/" style="color: #00a596">
+                笔记
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/爬虫/" style="color: #ff7d73">
+                爬虫
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2024/03/10/爬虫学习笔记/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/03/10/正则表达式学习笔记/">
+        <h2 class="post-title">正则表达式学习笔记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/10
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>正则表达式可以很方便地判断字符串格式，应用很广</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Java/" style="color: #00bcd4">
+                Java
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/笔记/" style="color: #ff7d73">
+                笔记
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/正则表达式/" style="color: #ffa2c4">
+                正则表达式
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2024/03/10/正则表达式学习笔记/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/03/10/Java常用库API学习笔记/">
+        <h2 class="post-title">Java常用库API学习笔记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/10
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>好记性不如烂笔头，还是写一下</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Java/" style="color: #ff7d73">
+                Java
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/API/" style="color: #03a9f4">
+                API
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/笔记/" style="color: #03a9f4">
+                笔记
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2024/03/10/Java常用库API学习笔记/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/01/31/清理草稿纸有感/">
         <h2 class="post-title">清理草稿纸有感</h2>
     </a>
@@ -340,7 +525,7 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/随记/" style="color: #00a596">
+            <a href="/tags/随记/" style="color: #ff7d73">
                 随记
             </a>
         </span>
@@ -380,14 +565,14 @@ Final因为太菜了打不了，剩下的比赛只有蓝桥杯和天梯赛，基
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #00bcd4">
+            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/随记/" style="color: #00a596">
+            <a href="/tags/随记/" style="color: #03a9f4">
                 随记
             </a>
         </span>
@@ -433,35 +618,35 @@ Final因为太菜了打不了，剩下的比赛只有蓝桥杯和天梯赛，基
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #00bcd4">
+            <a href="/tags/算法竞赛/" style="color: #03a9f4">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/2022/" style="color: #03a9f4">
+            <a href="/tags/2022/" style="color: #ff7d73">
                 2022
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/上海市赛/" style="color: #00bcd4">
+            <a href="/tags/上海市赛/" style="color: #00a596">
                 上海市赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/记忆化搜索/" style="color: #00a596">
+            <a href="/tags/记忆化搜索/" style="color: #ffa2c4">
                 记忆化搜索
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/期望dp/" style="color: #00bcd4">
+            <a href="/tags/期望dp/" style="color: #00a596">
                 期望dp
             </a>
         </span>
@@ -515,35 +700,35 @@ div3的最后一题是一个题，于是写一遍加深印象</p>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #03a9f4">
+            <a href="/tags/算法竞赛/" style="color: #00bcd4">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/题解/" style="color: #00bcd4">
+            <a href="/tags/题解/" style="color: #ff7d73">
                 题解
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/牛客/" style="color: #03a9f4">
+            <a href="/tags/牛客/" style="color: #ff7d73">
                 牛客
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/小白月赛/" style="color: #ffa2c4">
+            <a href="/tags/小白月赛/" style="color: #00bcd4">
                 小白月赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/思维/" style="color: #00a596">
+            <a href="/tags/思维/" style="color: #ff7d73">
                 思维
             </a>
         </span>
@@ -582,7 +767,7 @@ div3的最后一题是一个题，于是写一遍加深印象</p>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #03a9f4">
+            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                 算法竞赛
             </a>
         </span>
@@ -603,21 +788,21 @@ div3的最后一题是一个题，于是写一遍加深印象</p>
         
         <span class="tag">
             
-            <a href="/tags/2021/" style="color: #00bcd4">
+            <a href="/tags/2021/" style="color: #03a9f4">
                 2021
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/威海/" style="color: #00a596">
+            <a href="/tags/威海/" style="color: #ff7d73">
                 威海
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/生成函数/" style="color: #03a9f4">
+            <a href="/tags/生成函数/" style="color: #ffa2c4">
                 生成函数
             </a>
         </span>
@@ -656,7 +841,7 @@ div3的最后一题是一个题，于是写一遍加深印象</p>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #03a9f4">
+            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                 算法竞赛
             </a>
         </span>
@@ -684,7 +869,7 @@ div3的最后一题是一个题，于是写一遍加深印象</p>
         
         <span class="tag">
             
-            <a href="/tags/深圳/" style="color: #00a596">
+            <a href="/tags/深圳/" style="color: #ff7d73">
                 深圳
             </a>
         </span>
@@ -723,28 +908,28 @@ div3的最后一题是一个题，于是写一遍加深印象</p>
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #03a9f4">
+            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/2023/" style="color: #ffa2c4">
+            <a href="/tags/2023/" style="color: #00bcd4">
                 2023
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/ICPC/" style="color: #00a596">
+            <a href="/tags/ICPC/" style="color: #ff7d73">
                 ICPC
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Region/" style="color: #00bcd4">
+            <a href="/tags/Region/" style="color: #ff7d73">
                 Region
             </a>
         </span>
@@ -758,188 +943,6 @@ div3的最后一题是一个题，于是写一遍加深印象</p>
         
     </div>
     <a href="/2023/11/07/2023-ICPC-南京区域赛-体验/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/06/27/洛谷P3868-猜数字/">
-        <h2 class="post-title">洛谷P3868 猜数字</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/6/27
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>一眼上去这不中国剩余定理板题，但一直WA最后一个点，经过漫长的调试后，原来爆long
-long了</p>
-<p>于是第一次开了__int128_t，__int128_t不能正常输入输出，只能快读快输</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #ffa2c4">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/算法竞赛/" style="color: #03a9f4">
-                算法竞赛
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/数论/" style="color: #ff7d73">
-                数论
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/洛谷/" style="color: #00bcd4">
-                洛谷
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/06/27/洛谷P3868-猜数字/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/06/27/洛谷P3951-小凯的疑惑/">
-        <h2 class="post-title">洛谷P3951 小凯的疑惑</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/6/27
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>虽然答案一眼就能看出来，但是答案的证明还是比较有趣的</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #ff7d73">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/算法竞赛/" style="color: #03a9f4">
-                算法竞赛
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/数论/" style="color: #00a596">
-                数论
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/洛谷/" style="color: #00bcd4">
-                洛谷
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/06/27/洛谷P3951-小凯的疑惑/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/06/26/求逆元/">
-        <h2 class="post-title">求逆元</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2023/6/26
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>一般求逆元有三种方法：扩欧、快速幂、递推</p>
-<hr>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/C/" style="color: #00a596">
-                C++
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/算法竞赛/" style="color: #03a9f4">
-                算法竞赛
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/数论/" style="color: #03a9f4">
-                数论
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/逆元/" style="color: #ffa2c4">
-                逆元
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2023/06/26/求逆元/" class="go-post">阅读全文</a>
 </div>
 
              
@@ -968,9 +971,9 @@ long了</p>
             
             
             <span class="page-omit">...</span>
-            <a href="/page/7">
+            <a href="/page/8">
                 <span class="page-num">
-                    7
+                    8
                 </span>
             </a>
             
