@@ -25,7 +25,8 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -137,8 +138,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
-</head>
+</style></head>
                 
     <body>
         <!-- <div id="L2dCanvas"></div> -->
@@ -308,21 +308,21 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #ffa2c4">
+                <a href="/tags/Java/" style="color: #00a596">
                     Java
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #00bcd4">
+                <a href="/tags/笔记/" style="color: #03a9f4">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/泛型/" style="color: #ffa2c4">
+                <a href="/tags/泛型/" style="color: #00a596">
                     泛型
                 </a>
             </span>
@@ -333,8 +333,8 @@ mjx-container[display="true"] + br {
     <div class="content" v-pre>
         <p>大部分都和C++中一样，主要注意泛型和多态相关的一部分内容</p>
 <span id="more"></span>
+<h3 id="泛型与多态">泛型与多态</h3>
 <h4 id="泛型不具备继承性">泛型不具备继承性</h4>
-<p>示例代码</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">ArrayList</span><span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> GenericsDemo <span class="op">{</span></span>
@@ -387,6 +387,29 @@ mjx-container[display="true"] + br {
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Fu <span class="kw">extends</span> Ye<span class="op">{};</span></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Zi <span class="kw">extends</span> Fu<span class="op">{};</span></span></code></pre></div>
 <p>这样是可以的</p>
+<h3 id="泛型方法">泛型方法</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span><span class="op">&lt;</span>E<span class="op">&gt;</span> <span class="dt">void</span> <span class="fu">method</span><span class="op">(</span><span class="bu">ArrayList</span><span class="op">&lt;</span>E<span class="op">&gt;</span> list<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>在修饰符后面加入泛型，可以生成泛型方法</p>
+<p><strong>弊端</strong>：可以接受任意的数据类型</p>
+<h4 id="通配符限定范围">通配符限定范围</h4>
+<ul>
+<li><code>?</code>：表示不确定的类型，可以放在泛型里面</li>
+</ul>
+<p>例如：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">method</span><span class="op">(</span><span class="bu">ArrayList</span><span class="op">&lt;?&gt;</span> list<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">//此时不用在修饰符后面显式标注泛型</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li><code>? extends E</code>：表示可以传递<code>E</code>或者<code>E</code>所有的子类类型</li>
+<li><code>? super E</code>：表示可以传递<code>E</code>或者<code>E</code>所有的父类类型</li>
+</ul>
+<h3 id="应用场景">应用场景</h3>
+<ul>
+<li>在定义类、方法、接口的时候，如果类型不确定，就可以定义泛型类、泛型方法、泛型接口</li>
+<li>如果类型不确定，但是之后只能传递某个继承体系里面的，可以使用泛型的通配符</li>
+</ul>
 
     </div>
     
