@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <title>
-            Java Lambda表达式学习笔记 | Hxy(慌糖盐)
+            Java 异常 学习笔记 | Hxy(慌糖盐)
         </title>
         <meta name="author" content="EthanH3514">
         <meta name="description" content="不能再逃避">
@@ -290,14 +290,14 @@ mjx-container[display="true"] + br {
                         
 <div class="article">
     <div>
-        <h1>Java Lambda表达式学习笔记 </h1>
+        <h1>Java 异常 学习笔记 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2024/3/11
+            2024/3/14
         </span>
         
         
@@ -308,22 +308,22 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #ffa2c4">
+                <a href="/tags/Java/" style="color: #03a9f4">
                     Java
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #ffa2c4">
+                <a href="/tags/笔记/" style="color: #00bcd4">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Lambda表达式/" style="color: #ffa2c4">
-                    Lambda表达式
+                <a href="/tags/异常/" style="color: #03a9f4">
+                    异常
                 </a>
             </span>
             
@@ -331,36 +331,113 @@ mjx-container[display="true"] + br {
         
     </div>
     <div class="content" v-pre>
-        <p>owo</p>
+        <p>qaq</p>
 <span id="more"></span>
-<p>注：Lambda表达式是JDK8之后的语法</p>
-<h4 id="格式">格式</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">(</span>形参<span class="op">)</span> <span class="op">-&gt;</span> <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    方法体</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="例">例</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Arrays</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>arr<span class="op">,</span> <span class="op">(</span><span class="bu">Integer</span> o1<span class="op">,</span> <span class="bu">Integer</span> o2<span class="op">)</span> <span class="op">-&gt;</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> o1 <span class="op">-</span> o2<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div>
+<h2 id="异常">异常</h2>
 <ul>
-<li>Lambda表达式可以用来简化匿名内部类的书写</li>
-<li>只能简化函数式接口的匿名内部类的写法</li>
-<li>有且只有一个抽象方法的接口是函数式接口</li>
-<li>可以在接口上方加<code>@FunctionalInterface</code>注解检查</li>
-</ul>
-<h4 id="函数式接口示例">函数式接口示例</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@FunctionalInterface</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Swim<span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">abstract</span> <span class="dt">void</span> <span class="fu">swimming</span><span class="op">();</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="lambda的省略规则">Lambda的省略规则</h4>
+<li>最上层父类：<code>Exception</code></li>
+<li>分为：编译时异常、运行时异常
 <ul>
-<li>参数类型可以省略</li>
-<li>如果只有一个参数，类型和()都可以省略</li>
-<li>如果Lambda表达式的方法体只有一行，大括号，分好，return都可以省略。如果省略，需要同时省略</li>
+<li>编译时异常：直接继承于<code>Exception</code>，编译阶段就会错误提示（java文件
+-&gt; 字节码文件）</li>
+<li>运行时异常：<code>RuntimeException</code>本身和子类，运行时出错误提示（字节码文件
+-&gt; 运行结果)</li>
+</ul></li>
 </ul>
-<h4 id="例-1">例</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Arrays</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>arr<span class="op">,</span> <span class="op">(</span>o1<span class="op">,</span> o2<span class="op">)</span> <span class="op">-&gt;</span> o1 <span class="op">-</span> o2<span class="op">);</span></span></code></pre></div>
+<h2 id="异常的处理方式">异常的处理方式</h2>
+<h3 id="jvm默认处理方式">JVM默认处理方式</h3>
+<ul>
+<li>把异常名字、异常原因、异常出现位置以红色字体输出在控制台</li>
+<li>程序中止</li>
+</ul>
+<h3 id="自己处理">自己处理</h3>
+<ul>
+<li>可以让程序继续执行</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">[]</span> arr <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>arr<span class="op">[</span><span class="dv">5</span><span class="op">]);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">catch</span><span class="op">(</span><span class="bu">ArrayIndexOutOfBoundsException</span> e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"索引越界"</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">);</span><span class="co">//执行成功</span></span></code></pre></div>
+<ul>
+<li><code>try</code>中代码出现异常就中止，进入对应的catch</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">[]</span> arr <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">};</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>arr<span class="op">[</span><span class="dv">10</span><span class="op">]);</span><span class="co">//ArrayIndexOutOfBoundsException</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="dv">2</span><span class="op">/</span><span class="dv">0</span><span class="op">);</span><span class="co">//ArithmeticException</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">catch</span><span class="op">(</span><span class="bu">ArrayIndexOutOfBoundsException</span> e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"索引越界"</span><span class="op">);</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">);</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">//输出：</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">//索引越界</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">//Hello</span></span></code></pre></div>
+<ul>
+<li><p>若<code>try</code>中可能遇到多个异常，写多个<code>catch</code>与之对应。</p>
+<ul>
+<li><strong>注意</strong>：如果这些异常中存在父子关系，父类写下面</li>
+<li>多个<code>catch</code>也不能同时捕获多个异常，碰到第一个异常就退出了</li>
+</ul></li>
+<li><p><strong>JDK7</strong>之后，可以在catch中捕获多个种类的异常</p>
+<ul>
+<li>表示出现了A异常或B异常，采用同一种方案</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">catch</span><span class="op">(</span><span class="bu">ArrayIndexOutOfBoundsException</span> <span class="op">|</span> <span class="bu">ArithmeticException</span> e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p><code>try</code>中遇到的异常没被捕获，采用JVM默认方法处理</p></li>
+</ul>
+<h4 id="异常的常见方法">异常的常见方法</h4>
+<h5 id="throwable的成员方法">Throwable的成员方法</h5>
+<ul>
+<li><code>public void printStackTrace()</code>：把异常信息输出在控制台，不会停止程序运行</li>
+<li><code>public String toString()</code>：返回这个可抛出的简短描述</li>
+<li><code>public String getMessage()</code>：返回此<code>throwable</code>的详细消息字符串</li>
+</ul>
+<h3 id="抛出异常">抛出异常</h3>
+<ul>
+<li><code>throws</code>：标记在方法定义处
+<ul>
+<li>编译时异常：必须写</li>
+<li>运行时异常：可以不写</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">method</span><span class="op">()</span> <span class="kw">throws</span> 异常<span class="er">1</span><span class="op">,</span> 异常<span class="fl">2.</span><span class="op">..</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">...</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li><code>throw</code>：手动抛出异常对象，抛出后中止</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getMax</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> arr<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>arr <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">NullPointerException</span><span class="op">();</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>arr<span class="op">.</span><span class="fu">length</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">ArrayIndexOutOfBoundsException</span><span class="op">();</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">...</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="自定义异常">自定义异常</h2>
+<p>主要是写自定义的名字</p>
+<ul>
+<li>定义异常类</li>
+<li>继承</li>
+<li>写空参和带参构造</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> NameFormatException <span class="kw">extends</span> <span class="bu">RuntimeException</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">NameFormatException</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">NameFormatException</span><span class="op">(</span><span class="bu">String</span> message<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">super</span><span class="op">(</span>message<span class="op">);</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 
     </div>
     
