@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-03-14T15:37:34.270Z</updated>
+  <updated>2024-03-15T14:08:22.485Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java File 学习笔记</title>
+    <link href="https://ethanh3514.github.io/2024/03/15/Java-File-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ethanh3514.github.io/2024/03/15/Java-File-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2024-03-15T13:33:16.000Z</published>
+    <updated>2024-03-15T14:08:22.485Z</updated>
+    
+    <content type="html"><![CDATA[<p>貌似没多少东西</p><span id="more"></span><h3 id="file的构造">File的构造</h3><ul><li><code>public File(String pathname)</code>：把字符串表示的路径变成File对象</li><li><code>public File(String parent, String child)</code>：把父级路径和子级路径进行拼接</li><li><code>public File(File parent, String child)</code></li></ul><p>因为Windows和Linux的路径连接符不一样，所以还是用现有的方法会更好一点</p><h3 id="file的成员方法">File的成员方法</h3><ul><li><code>public boolean isDirectory()</code>：判断是否为文件夹</li><li><code>public boolean isFile()</code>：判断是否为文件</li><li><code>public boolean exists()</code>：判断是否存在</li><li><code>public long length()</code>：返回文件的大小（字节数），无法获取文件夹大小</li><li><code>public String getAbsolutePath()</code>：返回文件的绝对路径</li><li><code>public String getPath()</code>：返回定义文件时的路径</li><li><code>public String getName()</code>：返回文件的名称，带后缀</li><li><code>public long lastModified()</code>：返回文件最后修改时间（毫秒值）</li><li><code>public boolean createNewFile()</code>：创建一个新的空文件，需要父级路径存在</li><li><code>public boolean mkdir()</code>：创建单级文件夹</li><li><code>public boolean mkdirs()</code>：创建多级文件夹</li><li><code>public boolean delete()</code>：删除文件、空文件夹</li><li><code>public File[] listFiles()</code>：获取当前路径下所有内容<ul><li>当调用者File表示的路径不存在、是文件时，返回null</li><li>若无访问文件夹的权限，返回null</li></ul></li><li><code>public static File[] listRoots()</code>：列出可用的文件系统根</li><li><code>public String[] list()</code>：获取当前路径下所有内容</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;貌似没多少东西&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="https://ethanh3514.github.io/tags/Java/"/>
+    
+    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="File" scheme="https://ethanh3514.github.io/tags/File/"/>
+    
+  </entry>
   
   <entry>
     <title>Java 异常 学习笔记</title>
@@ -478,34 +501,6 @@ div3的最后一题是一个题，于是写一遍加深印象&lt;/p&gt;
     <category term="威海" scheme="https://ethanh3514.github.io/tags/%E5%A8%81%E6%B5%B7/"/>
     
     <category term="生成函数" scheme="https://ethanh3514.github.io/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2023 CCPC深圳 体验</title>
-    <link href="https://ethanh3514.github.io/2023/11/13/2023-CCPC%E6%B7%B1%E5%9C%B3-%E4%BD%93%E9%AA%8C/"/>
-    <id>https://ethanh3514.github.io/2023/11/13/2023-CCPC%E6%B7%B1%E5%9C%B3-%E4%BD%93%E9%AA%8C/</id>
-    <published>2023-11-13T14:35:46.000Z</published>
-    <updated>2023-11-13T16:03:22.172Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一次应该也是最后一次CCPC，体验蛮复杂的</p><hr><span id="more"></span><h3 id="赛前学校状态">赛前学校状态</h3><p>学校仍然处于考试周的水深火热之中，周末是CCPC深圳，周五考大学物理、操作系统，周一考数据库原理，这三科我平时都没怎么学，对于一个考试周速成选手有点过于艰难了。</p><hr><h3 id="晚">11.11晚</h3><p>考完操作系统立刻前往机场飞机前往深圳，看到机票背面是原神的时候还挺高兴的，可是航班延期了（呜呜</p><p><img src="https://user-images.githubusercontent.com/103171084/282516076-b20d8d63-6c8c-49e2-8d22-ce68def99ee8.jpg" alt="“原神”航班"></p><p>最后凌晨半点才到深圳的机场，然后打车，各种波折，到酒店都已经3点了，开始狂睡</p><hr><h3 id="section">11.12</h3><p>从酒店走路去深圳技术大学，又一次走在深圳的路上，宽阔的马路，湿度刚好的空气，适宜的气温（25℃），使我感到心情愉悦</p><p>深圳技术大学没有围墙（字面意义上），这一点震撼到我了。这一个大学就像一个小型的规划很好的城市，很舒适，又一次感觉前两年上了个大砖😭（怎么是个学校都能薄纱鼠大）</p><p>报道给每个人发了一件薄长袖衣服，一个金属咖啡杯（带CCPClogo和随机数独），一大盒F5咖啡粉，感觉很不错。因为教练没来只给教练发了衣服。</p><p>下午的热身赛喜提爆零，三道题直接干懵了。第一道题是个非常巧妙的二进制构造，根本想不出来。第二道题是个纯暴力，我最后半个小时想到做法，但被队友质疑（当时显示过的队伍只有二十多队），最后也没写，可惜。结束后有人说这些题是清华校赛原题，并且前两题在洛谷上是绿题难度，心态小崩。</p><p>热身赛结束之后直接滚回酒店补题去了，考试周没时间训练只能寄希望于比赛前做做题找回手感</p><hr><h3 id="section-1">11.13</h3><p>比赛开始的也非常平淡，和南京一样，主持人也是说了一句比赛开始就开始了。然后开始读题看题，但是痛苦的是前两道题一道题分类讨论差了一点点东西WA了，另一道题方法错了，导致双线程卡题，直到1.5h才过题，看了眼周围已经全是一堆气球了，后面一直压力拉满，希望能追回来。给队友敲了哈希板子之后队友过了第三道题，第四道题其实看了一眼就会了但是式子一直推不对，样例都过不了。后面开始怀疑自己方法错了，一直折磨到最后半个小时，突然发现是因为我在写求和式的时候因为偷懒没写求和的域，导致两个形式一样但求和的域不一样的求和式被当成了一个式子，然后突然醒悟开始重新推导，花了10min敲完然后WA了，看了眼代码发现取模有问题，改了改重新交了就过了，在290min的时候极限过题。</p><p>这时候算了算罚时感觉甚至没铜，有点难过的。</p><p>滚榜的时候发现铜了，还不错。但这场的期望本来是银的，毕竟ICPC沈阳分走了很多强队，再加上这一场是数学场，但我的发挥并不尽人意，虽然也对队伍有关键的贡献，但完全没我期望中那么高。<br>​<br>打完出来就看到群友说第五道题的解法，发现和我看了一眼得出来的一样，可惜当时我没有卡出来约数的范围，以至于想用Pollard_rho，队友听到rho就感觉不对，我也没敢写，有点可惜。那个题几乎已经完全出了，如果再有10min肯定能过。</p><p>签到快一点+过了那道题-&gt;银牌+final</p><p>难过，滚回去加训了</p><hr><h3 id="一些照片">一些照片</h3><p><img src="https://user-images.githubusercontent.com/103171084/282516107-3af5c5b7-d97d-4c31-9666-78fed352452b.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516122-5d134a66-b5ab-46ee-b682-4fac353ccc3b.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516150-1600eedc-a6a3-4503-b521-f591e5524ca5.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516174-cd9981ad-7cf6-4dce-87b9-07a27ccaa1f7.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516194-daa6d4dc-9820-4ff4-a06f-35cf4d075722.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516203-d707c5b3-a1b1-4658-996f-9d2cf94d40c1.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516213-b3b8d515-22fe-4914-ba86-09a52c726fc7.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516225-f70b1fab-3743-4cac-aeb4-18be634d92de.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516231-97debd45-0019-4d1a-91d9-283451bffc7c.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516248-ac41ba84-1389-4961-9fa7-83ee1ce8f2b8.jpg"><br><img src="https://user-images.githubusercontent.com/103171084/282516273-85d59cab-4552-4a2e-9c71-948a8072ff42.jpg"></p><hr>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;第一次应该也是最后一次CCPC，体验蛮复杂的&lt;/p&gt;
-&lt;hr&gt;</summary>
-    
-    
-    
-    
-    <category term="算法竞赛" scheme="https://ethanh3514.github.io/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"/>
-    
-    <category term="2023" scheme="https://ethanh3514.github.io/tags/2023/"/>
-    
-    <category term="Region" scheme="https://ethanh3514.github.io/tags/Region/"/>
-    
-    <category term="CCPC" scheme="https://ethanh3514.github.io/tags/CCPC/"/>
-    
-    <category term="深圳" scheme="https://ethanh3514.github.io/tags/%E6%B7%B1%E5%9C%B3/"/>
     
   </entry>
   
