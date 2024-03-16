@@ -1,0 +1,688 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            Java IO流 学习笔记 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+        <script src="../source/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Java IO流 学习笔记 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/15
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Java/" style="color: #00a596">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/笔记/" style="color: #ffa2c4">
+                    笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/IO流/" style="color: #ffa2c4">
+                    IO流
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>qaq</p>
+<span id="more"></span>
+<h3 id="io流分类">IO流分类</h3>
+<h4 id="字节流">字节流</h4>
+<ul>
+<li>可以操作所有类型的文件</li>
+<li>读取文件的时候不要有中文</li>
+<li>每次只能操作一个字节（整数不能超过一个字节）</li>
+</ul>
+<h5 id="子类">子类</h5>
+<ul>
+<li>InputStream</li>
+<li>OutputStream</li>
+</ul>
+<h4 id="字符流">字符流</h4>
+<ul>
+<li>只能操作纯文本文件</li>
+</ul>
+<h5 id="子类-1">子类</h5>
+<ul>
+<li>Reader</li>
+<li>Writer</li>
+</ul>
+<h2 id="字节流-1">字节流</h2>
+<h3 id="字节输出流">字节输出流</h3>
+<ul>
+<li><code>FileOutputStream(File filename, boolean append)</code></li>
+<li><code>FileOutputStream(String filepath)</code></li>
+</ul>
+<h3 id="字节输入流">字节输入流</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">FileInputStream</span> fis <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileInputStream</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> b<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>b <span class="op">=</span> fis<span class="op">.</span><span class="fu">read</span><span class="op">())</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">char</span><span class="op">)</span>b<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fis<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<h3 id="文件拷贝">文件拷贝</h3>
+<p>小文件</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">FileInputStream</span> fis <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileInputStream</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">FileOutputStream</span> fos <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileOutputStream</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> b<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>b <span class="op">=</span> fis<span class="op">.</span><span class="fu">read</span><span class="op">())</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    fos<span class="op">.</span><span class="fu">write</span><span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">//释放资源</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">//先开的最后关闭</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fos<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fis<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<p>文件大的时候一次次read()太慢</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">FileInputStream</span> fis <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileInputStream</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">FileOutputStream</span> fos <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileOutputStream</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">byte</span><span class="op">[]</span> buf <span class="op">=</span> <span class="kw">new</span> <span class="dt">byte</span><span class="op">[</span><span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span> <span class="op">*</span> <span class="dv">5</span><span class="op">];</span><span class="co">//一般取1024的倍数</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>len <span class="op">=</span> fis<span class="op">.</span><span class="fu">read</span><span class="op">(</span>buf<span class="op">))</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    fos<span class="op">.</span><span class="fu">write</span><span class="op">(</span>buf<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> len<span class="op">);</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>fos<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>fis<span class="op">.</span><span class="fu">close</span><span class="op">();</span> </span></code></pre></div>
+<h2 id="字符流-1">字符流</h2>
+<ul>
+<li>字符流 = 字节流 + 字符集</li>
+</ul>
+<h4 id="特点">特点</h4>
+<ul>
+<li>输入流：一次读一个字节，遇到中文时，一次读多个字节</li>
+<li>输出流：底层把数据按照指定的编码方式进行编码，变成字节再写到文件中</li>
+</ul>
+<h4 id="使用场景">使用场景</h4>
+<ul>
+<li>操作纯文本文件</li>
+</ul>
+<h4 id="filereader">FileReader</h4>
+<ul>
+<li><code>public int read()</code>：读取数据，到末尾返回 -1</li>
+<li><code>public int read(char[] buffer)</code>：读取多个数据，到末尾返回
+-1
+<ul>
+<li>细节：按字节进行读取，遇到中文，一次读多个字节，读取后解码，返回一个十进制整数，代表在字符集上的数字</li>
+<li>字符流的底层也是字节流</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">FileReader</span> fr <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileReader</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ch<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>ch <span class="op">=</span> fr<span class="op">.</span><span class="fu">read</span><span class="op">())</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">char</span><span class="op">)</span>ch<span class="op">);</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fr<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">FileReader</span> fr <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileReader</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span><span class="op">[]</span> ch <span class="op">=</span> <span class="kw">new</span> <span class="dt">char</span><span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> len<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">//read(chars)：把读取数据、解码、强转三步合并了，把强转之后的字符放到数组当中</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">//空参的read + 强制类型转换</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>len <span class="op">=</span> fr<span class="op">.</span><span class="fu">read</span><span class="op">(</span>ch<span class="op">))</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="kw">new</span> <span class="bu">String</span><span class="op">(</span>ch<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> len<span class="op">));</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>fr<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<h4 id="filewriter">FileWriter</h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">FileWriter</span> fw <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileWriter</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fw<span class="op">.</span><span class="fu">write</span><span class="op">(</span><span class="dv">25105</span><span class="op">);</span><span class="co">//根据字符集的编码方式编码，把编码之后的数据写到文件中</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fw<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">FileWriter</span> fw <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileWriter</span><span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span><span class="op">[]</span> ch <span class="op">=</span> <span class="op">{</span><span class="ch">'a'</span><span class="op">,</span> <span class="ch">'b'</span><span class="op">,</span> <span class="ch">'c'</span><span class="op">,</span> <span class="er">'</span>我<span class="er">'</span><span class="op">};</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fw<span class="op">.</span><span class="fu">write</span><span class="op">(</span>ch<span class="op">);</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fw<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<h4 id="字符流底层原理">字符流底层原理</h4>
+<ul>
+<li>创建字符输入流对象
+<ul>
+<li>关联文件，并创建缓冲区（长度为8192的字节数组）（字节流无缓冲区）</li>
+</ul></li>
+<li>读取数据
+<ul>
+<li>判断缓冲区中是否有数据
+<ul>
+<li>缓冲区无数据：从文件中获取数据，装入缓冲区，尽可能装满</li>
+<li>缓冲区有数据：从缓冲区读取</li>
+</ul></li>
+<li>空参read：一次读取一个字节，遇到中文一次读多个字节，把字节解码转成十进制返回</li>
+<li>有参read：读取字节、解码、强转三步合并，强转后的字符放到数组中</li>
+</ul></li>
+<li>输出数据
+<ul>
+<li>在内存中创建一个8192的缓冲区，每一次write都会把内容编码写进缓冲区里，出现下面的情况时，会把缓冲区内容写入文件
+<ul>
+<li>缓冲区满</li>
+<li>刷新（<code>flush()</code>）</li>
+<li>关流（<code>close()</code>）</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="缓冲流">缓冲流</h2>
+<p>加了缓冲区的基本流</p>
+<h3 id="字节缓冲流">字节缓冲流</h3>
+<ul>
+<li><code>public BufferedInputStream(InputStream is)</code></li>
+<li><code>public BufferedOutputStream(OutputStream os)</code></li>
+</ul>
+<h3 id="字符缓冲流">字符缓冲流</h3>
+<p>因为字符基本流已经有缓冲区了，所以效率提高不明显</p>
+<ul>
+<li><code>BufferedReader</code></li>
+<li><code>BufferedWriter</code></li>
+</ul>
+<p>主要体现在两个比较好用的方法</p>
+<ul>
+<li>输入流：<code>public String readLine()</code>：读取一行数据，如果没数据了，返回null。<strong>但是不会读取回车换行</strong></li>
+<li>输出流：<code>public void newLine()</code>：跨平台的换行</li>
+</ul>
+<h2 id="转换流">转换流</h2>
+<p>是字符流和字节流之间的桥梁</p>
+<p>数据源 -&gt; 字节流 -&gt; 转换流 -&gt; 内存 -&gt; 转换流 -&gt; 字节流
+-&gt;目的文件</p>
+<ul>
+<li><code>InputStreamReader</code></li>
+<li><code>OutputStreamWriter</code></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">InputStreamReader</span> isr <span class="op">=</span> <span class="kw">new</span> <span class="bu">InputStreamReader</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileInputStream</span><span class="op">(</span><span class="st">""</span><span class="op">),</span> <span class="st">"GBK"</span><span class="op">);</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ch<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>ch <span class="op">=</span> isr<span class="op">.</span><span class="fu">read</span><span class="op">())</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">((</span><span class="dt">char</span><span class="op">)</span>ch<span class="op">);</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>isr<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">OutputStreamWriter</span> osw <span class="op">=</span> <span class="kw">new</span> <span class="bu">OutputStreamWriter</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileOutputStream</span><span class="op">(</span><span class="st">""</span><span class="op">),</span> <span class="st">"GBK"</span><span class="op">);</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>osw<span class="op">.</span><span class="fu">write</span><span class="op">(</span><span class="st">"你好"</span><span class="op">);</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>osw<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<p><strong>JDK11</strong>后把<code>FileInputStream</code>和<code>FileOutputStream</code>的构造方法加入了字符编码</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">//将本地文件中的GBK文件，转成UTF-8</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">InputStreamReader</span> isr <span class="op">=</span> <span class="kw">new</span> <span class="bu">InputStreamReader</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileInputStream</span><span class="op">(</span><span class="st">""</span><span class="op">),</span> <span class="st">"GBK"</span><span class="op">);</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">OutputStreamWriter</span> osw <span class="op">=</span> <span class="kw">new</span> <span class="bu">OutputStreamWriter</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileOutputStream</span><span class="op">(</span><span class="st">""</span><span class="op">),</span> <span class="st">"UTF-8"</span><span class="op">);</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> b<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>b <span class="op">=</span> isr<span class="op">.</span><span class="fu">read</span><span class="op">())</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    osw<span class="op">.</span><span class="fu">write</span><span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>osw<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>isr<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<h3 id="练习">练习</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">//用字节流读文件中数据，一次读一行，不能出现乱码</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">//1.字节流在读中文的时候，会出现乱码，用字符流没事</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">//2.字节流里面是没有读一行的方法，字符缓冲流可以</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">//FileInputStream fis = new FileInputStream("");</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">//InputStreamReader isr = new InputStreamReader(fis);</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">//BufferedReader br = new BufferedReader(isr);</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">BufferedReader</span> br <span class="op">=</span> <span class="kw">new</span> <span class="bu">BufferedReader</span><span class="op">(</span><span class="kw">new</span> <span class="bu">InputStreamReader</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileInputStream</span><span class="op">(</span><span class="st">""</span><span class="op">)));</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> str<span class="op">;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>str <span class="op">=</span> br<span class="op">.</span><span class="fu">readLine</span><span class="op">())</span> <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>str<span class="op">);</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>br<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<h2 id="序列化流">序列化流</h2>
+<ul>
+<li>是字节流的一种</li>
+<li>可以把Java中的对象写到本地文件中</li>
+<li>是高级流</li>
+</ul>
+<h3 id="构造方法">构造方法</h3>
+<ul>
+<li><code>public ObjectOutputStream(OutputStream out)</code>：基本流包装成高级流</li>
+<li><code>public final void writeObject(Object obj)</code>：把对象序列化写出</li>
+</ul>
+<h3 id="输出">输出</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Student stu <span class="op">=</span> <span class="kw">new</span> <span class="fu">Student</span><span class="op">(</span><span class="st">"a"</span><span class="op">,</span> <span class="dv">18</span><span class="op">);</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">ObjectOutputStream</span> oos <span class="op">=</span> <span class="kw">new</span> <span class="bu">ObjectOutputStream</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileOutputStream</span><span class="op">(</span><span class="st">""</span><span class="op">));</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>oos<span class="op">.</span><span class="fu">writeObject</span><span class="op">(</span>stu<span class="op">);</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>oos<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<p><strong>注意</strong>：要序列化的Javabean类需要实现Serializable接口，Serializable接口是个标记接口</p>
+<h3 id="输入">输入</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">ObjectInputStream</span> ois <span class="op">=</span> <span class="kw">new</span> <span class="bu">ObjectInputStream</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileInputStream</span><span class="op">(</span><span class="st">""</span><span class="op">));</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">//Object o = ois.readObject();</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>Student o <span class="op">=(</span>Student<span class="op">)</span> ois<span class="op">.</span><span class="fu">readObject</span><span class="op">();</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>o<span class="op">);</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ois<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<h3 id="版本号">版本号</h3>
+<ul>
+<li><p>当一个对象实现了Serializable接口之后，每一次修改这个Javabean类都会生成新的版本号，而每次序列化会把版本号序列化进去，使得在反序列化时可能会出现序列化的对象和当前Javabean类版本号不一致的问题</p></li>
+<li><p>可以固定版本号</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Student <span class="kw">implements</span> <span class="bu">Serializable</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">long</span> serialVersionUID <span class="op">=</span> <span class="dv">1L</span><span class="op">;</span><span class="co">// 唯一格式 建议自动生成</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+</ul>
+<h4 id="transient关键字">transient关键字</h4>
+<ul>
+<li>瞬态关键字</li>
+<li>被此关键字修饰的变量不会被序列化到本地文件中</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="kw">transient</span> <span class="bu">String</span> address<span class="op">;</span></span></code></pre></div>
+<h2 id="打印流">打印流</h2>
+<ul>
+<li><p>只有输出流</p></li>
+<li><p>字节打印流 和 字符打印流</p></li>
+<li><p>不能操作数据源，只能操作目的地</p></li>
+<li><p>PrintStream</p></li>
+<li><p>PrintWriter</p></li>
+</ul>
+<h3 id="字节打印流">字节打印流</h3>
+<p>字节流底层没缓冲区，自动刷新开不开没区别</p>
+<h4 id="构造">构造</h4>
+<ul>
+<li><code>public PrintStream(OutputStream/File/String)</code>：关联字节输出流/文件/文件路径</li>
+<li><code>public PrintStream(String fileName, Charset charset)</code>：指定字符编码</li>
+<li><code>public PrintStream(OutputStream out, boolean autoFlush)</code>：自动刷新</li>
+<li><code>public PrintStream(OutputStream out, boolean autoFlush, String encoding)</code>：指定字符编码</li>
+</ul>
+<h4 id="方法">方法</h4>
+<ul>
+<li><code>public void write(int b)</code>：常规方法，和之前一样</li>
+<li><code>public void println(Xxx xx)</code>：特有方法，打印任意数据，自动刷新、换行</li>
+<li><code>public void print(Xxx xx)</code>：特有方法，打印任意数据，不换行</li>
+<li><code>public void printf(String format, Object...)</code>：特有方法，带有占位符的打印语句，不换行</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">PrintStream</span> ps <span class="op">=</span> <span class="kw">new</span> <span class="bu">PrintStream</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileOutputStream</span><span class="op">(</span><span class="st">""</span><span class="op">),</span> <span class="kw">true</span><span class="op">,</span> <span class="bu">Charset</span><span class="op">.</span><span class="fu">forName</span><span class="op">(</span><span class="st">"GBK"</span><span class="op">));</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ps<span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="dv">97</span><span class="op">);</span><span class="co">//写出 + 自动刷新 + 自动换行</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ps<span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="kw">true</span><span class="op">);</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ps<span class="op">.</span><span class="fu">println</span><span class="op">();</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ps<span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st"> loves </span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span> <span class="st">"a"</span><span class="op">,</span> <span class="st">"b"</span><span class="op">);</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ps<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<h3 id="字符打印流">字符打印流</h3>
+<p>字符流底层有缓冲区，要自动刷新需要手动开启</p>
+<h4 id="构造-1">构造</h4>
+<ul>
+<li><code>public PrintWriter(Writer/File/String)</code>：关联字节输出流/文件/路径</li>
+<li><code>public PrintWriter(String fileName, Charset charset)</code>：指定字符编码</li>
+<li><code>public PrintWriter(Write w, boolean autoFlush)</code>：自动刷新</li>
+<li><code>public PrintWriter(OutputStream out, boolean autoFlush, Charset charset)</code>：指定字符编码且自动刷新</li>
+</ul>
+<h4 id="方法-1">方法</h4>
+<p>和字节打印流一样</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">PrintWriter</span> pw <span class="op">=</span> <span class="kw">new</span> <span class="bu">PrintWriter</span><span class="op">(</span><span class="kw">new</span> <span class="bu">FileWriter</span><span class="op">(</span><span class="st">""</span><span class="op">),</span> <span class="kw">true</span><span class="op">);</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>pw<span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"abc"</span><span class="op">);</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>pw<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<h4 id="用处">用处</h4>
+<ul>
+<li><code>System.out</code>是一个静态打印流对象，虚拟机启动的时候，由JVM赋值，默认指向控制台</li>
+</ul>
+<h2 id="压缩流">压缩流</h2>
+<ul>
+<li>只能识别.zip文件</li>
+<li>压缩包里每一个文件在Java中是一个ZipEntry对象</li>
+<li>解压本质：把每一个ZipEntry对象按照层级拷贝到本地另一个文件夹中</li>
+</ul>
+<h3 id="解压缩流">解压缩流</h3>
+<p>ZipInputStream</p>
+<hr>
+<p>未完待续</p>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2024 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+
+    </html>
