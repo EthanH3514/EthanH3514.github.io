@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-03-20T15:18:14.162Z</updated>
+  <updated>2024-03-20T15:38:48.062Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 动态代理 学习笔记</title>
+    <link href="https://ethanh3514.github.io/2024/03/20/Java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ethanh3514.github.io/2024/03/20/Java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2024-03-20T15:20:16.000Z</published>
+    <updated>2024-03-20T15:38:48.062Z</updated>
+    
+    <content type="html"><![CDATA[<p>可以无侵入式的给代码增加额外的功能</p><span id="more"></span><p>对象可以通过代理来转移部分职责</p><ul><li>调用过程：调用者 -&gt; 代理 -&gt; 对象</li><li>代理里面就是对象要被代理的方法</li><li>Java通过接口保证代理的样子，对象和代理需要实现同一个接口，接口中是被代理的所有方法</li></ul><h3 id="创建代理对象">创建代理对象</h3><ul><li><code>java.lang.reflect.Proxy</code>类：提供了为对象产生代理对象的方法</li><li><code>public static Object newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces, InvocationHandler h)</code><ul><li>参数一：指定类加载器，加载生成的代理类</li><li>参数二：指定接口，这些接口用于指定代理有哪些方法</li><li>参数三：指定生成的代理对象要干什么</li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;可以无侵入式的给代码增加额外的功能&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="https://ethanh3514.github.io/tags/Java/"/>
+    
+    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="动态代理" scheme="https://ethanh3514.github.io/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Java 反射 学习笔记</title>
@@ -458,25 +481,6 @@
     <category term="API" scheme="https://ethanh3514.github.io/tags/API/"/>
     
     <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>清理草稿纸有感</title>
-    <link href="https://ethanh3514.github.io/2024/01/31/%E6%B8%85%E7%90%86%E8%8D%89%E7%A8%BF%E7%BA%B8%E6%9C%89%E6%84%9F/"/>
-    <id>https://ethanh3514.github.io/2024/01/31/%E6%B8%85%E7%90%86%E8%8D%89%E7%A8%BF%E7%BA%B8%E6%9C%89%E6%84%9F/</id>
-    <published>2024-01-31T03:25:21.000Z</published>
-    <updated>2024-01-31T13:22:52.265Z</updated>
-    
-    <content type="html"><![CDATA[<p>前天返乡之前收拾东西，将大学三年所用的草稿纸全部丢掉了。</p><span id="more"></span><blockquote><p>初中高中，草稿纸我一直都不舍得扔，尽可能地将草稿纸收集起来。</p></blockquote><p>每当我回首过去，所想起的大多是痛苦的记忆。美好的瞬间在时间长河中很快便模糊了，而一些尴尬的、痛苦的、不幸的、哀伤的记忆，经常会在深夜不眠时拜访我，一遍一遍地加深印象，从而再也遗忘不掉。</p><p>而当我翻阅堆叠的草稿纸，看着上面或青涩、或踌躇、或汹涌的思绪，便也仿佛回到了写下字迹的那刻。看着一笔一画，跟随纸上的推导，我逐步走回了遥不可忆的过去。这一瞬，心湖泛涟漪，字迹诞生的时空邻域内的回忆，通通涌现了。</p><p>我由此可以透过漫长的时间，注视着那个少年，他的喜乐哀愁、他的幸运与不幸、他的命运我都尽收眼底。一页一页，许多遗失的记忆碎片被重新拾起，我又重温了一遍字迹所覆盖的人生。</p><p>扔掉了这些草稿纸，可能所对应的记忆将再也没有机会再回忆起，所以一直以来都想把草稿纸尽可能地存下。但又转念一想，发现我这样的行为其实是对时间流逝的抗拒，是在怀念过去。但我不应沉湎于过去，现在和未来还有无限多的可能，如果时间都用于沉溺过去，那么最珍贵的现在也会悄悄溜走，变成无法访问的过去。</p><p>想通了，便把大学以来的草稿纸都扔掉了。</p><p><strong>少年不必在记忆的长河中刻舟求剑</strong></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;前天返乡之前收拾东西，将大学三年所用的草稿纸全部丢掉了。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="随记" scheme="https://ethanh3514.github.io/tags/%E9%9A%8F%E8%AE%B0/"/>
     
   </entry>
   
