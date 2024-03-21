@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-03-20T16:12:36.372Z</updated>
+  <updated>2024-03-21T15:19:17.655Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker 学习笔记</title>
+    <link href="https://ethanh3514.github.io/2024/03/21/Docker-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ethanh3514.github.io/2024/03/21/Docker-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2024-03-21T11:01:36.000Z</published>
+    <updated>2024-03-21T15:19:17.655Z</updated>
+    
+    <content type="html"><![CDATA[<p>qaq</p><span id="more"></span><h3 id="常用命令">常用命令</h3><h4 id="docker-run">docker run</h4><pre class="shell"><code>docker run -d \    --name mysql \    -p 3306:3306 \    -e TZ=Asia/Shanghai \    -e MYSQL_ROOT_PASSWORD=123 \    mysql</code></pre><ul><li><code>docker run</code>：创建并运行一个容器，<code>-d</code>是让容器在后台运行</li><li><code>--name mysql</code>：给容器起一个名字，必须唯一</li><li><code>-p 3306:3306</code>：设置端口映射（宿主机端口：容器内端口）<ul><li>容器在宿主机运行，容器有自己的内存空间甚至IP地址，但这个IP是外部无法访问的</li><li>可以将容器的端口和宿主机的端口建立端口映射，通过访问宿主机的相应端口访问容器</li><li>容器内端口取决于进程，不需要改动</li></ul></li><li><code>-e KEY=VALUE</code>：设置环境变量<ul><li>环境变量由容器要求</li></ul></li><li><code>mysql</code>：指定运行的镜像的名字<ul><li>完整：<code>[repository]:[tag]</code></li><li>tag不写默认latest</li></ul></li></ul><h4 id="docker-images">docker images</h4><ul><li>查看本地镜像列表</li></ul><h4 id="docker-save">docker save</h4><ul><li>将镜像保存成包</li><li><code>docker save -o nginx.tar nginx:latest</code></li></ul><h4 id="docker-rmi">docker rmi</h4><ul><li>删除镜像</li><li><code>docker rmi nginx:latest</code></li></ul><h4 id="docker-load">docker load</h4><ul><li>加载镜像包</li><li><code>docker load -i nginx.tar</code></li></ul><h4 id="docker-ps">docker ps</h4><ul><li>查看当前运行容器</li><li><code>docker ps</code></li><li>只显示运行的容器<ul><li><code>docker ps -a</code></li><li>显示所有</li></ul></li></ul><h4 id="docker-stop">docker stop</h4><ul><li>停止容器</li><li><code>docker stop nginx</code></li></ul><h4 id="docker-start">docker start</h4><ul><li>启动容器</li><li><code>docker start nginx</code></li></ul><h4 id="docker-logs">docker logs</h4><ul><li>查看日志</li><li><code>docker logs nginx</code><ul><li><code>docker logs -f nginx</code></li><li><code>-f</code>：follow</li><li>一直查看日志，方便调试</li></ul></li></ul><h4 id="docker-exec">docker exec</h4><ul><li>进入容器</li><li><code>docker exec -it nginx bash</code></li></ul><h4 id="docker-rm">docker rm</h4><ul><li>删除容器</li><li><code>docker rm mysql</code></li></ul><h3 id="数据卷">数据卷</h3><ul><li>数据卷是一个虚拟目录，是容器内目录与宿主机目录之间映射的桥梁</li><li>创建数据卷会在宿主机文件系统<code>/var/lib/docker/volumes/卷名/_date</code>的位置</li><li>与容器内响应路径关联</li><li>可以使用宿主机内的编辑器修改容器内的文件内容</li><li>挂载需要再容器创建时就指定好，如果数据卷不存在会自动创建<ul><li><code>docker run -v 数据卷:数据卷目录</code></li></ul></li></ul><h4 id="常用命令-1">常用命令</h4><ul><li><code>docker volume create</code>：创建数据卷</li><li><code>docker volume ls</code>：查看所有数据卷</li><li><code>docker volume rm</code>：删除指定数据卷</li><li><code>docker volume inspect</code>：查看某个数据卷的详情</li><li><code>docker volume prune</code>：删除未使用的数据卷</li><li><code>docker inspect</code>：查看容器是否有数据卷挂载</li></ul><h4 id="匿名卷">匿名卷</h4><ul><li>容器运行自动创建的卷</li><li>不推荐使用，不方便迁移</li></ul><h4 id="自定义挂载">自定义挂载</h4><ul><li><code>docker run -v 本地目录:容器内目录</code></li><li>本地目录必须以<code>/</code>或<code>./</code>开头，否则会被认为是数据卷</li></ul><h3 id="自定义镜像">自定义镜像</h3><h4 id="结构">结构</h4><ul><li>逐层打包</li><li>可以利用已有的层</li></ul><h4 id="dockerfile">Dockerfile</h4><p>是一个文本文件，包含一个个指令，用指令来说明要执行什么操作</p><h5 id="指令">指令</h5><ul><li><code>FROM</code>：指定基础镜像<ul><li><code>FROM centos:6</code></li></ul></li><li><code>ENV</code>：设置环境变量<ul><li><code>ENV key value</code></li></ul></li><li><code>COPY</code>：拷贝本地文件到镜像的指定目录<ul><li><code>COPY ./jrell.tar.gz /tmp</code></li></ul></li><li><code>RUN</code>：执行Linux的shell命令<ul><li><code>RUN tar -zxvf /tmp/jrell.tar.gz &amp;&amp; EXPORTS path=/tmp/jrell:$path</code></li></ul></li><li><code>EXPOSE</code>：指定容器运行时监听的端口，是给镜像使用者看的<ul><li><code>EXPOSE 8080</code></li></ul></li><li><code>ENTRYPOINT</code>：镜像中应用的启动命令，容器运行时调用<ul><li><code>ENTRYPOINT java -jar xx.jar</code></li></ul></li></ul><h5 id="使用">使用</h5><ul><li>cd进目录下</li><li><code>docker build -t 镜像名 Dockerfile目录</code>：<code>docker build -t docker-demo .</code></li><li><code>.</code>是当前目录下的Dockerfile</li></ul><h3 id="容器网络互连">容器网络互连</h3><ul><li>默认情况下，所有容器都是以bridge方式连接导Docker的一个虚拟网桥上</li><li>运行Docker的时候会创建一个虚拟网卡：<code>docker0</code></li><li>同时给虚拟网卡创建一个虚拟网桥</li><li>容器通过网桥和各自的IP建立联系</li><li>但是这样分配的IP是动态的，各种情况可能会重新分配</li></ul><h4 id="自定义网络">自定义网络</h4><p>加入自定义网络的容器可以通过容器名相互访问</p><ul><li><p><code>docker network create</code></p></li><li><p><code>docker network ls</code></p></li><li><p><code>docker network rm</code></p></li><li><p><code>docker network prune</code></p></li><li><p><code>docker network connect</code></p></li><li><p><code>docker network disconnect</code></p></li><li><p><code>docker network inspect</code></p></li><li><p>可以在创建容器的时候直接加入网桥，就不会加入默认网桥了</p><ul><li><code>docker run --network</code></li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;qaq&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Docker" scheme="https://ethanh3514.github.io/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>原码、反码、补码</title>
@@ -456,29 +477,6 @@
     <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
     <category term="Lambda表达式" scheme="https://ethanh3514.github.io/tags/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>爬虫学习笔记</title>
-    <link href="https://ethanh3514.github.io/2024/03/10/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://ethanh3514.github.io/2024/03/10/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2024-03-10T14:58:20.000Z</published>
-    <updated>2024-03-11T05:38:49.693Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java爬虫学习笔记</p><span id="more"></span><h3 id="示例代码">示例代码</h3><div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">regex</span><span class="op">.</span><span class="im">Matcher</span><span class="op">;</span></span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">regex</span><span class="op">.</span><span class="im">Pattern</span><span class="op">;</span></span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> str <span class="op">=</span> <span class="st">"待匹配文本"</span><span class="op">;</span></span><span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span><span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">//Pattern: 表示正则表达式</span></span><span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">Pattern</span> p <span class="op">=</span> <span class="bu">Pattern</span><span class="op">.</span><span class="fu">compile</span><span class="op">(</span><span class="st">"正则表达式"</span><span class="op">);</span></span><span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span><span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">//Matcher: 文本匹配器，按照正则表达式的规则去读取字符串，从头开始找符合规则的子串</span></span><span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">Matcher</span> m <span class="op">=</span> p<span class="op">.</span><span class="fu">matcher</span><span class="op">(</span>str<span class="op">);</span></span><span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span><span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">//如果没有符合的子串，返回false</span></span><span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">//如果有，返回true。在底层记录子串的起始索引和结束索引+1</span></span><span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">(</span>m<span class="op">.</span><span class="fu">find</span><span class="op">())</span> <span class="op">{</span></span><span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span> res <span class="op">=</span> m<span class="op">.</span><span class="fu">group</span><span class="op">();</span></span><span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>res<span class="op">);</span></span><span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">//?理解为前面的数据Java</span></span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">//=表示在Java后面要跟随的数据</span></span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">//但是在获取的时候，只获取前半部分</span></span><span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> regex <span class="op">=</span> <span class="st">"Java(?=8|11|17)"</span><span class="op">;</span></span></code></pre></div><h3 id="贪婪捕获和非贪婪捕获">贪婪捕获和非贪婪捕获</h3><ul><li>贪婪捕获：尽可能多地获取（Java中<code>+</code>默认）</li><li>非贪婪捕获：尽可能少地获取</li></ul><h3 id="捕获分组和非捕获分组">捕获分组和非捕获分组</h3>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Java爬虫学习笔记&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Java" scheme="https://ethanh3514.github.io/tags/Java/"/>
-    
-    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="爬虫" scheme="https://ethanh3514.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   

@@ -1,0 +1,574 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            Docker 学习笔记 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+        <script src="../source/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Docker 学习笔记 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/21
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/笔记/" style="color: #ffa2c4">
+                    笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Docker/" style="color: #03a9f4">
+                    Docker
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>qaq</p>
+<span id="more"></span>
+<h3 id="常用命令">常用命令</h3>
+<h4 id="docker-run">docker run</h4>
+<pre class="shell"><code>docker run -d \
+    --name mysql \
+    -p 3306:3306 \
+    -e TZ=Asia/Shanghai \
+    -e MYSQL_ROOT_PASSWORD=123 \
+    mysql</code></pre>
+<ul>
+<li><code>docker run</code>：创建并运行一个容器，<code>-d</code>是让容器在后台运行</li>
+<li><code>--name mysql</code>：给容器起一个名字，必须唯一</li>
+<li><code>-p 3306:3306</code>：设置端口映射（宿主机端口：容器内端口）
+<ul>
+<li>容器在宿主机运行，容器有自己的内存空间甚至IP地址，但这个IP是外部无法访问的</li>
+<li>可以将容器的端口和宿主机的端口建立端口映射，通过访问宿主机的相应端口访问容器</li>
+<li>容器内端口取决于进程，不需要改动</li>
+</ul></li>
+<li><code>-e KEY=VALUE</code>：设置环境变量
+<ul>
+<li>环境变量由容器要求</li>
+</ul></li>
+<li><code>mysql</code>：指定运行的镜像的名字
+<ul>
+<li>完整：<code>[repository]:[tag]</code></li>
+<li>tag不写默认latest</li>
+</ul></li>
+</ul>
+<h4 id="docker-images">docker images</h4>
+<ul>
+<li>查看本地镜像列表</li>
+</ul>
+<h4 id="docker-save">docker save</h4>
+<ul>
+<li>将镜像保存成包</li>
+<li><code>docker save -o nginx.tar nginx:latest</code></li>
+</ul>
+<h4 id="docker-rmi">docker rmi</h4>
+<ul>
+<li>删除镜像</li>
+<li><code>docker rmi nginx:latest</code></li>
+</ul>
+<h4 id="docker-load">docker load</h4>
+<ul>
+<li>加载镜像包</li>
+<li><code>docker load -i nginx.tar</code></li>
+</ul>
+<h4 id="docker-ps">docker ps</h4>
+<ul>
+<li>查看当前运行容器</li>
+<li><code>docker ps</code></li>
+<li>只显示运行的容器
+<ul>
+<li><code>docker ps -a</code></li>
+<li>显示所有</li>
+</ul></li>
+</ul>
+<h4 id="docker-stop">docker stop</h4>
+<ul>
+<li>停止容器</li>
+<li><code>docker stop nginx</code></li>
+</ul>
+<h4 id="docker-start">docker start</h4>
+<ul>
+<li>启动容器</li>
+<li><code>docker start nginx</code></li>
+</ul>
+<h4 id="docker-logs">docker logs</h4>
+<ul>
+<li>查看日志</li>
+<li><code>docker logs nginx</code>
+<ul>
+<li><code>docker logs -f nginx</code></li>
+<li><code>-f</code>：follow</li>
+<li>一直查看日志，方便调试</li>
+</ul></li>
+</ul>
+<h4 id="docker-exec">docker exec</h4>
+<ul>
+<li>进入容器</li>
+<li><code>docker exec -it nginx bash</code></li>
+</ul>
+<h4 id="docker-rm">docker rm</h4>
+<ul>
+<li>删除容器</li>
+<li><code>docker rm mysql</code></li>
+</ul>
+<h3 id="数据卷">数据卷</h3>
+<ul>
+<li>数据卷是一个虚拟目录，是容器内目录与宿主机目录之间映射的桥梁</li>
+<li>创建数据卷会在宿主机文件系统
+<code>/var/lib/docker/volumes/卷名/_date</code>的位置</li>
+<li>与容器内响应路径关联</li>
+<li>可以使用宿主机内的编辑器修改容器内的文件内容</li>
+<li>挂载需要再容器创建时就指定好，如果数据卷不存在会自动创建
+<ul>
+<li><code>docker run -v 数据卷:数据卷目录</code></li>
+</ul></li>
+</ul>
+<h4 id="常用命令-1">常用命令</h4>
+<ul>
+<li><code>docker volume create</code>：创建数据卷</li>
+<li><code>docker volume ls</code>：查看所有数据卷</li>
+<li><code>docker volume rm</code>：删除指定数据卷</li>
+<li><code>docker volume inspect</code>：查看某个数据卷的详情</li>
+<li><code>docker volume prune</code>：删除未使用的数据卷</li>
+<li><code>docker inspect</code>：查看容器是否有数据卷挂载</li>
+</ul>
+<h4 id="匿名卷">匿名卷</h4>
+<ul>
+<li>容器运行自动创建的卷</li>
+<li>不推荐使用，不方便迁移</li>
+</ul>
+<h4 id="自定义挂载">自定义挂载</h4>
+<ul>
+<li><code>docker run -v 本地目录:容器内目录</code></li>
+<li>本地目录必须以<code>/</code>或<code>./</code>开头，否则会被认为是数据卷</li>
+</ul>
+<h3 id="自定义镜像">自定义镜像</h3>
+<h4 id="结构">结构</h4>
+<ul>
+<li>逐层打包</li>
+<li>可以利用已有的层</li>
+</ul>
+<h4 id="dockerfile">Dockerfile</h4>
+<p>是一个文本文件，包含一个个指令，用指令来说明要执行什么操作</p>
+<h5 id="指令">指令</h5>
+<ul>
+<li><code>FROM</code>：指定基础镜像
+<ul>
+<li><code>FROM centos:6</code></li>
+</ul></li>
+<li><code>ENV</code>：设置环境变量
+<ul>
+<li><code>ENV key value</code></li>
+</ul></li>
+<li><code>COPY</code>：拷贝本地文件到镜像的指定目录
+<ul>
+<li><code>COPY ./jrell.tar.gz /tmp</code></li>
+</ul></li>
+<li><code>RUN</code>：执行Linux的shell命令
+<ul>
+<li><code>RUN tar -zxvf /tmp/jrell.tar.gz &amp;&amp; EXPORTS path=/tmp/jrell:$path</code></li>
+</ul></li>
+<li><code>EXPOSE</code>：指定容器运行时监听的端口，是给镜像使用者看的
+<ul>
+<li><code>EXPOSE 8080</code></li>
+</ul></li>
+<li><code>ENTRYPOINT</code>：镜像中应用的启动命令，容器运行时调用
+<ul>
+<li><code>ENTRYPOINT java -jar xx.jar</code></li>
+</ul></li>
+</ul>
+<h5 id="使用">使用</h5>
+<ul>
+<li>cd进目录下</li>
+<li><code>docker build -t 镜像名 Dockerfile目录</code>：<code>docker build -t docker-demo .</code></li>
+<li><code>.</code>是当前目录下的Dockerfile</li>
+</ul>
+<h3 id="容器网络互连">容器网络互连</h3>
+<ul>
+<li>默认情况下，所有容器都是以bridge方式连接导Docker的一个虚拟网桥上</li>
+<li>运行Docker的时候会创建一个虚拟网卡：<code>docker0</code></li>
+<li>同时给虚拟网卡创建一个虚拟网桥</li>
+<li>容器通过网桥和各自的IP建立联系</li>
+<li>但是这样分配的IP是动态的，各种情况可能会重新分配</li>
+</ul>
+<h4 id="自定义网络">自定义网络</h4>
+<p>加入自定义网络的容器可以通过容器名相互访问</p>
+<ul>
+<li><p><code>docker network create</code></p></li>
+<li><p><code>docker network ls</code></p></li>
+<li><p><code>docker network rm</code></p></li>
+<li><p><code>docker network prune</code></p></li>
+<li><p><code>docker network connect</code></p></li>
+<li><p><code>docker network disconnect</code></p></li>
+<li><p><code>docker network inspect</code></p></li>
+<li><p>可以在创建容器的时候直接加入网桥，就不会加入默认网桥了</p>
+<ul>
+<li><code>docker run --network</code></li>
+</ul></li>
+</ul>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2024 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+
+    </html>
