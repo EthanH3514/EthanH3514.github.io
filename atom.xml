@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-03-21T15:19:17.655Z</updated>
+  <updated>2024-03-22T09:55:02.448Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 字符串拼接原理</title>
+    <link href="https://ethanh3514.github.io/2024/03/22/Java-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E5%8E%9F%E7%90%86/"/>
+    <id>https://ethanh3514.github.io/2024/03/22/Java-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E5%8E%9F%E7%90%86/</id>
+    <published>2024-03-22T09:25:23.000Z</published>
+    <updated>2024-03-22T09:55:02.448Z</updated>
+    
+    <content type="html"><![CDATA[<p>常看常新</p><span id="more"></span><h3 id="常量字符串拼接">常量字符串拼接</h3><div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s <span class="op">=</span> <span class="st">"a"</span> <span class="op">+</span> <span class="st">"b"</span> <span class="op">+</span> <span class="st">"c"</span><span class="op">;</span><span class="co">//编译优化，直接就是 "abc"</span></span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>s<span class="op">);</span></span></code></pre></div><p>会复用串池的字符串</p><h3 id="拼接有变量字符串">拼接有变量字符串</h3><div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s1 <span class="op">=</span> <span class="st">"a"</span><span class="op">;</span></span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s2 <span class="op">=</span> s1 <span class="op">+</span> <span class="st">"b"</span><span class="op">;</span></span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s3 <span class="op">=</span> s2 <span class="op">+</span> <span class="st">"c"</span><span class="op">;</span></span><span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>s3<span class="op">);</span></span></code></pre></div><h4 id="jdk8以前">JDK8以前</h4><ul><li><p>底层使用<code>StringBuilder</code>拼接</p></li><li><p>每一步拼接都会创建新的<code>StringBuilder</code>，调用<code>append</code>方法，然后调用<code>toString()</code>方法，创建一个字符串对象。</p></li><li><p>每一次拼接都创建两个对象，开销比较大</p></li></ul><h4 id="jdk8">JDK8</h4><div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s1 <span class="op">=</span> <span class="st">"a"</span><span class="op">;</span></span><span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s2 <span class="op">=</span> <span class="st">"b"</span><span class="op">;</span></span><span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s3 <span class="op">=</span> <span class="st">"c"</span><span class="op">;</span></span><span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s4 <span class="op">=</span> s1 <span class="op">+</span> s2 <span class="op">+</span> s3<span class="op">;</span></span><span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>s4<span class="op">);</span></span></code></pre></div><ul><li>先预估字符串的长度，创建字符数组，产生一个新的字符串</li><li>预估也需要时间，多次加仍然比较慢</li></ul><h3 id="结论">结论</h3><p>多次拼接手动使用<code>StringBuilder</code></p><h3 id="stringbuilder扩展底层原理">StringBuilder扩展底层原理</h3><h4 id="无参构造">无参构造</h4><ul><li>创建时默认容量16，字节数组</li><li>添加的内容小于16，直接存</li><li>添加的内容大于16，扩容到（原来容量*2+2=34）</li><li>一次加的太多，扩容之后还不够，以实际长度为准</li></ul><h4 id="有参构造">有参构造</h4><ul><li>创建时默认容量为 <code>len + 16</code></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;常看常新&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="https://ethanh3514.github.io/tags/Java/"/>
+    
+    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="字符串拼接" scheme="https://ethanh3514.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5/"/>
+    
+    <category term="String" scheme="https://ethanh3514.github.io/tags/String/"/>
+    
+    <category term="原理" scheme="https://ethanh3514.github.io/tags/%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker 学习笔记</title>
@@ -454,29 +481,6 @@
     <category term="Collection" scheme="https://ethanh3514.github.io/tags/Collection/"/>
     
     <category term="Lambda" scheme="https://ethanh3514.github.io/tags/Lambda/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Lambda表达式学习笔记</title>
-    <link href="https://ethanh3514.github.io/2024/03/11/Java-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://ethanh3514.github.io/2024/03/11/Java-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2024-03-11T06:21:19.000Z</published>
-    <updated>2024-03-11T06:29:43.604Z</updated>
-    
-    <content type="html"><![CDATA[<p>owo</p><span id="more"></span><p>注：Lambda表达式是JDK8之后的语法</p><h4 id="格式">格式</h4><div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">(</span>形参<span class="op">)</span> <span class="op">-&gt;</span> <span class="op">{</span></span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    方法体</span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><h4 id="例">例</h4><div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Arrays</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>arr<span class="op">,</span> <span class="op">(</span><span class="bu">Integer</span> o1<span class="op">,</span> <span class="bu">Integer</span> o2<span class="op">)</span> <span class="op">-&gt;</span> <span class="op">{</span></span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> o1 <span class="op">-</span> o2<span class="op">;</span></span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div><ul><li>Lambda表达式可以用来简化匿名内部类的书写</li><li>只能简化函数式接口的匿名内部类的写法</li><li>有且只有一个抽象方法的接口是函数式接口</li><li>可以在接口上方加<code>@FunctionalInterface</code>注解检查</li></ul><h4 id="函数式接口示例">函数式接口示例</h4><div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@FunctionalInterface</span></span><span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Swim<span class="op">{</span></span><span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">abstract</span> <span class="dt">void</span> <span class="fu">swimming</span><span class="op">();</span></span><span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><h4 id="lambda的省略规则">Lambda的省略规则</h4><ul><li>参数类型可以省略</li><li>如果只有一个参数，类型和()都可以省略</li><li>如果Lambda表达式的方法体只有一行，大括号，分好，return都可以省略。如果省略，需要同时省略</li></ul><h4 id="例-1">例</h4><div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Arrays</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>arr<span class="op">,</span> <span class="op">(</span>o1<span class="op">,</span> o2<span class="op">)</span> <span class="op">-&gt;</span> o1 <span class="op">-</span> o2<span class="op">);</span></span></code></pre></div>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;owo&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Java" scheme="https://ethanh3514.github.io/tags/Java/"/>
-    
-    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="Lambda表达式" scheme="https://ethanh3514.github.io/tags/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
   </entry>
   
