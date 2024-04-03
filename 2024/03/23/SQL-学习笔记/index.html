@@ -25,7 +25,8 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -137,8 +138,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
-</head>
+</style></head>
                 
     <body>
         <!-- <div id="L2dCanvas"></div> -->
@@ -308,21 +308,21 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #ffa2c4">
+                <a href="/tags/笔记/" style="color: #00bcd4">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/SQL/" style="color: #03a9f4">
+                <a href="/tags/SQL/" style="color: #00a596">
                     SQL
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/数据库/" style="color: #ff7d73">
+                <a href="/tags/数据库/" style="color: #ffa2c4">
                     数据库
                 </a>
             </span>
@@ -361,6 +361,38 @@ mjx-container[display="true"] + br {
 <li>Serializable</li>
 </ul>
 <p>从上到下性能依次降低，隔离级别逐渐提高</p>
+<h2 id="性能优化">性能优化</h2>
+<h3 id="查看执行频次">查看执行频次</h3>
+<ul>
+<li><code>show global status like 'Com%';</code>
+：展示当前数据库中各个操作已经进行的次数</li>
+</ul>
+<h3 id="慢查询日志">慢查询日志</h3>
+<ul>
+<li><p>记录了所有执行时间超过指定参数（ <code>long_query_time</code>
+秒）的所有SQL语句</p></li>
+<li><p>默认没有开启，需要在MySQL的配置文件（ <code>/etc/my.cnf</code>
+）中配置：</p>
+<ul>
+<li><p><code>show variables like 'slow_query_log';</code></p></li>
+<li><div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  # 开启MySQL慢查询日志开关</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  slow_query_log<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  # 设置时间阈值为2秒</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  long_query_time<span class="op">=</span><span class="dv">2</span></span></code></pre></div></li>
+<li><p><code>/var/lib/mysql/localhost-slow.log</code></p></li>
+<li><p>用 <code>tail -f localhost-slow.log</code>
+可以看到持续的输出</p></li>
+</ul></li>
+</ul>
+<h3 id="profile详情">profile详情</h3>
+<ul>
+<li><code>show profiles</code>
+可以在做SQL优化的时候看到时间都用在哪里</li>
+<li>通过 <code>SELECT @@have_profiling</code>
+可以看到当前MySQL是否支持profile操作</li>
+<li>默认 <code>profiling</code> 是关闭的，通过
+<code>SET profiling=1</code> 打开</li>
+</ul>
 
     </div>
     
