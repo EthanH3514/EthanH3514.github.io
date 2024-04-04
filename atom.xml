@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-04-03T17:06:06.508Z</updated>
+  <updated>2024-04-04T07:27:22.645Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>超星平台无法粘贴 解决方案</title>
+    <link href="https://ethanh3514.github.io/2024/04/04/%E8%B6%85%E6%98%9F%E5%B9%B3%E5%8F%B0%E6%97%A0%E6%B3%95%E7%B2%98%E8%B4%B4-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>https://ethanh3514.github.io/2024/04/04/%E8%B6%85%E6%98%9F%E5%B9%B3%E5%8F%B0%E6%97%A0%E6%B3%95%E7%B2%98%E8%B4%B4-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
+    <published>2024-04-04T07:23:51.000Z</published>
+    <updated>2024-04-04T07:27:22.645Z</updated>
+    
+    <content type="html"><![CDATA[<p>老师的要求是提交代码，但是不能用附件，又不能粘贴，总不能再敲一遍。</p><span id="more"></span><p>当粘贴的时候，会出现一个弹窗提示禁止粘贴，这个弹窗和相应的逻辑肯定是JS里面的，所以把JS禁用了就没事了。</p><p>F12 -&gt; F1 -&gt; Debugger -&gt; Disable JavaScript</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;老师的要求是提交代码，但是不能用附件，又不能粘贴，总不能再敲一遍。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="JavaScript" scheme="https://ethanh3514.github.io/tags/JavaScript/"/>
+    
+    <category term="攻略" scheme="https://ethanh3514.github.io/tags/%E6%94%BB%E7%95%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>杂记 - 数学是永远的温柔乡</title>
@@ -448,29 +469,6 @@
     <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
     <category term="Map" scheme="https://ethanh3514.github.io/tags/Map/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java TreeSet学习笔记</title>
-    <link href="https://ethanh3514.github.io/2024/03/12/Java-TreeSet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://ethanh3514.github.io/2024/03/12/Java-TreeSet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2024-03-12T15:42:58.000Z</published>
-    <updated>2024-03-12T15:52:51.508Z</updated>
-    
-    <content type="html"><![CDATA[<p>跟C++中的set差不多，主要在比较方法重写上不太一样</p><span id="more"></span><h4 id="第一种排序方式">第一种排序方式</h4><p>Javabean类实现<code>Comparable</code>接口指定比较规则</p><div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Student <span class="kw">implements</span> <span class="bu">Comparable</span><span class="op">&lt;</span>Student<span class="op">&gt;</span> <span class="op">{</span></span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compareTo</span><span class="op">(</span>Student o<span class="op">)</span> <span class="op">{</span></span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="fu">getAge</span><span class="op">()</span> <span class="op">-</span> o<span class="op">.</span><span class="fu">getAge</span><span class="op">();</span><span class="co">//升序</span></span><span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span><span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><h4 id="第二种排序方式">第二种排序方式</h4><p>在创建TreeSet对象时传入一个比较器（实现了Comparator接口的类）</p><div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">TreeSet</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> ts <span class="op">=</span> <span class="kw">new</span> <span class="bu">TreeSet</span><span class="op">&lt;&gt;(</span><span class="kw">new</span> <span class="bu">Comparator</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;()</span> <span class="op">{</span></span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compare</span><span class="op">(</span><span class="bu">String</span> o1<span class="op">,</span> <span class="bu">String</span> o2<span class="op">)</span> <span class="op">{</span></span><span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> o1<span class="op">.</span><span class="fu">length</span><span class="op">()</span> <span class="op">-</span>o2<span class="op">.</span><span class="fu">length</span><span class="op">();</span><span class="co">//长度升序</span></span><span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span><span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div><p>这个接口是一个函数式接口，可以用lambda</p><div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">TreeSet</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> ts <span class="op">=</span> <span class="kw">new</span> <span class="bu">TreeSet</span><span class="op">&lt;&gt;((</span>o1<span class="op">,</span> o2<span class="op">)</span> <span class="op">-&gt;</span> <span class="op">{</span></span><span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> o1<span class="op">.</span><span class="fu">length</span><span class="op">()</span> <span class="op">-</span> o2<span class="op">.</span><span class="fu">length</span><span class="op">();</span></span><span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;跟C++中的set差不多，主要在比较方法重写上不太一样&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Java" scheme="https://ethanh3514.github.io/tags/Java/"/>
-    
-    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="TreeSet" scheme="https://ethanh3514.github.io/tags/TreeSet/"/>
     
   </entry>
   
