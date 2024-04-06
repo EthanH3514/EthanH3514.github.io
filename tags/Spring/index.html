@@ -1,0 +1,1694 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            Tags: Spring | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+        <script src="../source/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                         
+<div class="categories-tags">
+    
+    <div class="all-s">
+        
+        
+        <span>
+            <a href="/tags/C/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                C++
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/算法/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                算法
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Stein算法/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Stein算法
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/gcd/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                gcd
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/龟速乘/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                龟速乘
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/乘法优化/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                乘法优化
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Codeforces/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Codeforces
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/算法竞赛/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                算法竞赛
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Round-842/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Round 842
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Div-2/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Div. 2
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/题解/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                题解
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Hello-2023/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Hello 2023
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/教程/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/踩坑/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                踩坑
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/高等数学竞赛/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                高等数学竞赛
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/数学/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                数学
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/markdown/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                markdown
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/指令/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                指令
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/代码规范/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                代码规范
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/TLE/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                TLE
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/RSS/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                RSS
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/particlex/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                particlex
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Profile-Readme/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Profile Readme
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/博客自动拉取/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                博客自动拉取
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/记录/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                记录
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/新冠/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                新冠
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/搜索/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                搜索
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/随记/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                随记
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/牛客/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                牛客
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/小白月赛/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                小白月赛
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/AtCoder/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                AtCoder
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Beginner-Contest/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Beginner Contest
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/284/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                284
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/NEERC/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                NEERC
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Regular-Contest/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Regular Contest
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/153/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                153
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Round-844/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Round 844
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Div-1-Div-2/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Div. 1+Div. 2
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/寒假算法集训营/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                寒假算法集训营
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/2023/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                2023
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/VSCode/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                VSCode
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/头文件/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                头文件
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/模板/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                模板
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Div-3/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Div. 3
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/上海大学/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                上海大学
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/2022/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                2022
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Round-849/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Round 849
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Div-4/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Div. 4
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/图灵杯/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                图灵杯
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/NEUQ/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                NEUQ
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/FFT/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                FFT
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/美赛/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                美赛
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/ChatGPT/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                ChatGPT
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Linux/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Linux
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/基础/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                基础
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/命令/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                命令
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/快捷键/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                快捷键
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/host/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                host
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/HNCPC/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                HNCPC
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/归并排序/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                归并排序
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/XJTUPC/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                XJTUPC
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/GCPC/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                GCPC
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/线段树/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                线段树
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/考试周欢乐赛/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                考试周欢乐赛
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/并查集/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                并查集
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/查询优化/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                查询优化
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/牛客小白月赛/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                牛客小白月赛
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/系统/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                系统
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/清理残留/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                清理残留
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/CodeForce/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                CodeForce
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/快读/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                快读
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/数论/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                数论
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/逆元/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                逆元
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/洛谷/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                洛谷
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/ICPC/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                ICPC
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Region/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Region
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/南京/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                南京
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/CCPC/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                CCPC
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/深圳/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                深圳
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/2021/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                2021
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/威海/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                威海
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/生成函数/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                生成函数
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/上海市赛/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                上海市赛
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/记忆化搜索/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                记忆化搜索
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/期望dp/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                期望dp
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/思维/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                思维
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Java/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Java
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/API/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                API
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/笔记/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                笔记
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/正则表达式/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                正则表达式
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/爬虫/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                爬虫
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Collection/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Collection
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Lambda/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Lambda
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Lambda表达式/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Lambda表达式
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/泛型/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                泛型
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/数据结构/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                数据结构
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/二叉树/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                二叉树
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/二叉查找树/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                二叉查找树
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/平衡二叉树/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                平衡二叉树
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/红黑树/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                红黑树
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/HashSet/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                HashSet
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/TreeSet/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                TreeSet
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Map/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Map
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/不可变集合/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                不可变集合
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Stream流/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Stream流
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/学习笔记/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                学习笔记
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/方法引用/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                方法引用
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/异常/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                异常
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/File/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                File
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/IO流/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                IO流
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/多线程/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                多线程
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/网络编程/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                网络编程
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/反射/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                反射
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/动态代理/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                动态代理
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/JDK/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                JDK
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/JRE/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                JRE
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Docker/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Docker
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/字符串拼接/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                字符串拼接
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/String/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                String
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/原理/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                原理
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/JavaScript/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                JavaScript
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/BOM/" style="background: #03a9f4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                BOM
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/DOM/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                DOM
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/SQL/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                SQL
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/数据库/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                数据库
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/杂记/" style="background: #00a596">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                杂记
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/攻略/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                攻略
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/HTTP/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                HTTP
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Web/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Web
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Spring/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Spring
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/请求响应/" style="background: #ffa2c4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                请求响应
+            </a>
+        </span>
+        
+    </div>
+    <div id="archives">
+        
+        <div class="timeline">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2024/4/6</div>
+                <a href="/2024/04/06/Spring-请求响应-学习笔记/">
+                    <h3>Spring 请求响应 学习笔记</h3>
+                </a>
+                <div class="info">
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/笔记/" style="color: #ffa2c4">
+                                笔记
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/Web/" style="color: #00bcd4">
+                                Web
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/Spring/" style="color: #00a596">
+                                Spring
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/请求响应/" style="color: #ffa2c4">
+                                请求响应
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2024 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+
+    </body>
+
+    </html>
