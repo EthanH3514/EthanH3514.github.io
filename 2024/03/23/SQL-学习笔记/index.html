@@ -308,7 +308,7 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #03a9f4">
+                <a href="/tags/笔记/" style="color: #ff7d73">
                     笔记
                 </a>
             </span>
@@ -322,7 +322,7 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/数据库/" style="color: #00bcd4">
+                <a href="/tags/数据库/" style="color: #03a9f4">
                     数据库
                 </a>
             </span>
@@ -391,7 +391,19 @@ mjx-container[display="true"] + br {
 <li>通过 <code>SELECT @@have_profiling</code>
 可以看到当前MySQL是否支持profile操作</li>
 <li>默认 <code>profiling</code> 是关闭的，通过
-<code>SET profiling=1</code> 打开</li>
+<code>SET profiling=1</code> 打开、</li>
+<li><code>show profiles;</code>显示所有语句耗时</li>
+</ul>
+<h3 id="explain">explain</h3>
+<ul>
+<li>通过在sql语句前加explain获取执行计划</li>
+<li>explain执行计划各字段含义：
+<ul>
+<li>id：select查询的序列号，表示查询中执行select子句或者是操作表的顺序（id相同，执行顺序从上到下；id不同，值越大，越先执行）</li>
+<li>select_type：表示select的类型，常见的有simple（简单表，不使用表连接或者子查询、primary（主查询，即外层的查询）、union（union中的第二个或者后面的查询语句）、subquery（select/where之后包含了子查询）等</li>
+<li>type：表示连接类型，性能由好到差为：NULL、system、const、eq_ref、ref、range、index、all</li>
+<li></li>
+</ul></li>
 </ul>
 
     </div>

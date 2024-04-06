@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-04-04T07:27:22.645Z</updated>
+  <updated>2024-04-06T10:10:54.228Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTP协议 学习笔记</title>
+    <link href="https://ethanh3514.github.io/2024/04/06/HTTP%E5%8D%8F%E8%AE%AE-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ethanh3514.github.io/2024/04/06/HTTP%E5%8D%8F%E8%AE%AE-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2024-04-06T09:56:36.000Z</published>
+    <updated>2024-04-06T10:10:54.228Z</updated>
+    
+    <content type="html"><![CDATA[<p>qaq</p><span id="more"></span><h3 id="http请求协议">http请求协议</h3><ul><li>请求行：<code>GET /path?key=value&amp;key=value HTTP/1.1</code>（请求方式、资源路径、协议）</li><li>请求头：第二行开始 <code>key=value</code></li><li>请求体：请求头空一行后接</li></ul><h4 id="get-和-post方法">GET 和 POST方法</h4><ul><li>GET方法的请求参数在请求行中，没有请求体。大小有限制<ul><li>以<code>?key=value&amp;key=value</code>的格式</li></ul></li><li>POST方法的请求参数在请求体中，POST请求大小无限制</li></ul><h3 id="http响应协议">http响应协议</h3><ul><li>响应行：<code>HTTP/1.1 200 OK</code>响应数据第一行（协议、状态码、描述）</li><li>响应头：第二行开始 <code>key=value</code></li><li>响应体：最后一部分，存放响应数据（json格式）</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;qaq&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="HTTP" scheme="https://ethanh3514.github.io/tags/HTTP/"/>
+    
+    <category term="Web" scheme="https://ethanh3514.github.io/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>超星平台无法粘贴 解决方案</title>
@@ -109,9 +132,9 @@
     <link href="https://ethanh3514.github.io/2024/03/23/SQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://ethanh3514.github.io/2024/03/23/SQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2024-03-23T11:25:51.000Z</published>
-    <updated>2024-04-01T06:09:27.566Z</updated>
+    <updated>2024-04-05T15:36:56.178Z</updated>
     
-    <content type="html"><![CDATA[<p>记一些不好记的</p><span id="more"></span><h2 id="sql分类">SQL分类</h2><ul><li>DDL：数据定义语言</li><li>DML：数据操作语言</li><li>DQL：数据查询语言</li><li>DCL：数据控制语言</li></ul><h2 id="事务的四大特性acid">事务的四大特性（ACID）</h2><ul><li>原子性（Atomicity）：事务是不可分割的最小操作单元</li><li>一致性（Consistency）：事务完成时，必须使所有数据保持一致</li><li>隔离性（Isolation）：保证事务在不受外部并发操作影响的独立环境下运行</li><li>持久性（Durability）：事务一旦提交或回滚，它对数据库中数据的改变是永久的</li></ul><h3 id="并发事务问题">并发事务问题</h3><ul><li>脏读：一个事务读到另外一个事务还没有提交的数据</li><li>不可重复读：一个事务先后读取同一条记录，但两次读取的数据不同</li><li>幻读：一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经存在</li></ul><h3 id="事务隔离级别">事务隔离级别</h3><ul><li>Read uncommitted：脏读、不可重复读、幻读</li><li>Read committed（Oracle默认）：不可重复读、幻读</li><li>Repeatable Read（SQL默认）：幻读</li><li>Serializable</li></ul><p>从上到下性能依次降低，隔离级别逐渐提高</p><h2 id="性能优化">性能优化</h2><h3 id="查看执行频次">查看执行频次</h3><ul><li><code>show global status like 'Com%';</code>：展示当前数据库中各个操作已经进行的次数</li></ul><h3 id="慢查询日志">慢查询日志</h3><ul><li><p>记录了所有执行时间超过指定参数（ <code>long_query_time</code>秒）的所有SQL语句</p></li><li><p>默认没有开启，需要在MySQL的配置文件（ <code>/etc/my.cnf</code>）中配置：</p><ul><li><p><code>show variables like 'slow_query_log';</code></p></li><li><div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  # 开启MySQL慢查询日志开关</span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  slow_query_log<span class="op">=</span><span class="dv">1</span></span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  # 设置时间阈值为2秒</span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  long_query_time<span class="op">=</span><span class="dv">2</span></span></code></pre></div></li><li><p><code>/var/lib/mysql/localhost-slow.log</code></p></li><li><p>用 <code>tail -f localhost-slow.log</code>可以看到持续的输出</p></li></ul></li></ul><h3 id="profile详情">profile详情</h3><ul><li><code>show profiles</code>可以在做SQL优化的时候看到时间都用在哪里</li><li>通过 <code>SELECT @@have_profiling</code>可以看到当前MySQL是否支持profile操作</li><li>默认 <code>profiling</code> 是关闭的，通过<code>SET profiling=1</code> 打开</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>记一些不好记的</p><span id="more"></span><h2 id="sql分类">SQL分类</h2><ul><li>DDL：数据定义语言</li><li>DML：数据操作语言</li><li>DQL：数据查询语言</li><li>DCL：数据控制语言</li></ul><h2 id="事务的四大特性acid">事务的四大特性（ACID）</h2><ul><li>原子性（Atomicity）：事务是不可分割的最小操作单元</li><li>一致性（Consistency）：事务完成时，必须使所有数据保持一致</li><li>隔离性（Isolation）：保证事务在不受外部并发操作影响的独立环境下运行</li><li>持久性（Durability）：事务一旦提交或回滚，它对数据库中数据的改变是永久的</li></ul><h3 id="并发事务问题">并发事务问题</h3><ul><li>脏读：一个事务读到另外一个事务还没有提交的数据</li><li>不可重复读：一个事务先后读取同一条记录，但两次读取的数据不同</li><li>幻读：一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经存在</li></ul><h3 id="事务隔离级别">事务隔离级别</h3><ul><li>Read uncommitted：脏读、不可重复读、幻读</li><li>Read committed（Oracle默认）：不可重复读、幻读</li><li>Repeatable Read（SQL默认）：幻读</li><li>Serializable</li></ul><p>从上到下性能依次降低，隔离级别逐渐提高</p><h2 id="性能优化">性能优化</h2><h3 id="查看执行频次">查看执行频次</h3><ul><li><code>show global status like 'Com%';</code>：展示当前数据库中各个操作已经进行的次数</li></ul><h3 id="慢查询日志">慢查询日志</h3><ul><li><p>记录了所有执行时间超过指定参数（ <code>long_query_time</code>秒）的所有SQL语句</p></li><li><p>默认没有开启，需要在MySQL的配置文件（ <code>/etc/my.cnf</code>）中配置：</p><ul><li><p><code>show variables like 'slow_query_log';</code></p></li><li><div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  # 开启MySQL慢查询日志开关</span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  slow_query_log<span class="op">=</span><span class="dv">1</span></span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  # 设置时间阈值为2秒</span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  long_query_time<span class="op">=</span><span class="dv">2</span></span></code></pre></div></li><li><p><code>/var/lib/mysql/localhost-slow.log</code></p></li><li><p>用 <code>tail -f localhost-slow.log</code>可以看到持续的输出</p></li></ul></li></ul><h3 id="profile详情">profile详情</h3><ul><li><code>show profiles</code>可以在做SQL优化的时候看到时间都用在哪里</li><li>通过 <code>SELECT @@have_profiling</code>可以看到当前MySQL是否支持profile操作</li><li>默认 <code>profiling</code> 是关闭的，通过<code>SET profiling=1</code> 打开、</li><li><code>show profiles;</code>显示所有语句耗时</li></ul><h3 id="explain">explain</h3><ul><li>通过在sql语句前加explain获取执行计划</li><li>explain执行计划各字段含义：<ul><li>id：select查询的序列号，表示查询中执行select子句或者是操作表的顺序（id相同，执行顺序从上到下；id不同，值越大，越先执行）</li><li>select_type：表示select的类型，常见的有simple（简单表，不使用表连接或者子查询、primary（主查询，即外层的查询）、union（union中的第二个或者后面的查询语句）、subquery（select/where之后包含了子查询）等</li><li>type：表示连接类型，性能由好到差为：NULL、system、const、eq_ref、ref、range、index、all</li><li></li></ul></li></ul>]]></content>
     
     
     <summary type="html">&lt;p&gt;记一些不好记的&lt;/p&gt;</summary>
@@ -446,29 +469,6 @@
     <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
     <category term="不可变集合" scheme="https://ethanh3514.github.io/tags/%E4%B8%8D%E5%8F%AF%E5%8F%98%E9%9B%86%E5%90%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Map 学习笔记</title>
-    <link href="https://ethanh3514.github.io/2024/03/13/Java-Map-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://ethanh3514.github.io/2024/03/13/Java-Map-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2024-03-13T07:28:07.000Z</published>
-    <updated>2024-03-13T12:53:08.548Z</updated>
-    
-    <content type="html"><![CDATA[<p>owo</p><span id="more"></span><h2 id="map的方法">Map的方法</h2><h3 id="遍历">遍历</h3><h4 id="获取键的集合再遍历这个单列集合">获取键的集合，再遍历这个单列集合</h4><p>遍历单列集合的方式：</p><ul><li>增强for</li><li>迭代器</li><li>forEach( + lambda)表达式</li></ul><div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>map<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"abc"</span><span class="op">,</span> <span class="st">"123"</span><span class="op">);</span></span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Set</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> keys <span class="op">=</span> map<span class="op">.</span><span class="fu">keySet</span><span class="op">();</span></span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> key <span class="op">:</span> keys<span class="op">)</span> <span class="op">{</span></span><span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span> value <span class="op">=</span> map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>key<span class="op">);</span></span><span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>key <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> value<span class="op">);</span></span><span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><h4 id="获取键值对对象再遍历这个单列集合">获取键值对对象，再遍历这个单列集合</h4><p>Entry是Map的一个内部接口，需要用Map.Entry访问或者导包</p><div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Set</span><span class="op">&lt;</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;&gt;</span> entries <span class="op">=</span> map<span class="op">.</span><span class="fu">entrySet</span><span class="op">();</span></span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> entry <span class="op">:</span> entries<span class="op">)</span> <span class="op">{</span></span><span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>entry<span class="op">.</span><span class="fu">getKey</span><span class="op">()</span> <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> entry<span class="op">.</span><span class="fu">getValue</span><span class="op">());</span></span><span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><h4 id="函数式接口遍历">函数式接口遍历</h4><div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>map<span class="op">.</span><span class="fu">forEach</span><span class="op">(</span><span class="kw">new</span> BiConsumer<span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;()</span> <span class="op">{</span></span><span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span><span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">accept</span><span class="op">(</span><span class="bu">String</span> key<span class="op">,</span> <span class="bu">String</span> value<span class="op">)</span> <span class="op">{</span></span><span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>key <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> value<span class="op">);</span></span><span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span><span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div><p>这是一个函数式接口，可以用lambda表达式简化</p><div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>map<span class="op">.</span><span class="fu">forEach</span><span class="op">((</span>key<span class="op">,</span> value<span class="op">)</span> <span class="op">-&gt;</span> <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>key <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> value<span class="op">));</span></span></code></pre></div><p>map的forEach底层是用增强for遍历EntrySet</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;owo&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Java" scheme="https://ethanh3514.github.io/tags/Java/"/>
-    
-    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="Map" scheme="https://ethanh3514.github.io/tags/Map/"/>
     
   </entry>
   
