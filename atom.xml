@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-04-08T09:36:02.001Z</updated>
+  <updated>2024-04-08T09:40:36.050Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://ethanh3514.github.io/2024/04/08/Spring-lombok-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://ethanh3514.github.io/2024/04/08/Spring-lombok-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2024-04-08T09:29:52.000Z</published>
-    <updated>2024-04-08T09:36:02.001Z</updated>
+    <updated>2024-04-08T09:40:36.050Z</updated>
     
-    <content type="html"><![CDATA[<p>又是面向注解编程，这我怎么记得住啊qaq</p><span id="more"></span><ul><li><p>lombok是一个java类库</p></li><li><p>可以通过在类前加注解的方式自动生成javabean类内所需的方法</p></li><li><p><span class="citation" data-cites="Getter">@Getter</span>/<span class="citation" data-cites="Setter">@Setter</span></p></li><li><p><span class="citation" data-cites="ToString">@ToString</span></p></li><li><p><span class="citation" data-cites="EqualsAndHashCode">@EqualsAndHashCode</span></p></li><li><p><span class="citation" data-cites="Data">@Data</span></p></li><li><p><span class="citation" data-cites="NoArgsConstructor">@NoArgsConstructor</span>：无参构造</p></li><li><p><span class="citation" data-cites="AllArgsConstructor">@AllArgsConstructor</span>：全参构造</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>又是面向注解编程，这我怎么记得住啊qaq</p><span id="more"></span><ul><li>lombok是一个java类库</li><li>可以通过在类前加注解的方式自动生成javabean类内所需的方法</li><li>需要安装一个lombok插件（idea自带）</li></ul><h3 id="方法">方法</h3><ul><li><span class="citation" data-cites="Getter">@Getter</span>/<span class="citation" data-cites="Setter">@Setter</span></li><li><span class="citation" data-cites="ToString">@ToString</span></li><li><span class="citation" data-cites="EqualsAndHashCode">@EqualsAndHashCode</span></li><li><span class="citation" data-cites="Data">@Data</span></li><li><span class="citation" data-cites="NoArgsConstructor">@NoArgsConstructor</span>：无参构造</li><li><span class="citation" data-cites="AllArgsConstructor">@AllArgsConstructor</span>：全参构造</li></ul>]]></content>
     
     
     <summary type="html">&lt;p&gt;又是面向注解编程，这我怎么记得住啊qaq&lt;/p&gt;</summary>
