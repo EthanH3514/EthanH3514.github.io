@@ -308,28 +308,28 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #03a9f4">
+                <a href="/tags/Java/" style="color: #00bcd4">
                     Java
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #03a9f4">
+                <a href="/tags/笔记/" style="color: #ffa2c4">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Spring/" style="color: #ff7d73">
+                <a href="/tags/Spring/" style="color: #00a596">
                     Spring
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Swagger/" style="color: #ff7d73">
+                <a href="/tags/Swagger/" style="color: #00bcd4">
                     Swagger
                 </a>
             </span>
@@ -358,29 +358,47 @@ Boot项目中引入Swagger</h4>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>version<span class="op">&gt;</span><span class="fl">2.9.2</span><span class="op">&lt;/</span>version<span class="op">&gt;</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>dependency<span class="op">&gt;</span></span></code></pre></div>
 <ul>
-<li><code>com.hxy.helloworld/config/SwaggerConfig</code></li>
+<li>springboot 2.6以上版本和swagger不兼容，需要在
+<code>application.properties</code> 中加入</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Configuration</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">@EnableSwagger2</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> SwaggerConfig <span class="op">{</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Bean</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> Docket <span class="fu">createRestApi</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">new</span> <span class="fu">Docket</span><span class="op">(</span>DocumentationType<span class="op">.</span><span class="fu">SWAGGER_2</span><span class="op">)</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">apiInfo</span><span class="op">(</span><span class="fu">apiInfo</span><span class="op">())</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">select</span><span class="op">()</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">apis</span><span class="op">(</span>RequestHandlerSelectors<span class="op">.</span><span class="fu">basePackage</span><span class="op">(</span><span class="st">"com"</span><span class="op">))</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">paths</span><span class="op">(</span>PathSelectors<span class="op">.</span><span class="fu">any</span><span class="op">()).</span><span class="fu">build</span><span class="op">();</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> ApiInfo <span class="fu">apiInfo</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">new</span> <span class="fu">ApiInfoBuilder</span><span class="op">()</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">title</span><span class="op">(</span><span class="st">"演示API"</span><span class="op">)</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">description</span><span class="op">(</span><span class="st">"演示项目"</span><span class="op">)</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">version</span><span class="op">(</span><span class="st">"1.0"</span><span class="op">)</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">build</span><span class="op">();</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spring<span class="op">.</span><span class="fu">mvc</span><span class="op">.</span><span class="fu">pathmatch</span><span class="op">.</span><span class="fu">matching</span><span class="op">-</span>strategy<span class="op">=</span>ant_path_matcher</span></code></pre></div>
+<ul>
+<li><code>com.hxy.helloworld/config/SwaggerConfig</code>
+加入配置信息</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span><span class="im"> com</span><span class="op">.</span><span class="im">hxy</span><span class="op">.</span><span class="im">mpdemo</span><span class="op">.</span><span class="im">config</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">context</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Bean</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">context</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Configuration</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">springfox</span><span class="op">.</span><span class="im">documentation</span><span class="op">.</span><span class="im">builders</span><span class="op">.</span><span class="im">ApiInfoBuilder</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">springfox</span><span class="op">.</span><span class="im">documentation</span><span class="op">.</span><span class="im">builders</span><span class="op">.</span><span class="im">PathSelectors</span><span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">springfox</span><span class="op">.</span><span class="im">documentation</span><span class="op">.</span><span class="im">builders</span><span class="op">.</span><span class="im">RequestHandlerSelectors</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">springfox</span><span class="op">.</span><span class="im">documentation</span><span class="op">.</span><span class="im">service</span><span class="op">.</span><span class="im">ApiInfo</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">springfox</span><span class="op">.</span><span class="im">documentation</span><span class="op">.</span><span class="im">spi</span><span class="op">.</span><span class="im">DocumentationType</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">springfox</span><span class="op">.</span><span class="im">documentation</span><span class="op">.</span><span class="im">spring</span><span class="op">.</span><span class="im">web</span><span class="op">.</span><span class="im">plugins</span><span class="op">.</span><span class="im">Docket</span><span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">springfox</span><span class="op">.</span><span class="im">documentation</span><span class="op">.</span><span class="im">swagger2</span><span class="op">.</span><span class="im">annotations</span><span class="op">.</span><span class="im">EnableSwagger2</span><span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">@Configuration</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">@EnableSwagger2</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> SwaggerConfig <span class="op">{</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Bean</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> Docket <span class="fu">createRestApi</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">new</span> <span class="fu">Docket</span><span class="op">(</span>DocumentationType<span class="op">.</span><span class="fu">SWAGGER_2</span><span class="op">)</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">apiInfo</span><span class="op">(</span><span class="fu">apiInfo</span><span class="op">())</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">select</span><span class="op">()</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">apis</span><span class="op">(</span>RequestHandlerSelectors<span class="op">.</span><span class="fu">basePackage</span><span class="op">(</span><span class="st">"com"</span><span class="op">))</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">paths</span><span class="op">(</span>PathSelectors<span class="op">.</span><span class="fu">any</span><span class="op">()).</span><span class="fu">build</span><span class="op">();</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> ApiInfo <span class="fu">apiInfo</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">new</span> <span class="fu">ApiInfoBuilder</span><span class="op">()</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">title</span><span class="op">(</span><span class="st">"演示项目API"</span><span class="op">)</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">description</span><span class="op">(</span><span class="st">"演示项目"</span><span class="op">)</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">version</span><span class="op">(</span><span class="st">"1.0"</span><span class="op">)</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">build</span><span class="op">();</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <ul>
 <li>访问 <code>localhost:8080/swagger-ui.html</code></li>
 </ul>

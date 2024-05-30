@@ -1,0 +1,497 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            《非暴力沟通》 读书总结 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+        <script src="../source/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>《非暴力沟通》 读书总结 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/5/29
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/读书/" style="color: #ff7d73">
+                    读书
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/非暴力沟通/" style="color: #00a596">
+                    非暴力沟通
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/总结/" style="color: #00a596">
+                    总结
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>“非暴力沟通”中的暴力并不是指肢体上的暴力，语言也可以是一把刀。</p>
+<p>在这本书中我学到了很多，我应该会经常回看这本书。</p>
+<p>下面我记录我看书的时候所做的勾划。</p>
+<span id="more"></span>
+<h2 id="非暴力沟通">非暴力沟通</h2>
+<h3 id="区分观察和评论">区分观察和评论</h3>
+<ul>
+<li><code>如果不把事实和意见混为一谈，我们将不再困惑</code></li>
+<li><code>不带评论的观察是人类智力的最高形式</code></li>
+<li><code>将观察和评论混为一谈，别人就会倾向于听到批评，并反驳我们</code></li>
+</ul>
+<h3 id="感受的根源">感受的根源</h3>
+<ul>
+<li><code>了解我们的感受和需要</code></li>
+<li><code>用心体会他人的感受和需要</code></li>
+<li><code>如果我们通过批评来提出主张，人们的反应常常是申辩或反击。反之，如果我们直接说出需要，其他人就较有可能做出积极的回应</code></li>
+<li><code>如果我们不看重自己的需要，别人可能也不会</code></li>
+<li><code>人与人相互依存，损人无法真正利己</code></li>
+<li><code>我们无法牺牲他人来满足自己的需要</code></li>
+<li><code>一般来说，在存在多种感受的情况下，一个人会诉说那些还没有得到倾听的感受。因此，倾听的人无须一开始就对各种感受同时作出反馈，而可以自然地从一种感受过渡到另一种</code></li>
+</ul>
+<h3 id="请求帮助">请求帮助</h3>
+<ul>
+<li><p><code>抽象的语言无助于深化自我认识</code></p></li>
+<li><p><code>如果我们只是表达自己的感受，别人可能就不清除我们想要什么</code></p></li>
+<li><p><code>大多数的人在没有得到期待的反馈时，会将所说的话重复一遍</code></p></li>
+<li><p><code>对自己的认识越深刻，表达越清楚，我们就越可能得到称心的回应</code></p></li>
+<li><p><code>请求没有得到满足时，提出请求的人如果批评和指责，那就是命令；如果想利用对方的内疚来达到目的，也是命令</code></p></li>
+<li><p><code>我们越是将他人的不顺从看作是对我们的排斥，我们所表达的愿望就越有可能被看作是命令</code></p></li>
+<li><p><code>如果我们愿意去体会是什么使他们无法说“是”，那么，根据我的定义，我们提出的就是请求而非命令</code></p></li>
+<li><p><code>一旦人们相信我们看重彼此的感情，并能兼顾双方的需要，那么，他们也就会相信我们所表达的愿望是请求而非命令</code></p></li>
+<li><pre><code>  在提出请求前，如果我们有以下的想法，那么，我们的请求已经成为了对他人的要求。
+  ·他应该把房间整理干净。
+  ·她必须照我说的去做。
+  ·老板应当给我提职加薪。
+  ·我有权要求更长的假期。</code></pre></li>
+</ul>
+<h3 id="用全身心倾听">用全身心倾听</h3>
+<ul>
+<li><code>如果一个人想要别人了解他的处境，听到的却是安慰和建议，那么，他就有可能觉得不太舒服</code></li>
+<li><code>在安慰他人或提建议前，先看看那是否是他们想要的</code></li>
+<li><code>倾听他人意味着，放下已有的想法和判断，一心一意地体会他人</code></li>
+<li><code>如果我们注意的是别人的需要而非他对我们的看法，我们将发现别人并不那么可怕</code></li>
+<li><code>在倾听他人的观察、感受、需要和请求之后，我们可以主动表达我们的理解</code></li>
+<li><code>非暴力沟通建议我们使用疑问句来给予他人反馈。这将便于他人对我们的理解作出必要的补充</code></li>
+<li><code>如果一个人在说话时有明显的情绪，他一般会期待得到他人的反馈</code></li>
+<li><code>在给他人反馈时，我们的语气十分重要。一旦别人通过我们的语气意识到我们是在体会，而非下结论，他们一般就不会产生反感。</code></li>
+<li><code>只要我们专注于他人的感受和需要，所有的批评、攻击、辱骂或嘲讽就会消失。</code></li>
+<li><code>如果人们常常怀疑我们的诚意，那么，我们就需要好好审视自己的动机。也许，我们只是在机械地运用非暴力沟通，而忘记其目的。这时，我们就可以问自己，我们关心的是加深与人的联系，还是以“标准的”非暴力沟通方式来说话。或者，虽然我们是以非暴力沟通的方式来表达自己，我们在乎的也许只是改变他人来迎合我们的需要。</code></li>
+<li><code>给他人反馈是在节约而非浪费时间</code></li>
+<li><code>在解决问题或询问他人的请求前，为他人的充分表达创造条件。如果过早地提及他人的请求，我们也许就无法传达我们的关心</code></li>
+<li><code>怎样判断对方的感受是否已经充分表达呢？首先，如果一个人觉得别人已经完全明白他的意思，他就会变得轻松。这时，我们也会感到放松。另一个更为明显的标志是，他停止了谈话。如果无法确定对方是否还有话要说，就不妨问一句：“你还有什么话要告诉我吗？”</code></li>
+<li><code>我们无法给别人我们自己都没有的东西。如果告诉他人我们正处于痛苦中，我们无法顾及他们的感受和需要，别人很可能就会伸出援手</code></li>
+<li><code>一旦我们能够敏锐地察觉并照顾自己的感受和需要，我们就有能力迅速调整好状态，来倾听他人</code></li>
+<li><code>我们需要先放下已有的想法和判断，全心全意地体会对方</code></li>
+</ul>
+<h4 id="例子">例子</h4>
+<ul>
+<li><p>甲：“你的表现让我很失望。我本来指望你们部门上个月的产出能够翻番。”</p>
+<p>乙：“我知道你很失望。但上个月我们部门请病假的人很多。”</p></li>
+<li><p>虽然乙提到了甲的感受，但乙主要是在辩解。如果乙用心倾听并给予反馈，他也许会说：“你看来很失望，你看重工作效率，是吗？”</p></li>
+</ul>
+<h3 id="倾听的力量">倾听的力量</h3>
+<ul>
+<li><code>在一个生气的人面前，永远不要用‘不过’‘可是’‘但是’之类的词语</code></li>
+<li><code>有的时候，谈话的气氛很沉闷。我们体会不到说话的人有怎样的感受和需要，也不知道他对我们有什么期待。尽快提醒说话的人留意自己的感受和需要</code></li>
+<li><code>打断别人比假装在听，更符合对方的愿望。所有的人都希望自己的话对人有益，而不想被人当作负担。</code></li>
+</ul>
+<h3 id="爱自己">爱自己</h3>
+<ul>
+<li><code>如果我们习惯于将自己视为工具——充满各种缺陷的工具，自我憎恨还令人奇怪吗？</code></li>
+<li><code>一旦专注于尚未满足的需要，我们就会考虑如何满足它。反之，如果用苛刻的语言指责自己，我们不仅难以找到解决办法，而且容易陷于自我惩罚的痛苦中。</code></li>
+<li><code>爱惜自己的关键之一是同时包容那两个不同的“我”：一方面包容对过去的某种行为感到后悔的“我”，另一方面包容采取那种行为的“我”。</code></li>
+<li><code>一旦意识到我们的行为所服务的需要，即使工作很艰苦、富有挑战性乃至举步维艰，我们也会从中得到乐趣。</code></li>
+<li><code>在日常生活中，我们主动根据需要和价值观来选择生活。用“选择做”来取代“不得不”</code></li>
+</ul>
+<h3 id="充分表达愤怒">充分表达愤怒</h3>
+<ul>
+<li><code>如果人们认为自己的痛苦是由其他人造成的，并认为那些人应该受到谴责或惩罚，那么，就像这位年轻的囚犯那样，他们播下了暴力的种子。</code></li>
+<li><code>表达愤怒的四个步骤是：（1）停下来，除了呼吸，什么都别做；（2）想一想是什么想法使我们生气了；（3）体会自己的需要；（4）表达感受和尚未满足的需要。</code></li>
+</ul>
+<h3 id="表达感激">表达感激</h3>
+<ul>
+<li><p><code>用非暴力沟通的方式表达感激时，我们只是为了庆祝他人的行为提升了我们的生活品质，而不是想得到任何回报。</code></p></li>
+<li><pre><code>  非暴力沟通表达感激的方式包含三个部分：
+  1.对方做了什么事情使我们的生活得到了改善；
+  2.我们有哪些需要得到了满足；
+  3.我们的心情怎么样？</code></pre></li>
+<li><p><code>当我们让自己的光芒闪耀，无意中我们也允许了他人散发光芒。一旦我们从自我的恐惧中解放出来，我们的存在，也会让他人得到解放。”</code></p></li>
+<li><p><code>即使人们在听到感激时会感到尴尬，他们也会想听到明确的表达</code></p></li>
+<li><p><code>在表达感激时，我们说出：（1）对我们有益的行为；（2）我们的哪些需要得到了满足；（3）我们的需要得到满足后，我们是什么样的心情</code></p></li>
+</ul>
+<h2 id="总结">总结</h2>
+<ul>
+<li>观察、感受、需要、请求</li>
+<li><strong>诚实地表达自己，而不批评、指责</strong></li>
+<li><strong>关切地倾听他人，而不解读为批评或指责</strong></li>
+<li></li>
+</ul>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2024 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+
+    </html>
