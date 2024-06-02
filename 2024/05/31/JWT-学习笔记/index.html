@@ -25,8 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
-<style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -138,7 +137,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style></head>
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
                 
     <body>
         <!-- <div id="L2dCanvas"></div> -->
@@ -308,7 +308,7 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #00bcd4">
+                <a href="/tags/笔记/" style="color: #00a596">
                     笔记
                 </a>
             </span>
@@ -372,6 +372,20 @@ Token，是目前最流行的跨域认证解决方案，是一种基于Token的�
 <li><p>基本格式：
 <code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></p></li>
 </ul>
+<h3 id="用法">用法</h3>
+<ul>
+<li>用户向服务器发送登录表单</li>
+<li>校验正确，服务端返回已经签名的Token，即JWT</li>
+<li>用户以后每一次发送请求都在Header里带上这个JWT</li>
+<li>服务端检查JWT并从中获取用户信息</li>
+</ul>
+<h3 id="注意事项">注意事项</h3>
+<ul>
+<li>最好把JWT存在localStorage里面，防在Cookie里有CSRF风险</li>
+<li>常见做法是把JWT放在HTTP Header的 <code>Authorization</code> 字段中（
+<code>Authorization: Bearer Token</code> ）</li>
+</ul>
+<h3 id="安全性">安全性</h3>
 
     </div>
     
