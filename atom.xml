@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-06-02T10:28:05.832Z</updated>
+  <updated>2024-06-03T02:05:48.728Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>双数组Trie树(DAT) 学习笔记</title>
+    <link href="https://ethanh3514.github.io/2024/06/03/%E5%8F%8C%E6%95%B0%E7%BB%84Trie%E6%A0%91-DAT-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ethanh3514.github.io/2024/06/03/%E5%8F%8C%E6%95%B0%E7%BB%84Trie%E6%A0%91-DAT-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2024-06-03T02:02:27.000Z</published>
+    <updated>2024-06-03T02:05:48.728Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Trie树是一种利用空间换时间的数据结构，占用的内存会比较大。也正是因为这个原因，实际工程项目中都是使用的改进版Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。</p></blockquote><blockquote><p>在双数组所有键中包含的字符之间的联系都是通过简单的数学加法运算表示，不仅提高了检索速度，而且省去了链式结构中使用的大量指针，节省了存储空间。</p></blockquote><p>如果DAT与AC自动机结合，可以达到很高的多模式匹配性能</p><span id="more"></span><p><a href="https://www.hankcs.com/program/java/triedoublearraytriejava.html">[双数组Trie树(DoubleArrayTrie)Java实现](https://www.hankcs.com/program/java/triedoublearraytriejava.html)</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Trie
+树是一种利用空间换时间的数据结构，占用的内存会比较大。也正是因为这个原因，实际工程项目中都是使用的改进版
+Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在双数组所有键中包含的字符之间的联系都是通过简单的数学加法运算表示，不仅提高了检索速度，而且省去了链式结构中使用的大量指针，节省了存储空间。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果DAT与AC自动机结合，可以达到很高的多模式匹配性能&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="算法" scheme="https://ethanh3514.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="数据结构" scheme="https://ethanh3514.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="DAT" scheme="https://ethanh3514.github.io/tags/DAT/"/>
+    
+    <category term="Trie" scheme="https://ethanh3514.github.io/tags/Trie/"/>
+    
+  </entry>
   
   <entry>
     <title>代码命名规范 学习笔记</title>
@@ -489,29 +524,6 @@ Token，是目前最流行的跨域认证解决方案，是一种基于Token的�
     <category term="Spring" scheme="https://ethanh3514.github.io/tags/Spring/"/>
     
     <category term="请求响应" scheme="https://ethanh3514.github.io/tags/%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP协议 学习笔记</title>
-    <link href="https://ethanh3514.github.io/2024/04/06/HTTP%E5%8D%8F%E8%AE%AE-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://ethanh3514.github.io/2024/04/06/HTTP%E5%8D%8F%E8%AE%AE-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2024-04-06T09:56:36.000Z</published>
-    <updated>2024-04-06T10:10:54.228Z</updated>
-    
-    <content type="html"><![CDATA[<p>qaq</p><span id="more"></span><h3 id="http请求协议">http请求协议</h3><ul><li>请求行：<code>GET /path?key=value&amp;key=value HTTP/1.1</code>（请求方式、资源路径、协议）</li><li>请求头：第二行开始 <code>key=value</code></li><li>请求体：请求头空一行后接</li></ul><h4 id="get-和-post方法">GET 和 POST方法</h4><ul><li>GET方法的请求参数在请求行中，没有请求体。大小有限制<ul><li>以<code>?key=value&amp;key=value</code>的格式</li></ul></li><li>POST方法的请求参数在请求体中，POST请求大小无限制</li></ul><h3 id="http响应协议">http响应协议</h3><ul><li>响应行：<code>HTTP/1.1 200 OK</code>响应数据第一行（协议、状态码、描述）</li><li>响应头：第二行开始 <code>key=value</code></li><li>响应体：最后一部分，存放响应数据（json格式）</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;qaq&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="HTTP" scheme="https://ethanh3514.github.io/tags/HTTP/"/>
-    
-    <category term="Web" scheme="https://ethanh3514.github.io/tags/Web/"/>
     
   </entry>
   
