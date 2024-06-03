@@ -79,9 +79,9 @@ Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。&lt;/p&gt;
     <link href="https://ethanh3514.github.io/2024/06/01/CSRF-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://ethanh3514.github.io/2024/06/01/CSRF-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2024-06-01T04:40:57.000Z</published>
-    <updated>2024-06-01T04:53:54.300Z</updated>
+    <updated>2024-06-03T02:10:06.284Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>CSRF（Cross-Site RequestForgery）跨站请求伪造：攻击者诱导受害者进入第三方网站，在第三方网站向被攻击网站发送跨站请求，利用受害者在被攻击网站的凭证，绕过用户验证</p></blockquote><span id="more"></span><h3 id="例子">例子</h3><ul><li>受害者登录 <code>a.com</code> ，保留登录凭证</li><li>攻击者引诱受害者访问 <code>b.com</code></li><li><code>b.com</code> 向 <code>a.com</code> 发送了一个请求：<code>a.com/act=xx</code> ，浏览器默携带 <code>a.com</code> 的<code>Cookie</code></li><li><code>a.com</code>接收到请求后，验证请求，确认是受害者的凭证，放行</li><li><code>a.com</code> 以受害者的名义执行了 <code>act=xx</code></li></ul><h3 id="防护策略">防护策略</h3><p><a href="https://tech.meituan.com/2018/10/11/fe-security-csrf.html">前端安全系列（二）：如何防止CSRF攻击？</a>]</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>CSRF（Cross-Site RequestForgery）跨站请求伪造：攻击者诱导受害者进入第三方网站，在第三方网站向被攻击网站发送跨站请求，利用受害者在被攻击网站的凭证，绕过用户验证</p></blockquote><span id="more"></span><h3 id="例子">例子</h3><ul><li>受害者登录 <code>a.com</code> ，保留登录凭证</li><li>攻击者引诱受害者访问 <code>b.com</code></li><li><code>b.com</code> 向 <code>a.com</code> 发送了一个请求：<code>a.com/act=xx</code> ，浏览器默携带 <code>a.com</code> 的<code>Cookie</code></li><li><code>a.com</code>接收到请求后，验证请求，确认是受害者的凭证，放行</li><li><code>a.com</code> 以受害者的名义执行了 <code>act=xx</code></li></ul><h3 id="防护策略">防护策略</h3><p><a href="https://tech.meituan.com/2018/10/11/fe-security-csrf.html">前端安全系列（二）：如何防止CSRF攻击？</a></p>]]></content>
     
     
     <summary type="html">&lt;blockquote&gt;
