@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-06-03T02:05:48.728Z</updated>
+  <updated>2024-06-03T02:09:33.474Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://ethanh3514.github.io/2024/06/03/%E5%8F%8C%E6%95%B0%E7%BB%84Trie%E6%A0%91-DAT-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://ethanh3514.github.io/2024/06/03/%E5%8F%8C%E6%95%B0%E7%BB%84Trie%E6%A0%91-DAT-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2024-06-03T02:02:27.000Z</published>
-    <updated>2024-06-03T02:05:48.728Z</updated>
+    <updated>2024-06-03T02:09:33.474Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>Trie树是一种利用空间换时间的数据结构，占用的内存会比较大。也正是因为这个原因，实际工程项目中都是使用的改进版Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。</p></blockquote><blockquote><p>在双数组所有键中包含的字符之间的联系都是通过简单的数学加法运算表示，不仅提高了检索速度，而且省去了链式结构中使用的大量指针，节省了存储空间。</p></blockquote><p>如果DAT与AC自动机结合，可以达到很高的多模式匹配性能</p><span id="more"></span><p><a href="https://www.hankcs.com/program/java/triedoublearraytriejava.html">[双数组Trie树(DoubleArrayTrie)Java实现](https://www.hankcs.com/program/java/triedoublearraytriejava.html)</a></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>Trie树是一种利用空间换时间的数据结构，占用的内存会比较大。也正是因为这个原因，实际工程项目中都是使用的改进版Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。</p></blockquote><blockquote><p>在双数组所有键中包含的字符之间的联系都是通过简单的数学加法运算表示，不仅提高了检索速度，而且省去了链式结构中使用的大量指针，节省了存储空间。</p></blockquote><p>如果DAT与AC自动机结合，可以达到很高的多模式匹配性能</p><span id="more"></span><p><a href="https://www.hankcs.com/program/java/triedoublearraytriejava.html">双数组Trie树(DoubleArrayTrie)Java实现</a></p>]]></content>
     
     
     <summary type="html">&lt;blockquote&gt;
