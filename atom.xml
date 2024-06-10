@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-06-10T06:35:50.937Z</updated>
+  <updated>2024-06-10T07:43:14.493Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式ID 学习笔记</title>
+    <link href="https://ethanh3514.github.io/2024/06/10/%E5%88%86%E5%B8%83%E5%BC%8FID-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ethanh3514.github.io/2024/06/10/%E5%88%86%E5%B8%83%E5%BC%8FID-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2024-06-10T07:31:44.000Z</published>
+    <updated>2024-06-10T07:43:14.493Z</updated>
+    
+    <content type="html"><![CDATA[<p>分布式系统下为不同的数据节点生成全局唯一主键</p><span id="more"></span><h3 id="要求">要求</h3><p><strong>基本要求</strong>：</p><ul><li>全局唯一</li><li>高性能：生成要快</li><li>高可用：生成分布式ID的服务要保证可用性</li><li>方便易用</li></ul><p><strong>额外</strong>：</p><ul><li>安全：不含敏感信息</li><li>有序递增</li><li>有具体的业务含义</li><li>独立部署：单独有一个发号器服务</li></ul><h3 id="常见解决方案">常见解决方案</h3><h4 id="数据库号段">数据库号段</h4><pre class="mysql"><code>CREATE TABLE `sequence_id_generator` (  `id` int(10) NOT NULL,  `current_max_id` bigint(20) NOT NULL COMMENT '当前最大id',  `step` int(10) NOT NULL COMMENT '号段的长度',  `version` int(20) NOT NULL COMMENT '版本号',  `biz_type`    int(20) NOT NULL COMMENT '业务类型',   PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</code></pre><p><code>version</code> 字段主要用于乐观锁</p><ul><li>创建一个数据库表 <code>squence_id_generator</code>，存储当前最大长度、号段的长度</li><li>每一次申请一块的ID，放入内存，需要用的时候从内存中拿</li><li>更新数据库表</li></ul><h4 id="nosql">NoSQL</h4><ul><li>使用Redis Cluster</li><li>MongoDB</li></ul><h4 id="算法">算法</h4><h5 id="uuid">UUID</h5><div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">//cb4a9ede-fa5e-4585-b9bb-d60bce986eaa</span></span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">UUID</span><span class="op">.</span><span class="fu">randomUUID</span><span class="op">()</span></span></code></pre></div><p>不同版本的UUID的生成规则不同</p><p>可以保证全局唯一性，但是过长、无顺序</p><h5 id="snowflake">Snowflake</h5><ul><li>sign(1 bit)：符号位，始终为0，代表ID为正数</li><li>timestamp(41 bit)：毫秒为单位的时间戳，可以支撑 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.904ex" role="img" focusable="false" viewBox="0 -841.7 1290.1 841.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span> 毫秒</li><li>datacenter id + worker id(10 bits)：机房ID+机器ID</li><li>sequence(12 bits)：单台机器每毫秒所能生成的最大ID数（ <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="10.461ex" height="2.072ex" role="img" focusable="false" viewBox="0 -833.9 4623.7 915.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g><g data-mml-node="mo" transform="translate(1567.9,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2623.7,0)"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z" transform="translate(1000,0)"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(1500,0)"></path></g></g></g></svg></mjx-container></span> ），自增的序列号</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;分布式系统下为不同的数据节点生成全局唯一主键&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="分布式" scheme="https://ethanh3514.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    <category term="ID" scheme="https://ethanh3514.github.io/tags/ID/"/>
+    
+  </entry>
   
   <entry>
     <title>Gossip 协议 学习笔记</title>
@@ -503,31 +526,6 @@ Token，是目前最流行的跨域认证解决方案，是一种基于Token的�
     <category term="杂记" scheme="https://ethanh3514.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
     
     <category term="意象" scheme="https://ethanh3514.github.io/tags/%E6%84%8F%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring lombok 学习笔记</title>
-    <link href="https://ethanh3514.github.io/2024/04/08/Spring-lombok-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://ethanh3514.github.io/2024/04/08/Spring-lombok-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2024-04-08T09:29:52.000Z</published>
-    <updated>2024-04-08T09:40:36.050Z</updated>
-    
-    <content type="html"><![CDATA[<p>又是面向注解编程，这我怎么记得住啊qaq</p><span id="more"></span><ul><li>lombok是一个java类库</li><li>可以通过在类前加注解的方式自动生成javabean类内所需的方法</li><li>需要安装一个lombok插件（idea自带）</li></ul><h3 id="方法">方法</h3><ul><li><span class="citation" data-cites="Getter">@Getter</span>/<span class="citation" data-cites="Setter">@Setter</span></li><li><span class="citation" data-cites="ToString">@ToString</span></li><li><span class="citation" data-cites="EqualsAndHashCode">@EqualsAndHashCode</span></li><li><span class="citation" data-cites="Data">@Data</span></li><li><span class="citation" data-cites="NoArgsConstructor">@NoArgsConstructor</span>：无参构造</li><li><span class="citation" data-cites="AllArgsConstructor">@AllArgsConstructor</span>：全参构造</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;又是面向注解编程，这我怎么记得住啊qaq&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Java" scheme="https://ethanh3514.github.io/tags/Java/"/>
-    
-    <category term="笔记" scheme="https://ethanh3514.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="Spring" scheme="https://ethanh3514.github.io/tags/Spring/"/>
-    
-    <category term="lombok" scheme="https://ethanh3514.github.io/tags/lombok/"/>
     
   </entry>
   
