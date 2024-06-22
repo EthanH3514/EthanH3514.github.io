@@ -6,7 +6,7 @@
   <link href="https://ethanh3514.github.io/atom.xml" rel="self"/>
   
   <link href="https://ethanh3514.github.io/"/>
-  <updated>2024-06-10T07:43:14.493Z</updated>
+  <updated>2024-06-22T15:03:28.407Z</updated>
   <id>https://ethanh3514.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2024 CCPC上海市赛 体验</title>
+    <link href="https://ethanh3514.github.io/2024/06/22/2024-CCPC%E4%B8%8A%E6%B5%B7%E5%B8%82%E8%B5%9B-%E4%BD%93%E9%AA%8C/"/>
+    <id>https://ethanh3514.github.io/2024/06/22/2024-CCPC%E4%B8%8A%E6%B5%B7%E5%B8%82%E8%B5%9B-%E4%BD%93%E9%AA%8C/</id>
+    <published>2024-06-22T08:24:28.000Z</published>
+    <updated>2024-06-22T15:03:28.407Z</updated>
+    
+    <content type="html"><![CDATA[<p>本来已经退役了，但是队友拉我打，于是就在实习的间隙打了，大概率是最后一场。6.16号的比赛，但现在才写总结。</p><hr><span id="more"></span><h3 id="队友cocomos的总结">队友cocomos的总结</h3><blockquote><p>银了，虽然是市赛（</p><p>感觉这场看一题会一题，单挑了好几个题。开局日常找不到签到，4min后有人过了E再去开，我有点老年人手速9min才过。然后又看到有人5min过J，再去看J，感觉像个找素数合数性质的题，猜想什么区间长度不会很长。一看范围，怎么n²能过的？就直接线性筛+前缀和暴力了，17min就过了。</p><p>签完两道题，看见有人过A就继续跟榜，感觉是个简单数正方形，随便糊了个东西，没过样例，发现理解错题意了。这时队友好像会了，hxy同学还跟我讲“让我也敲敲代码，有点体验感”，那我就让他们去做了。不过好像他们后来换了很多神秘的数法，最后n⁴暴力过的，此时已经58min了。</p><p>他们做A的时候，我先去看了K，感觉来感觉了，再仔细一看，发现范围怎么超了一点，感觉错了，冷静一下。再去看了G题中国象棋，感觉无敌了，状压马的位置然后转移计数肯定就是对的，这时好像只有一两个人过。他们还没做完，又去看了M，猜了个答案是n/2下取整，但是怎么那么多人wa，是不是不对啊，就没想了。</p><p>过了A又轮到我上机了，非常迅速（可能还是调了一些脑残错误）地写完了G，提交发现wa了，不是很理解。再修改了一些小细节，还是wa，开始疑惑。</p><p>没什么进展了，开始想M转换一下思路，虽然感觉不对，但是还是按照猜的结论特判一个n=2的情况交了一发，wa。然后发现好像一个点可以不止有一条出边的，哦，原来题没读对。然后hxy同学M又有了一些想法，我听着感觉很有道理，就让他继续做了。但是好像又wa了一发。</p><p>这下两头都烂了，吃个麦当劳冷静一下。啃完汉堡吃玉米粒的时候突然发现，这个弱智G中国象棋不会是要特判起点的吧？由于我喊的很大声，我们对面一个金牌队也听见了，就听到他们笑了一下，我就知道这题已经过了。</p><p>跟队友交换小调一下，终于在3h5min的时候过了，被这特判硬控将近2小时，真的昏了。好消息是，我过完G的时候hxy也把M调出来了，表演了一个3分钟连过2题。</p><p>这个时候排名已经银牌靠前了，感觉有希望冲金了。于是一边愉快啃香芋派一边找下个题。队友们在我调G的时候好像会D了，但是说写起来很麻烦，lyf就开始写了。后来我看到L过的挺多，就去看L了。看完发现，诶，就是个树上dp啊，好像秒杀了。跟hxy说了一下题意和思路，不知道他有没有懂吧反正我知道肯定是对的了，看这个D现在也处于难产阶段，就申请交换上机了，让他们打印代码继续看。</p><p>飞速写完dfs和状态转移，小改了一下下就过样例了，再测了几个小数据，感觉没什么问题就交了，3h49min一发过。</p><p>看了眼榜，在银牌第一位。感觉封榜再过一题能金。他们继续搞D，我再寻找其他题。发现F好像就是预处理环和链的长度然后背包就好了，但是背包范围有点超。hxy又告诉我可以bitset优化背包，但是我没写过啊，没有很会，就把这题放着了。又继续看K，我跟hxy说会不会搜索剪枝能过，然后他又告诉我这个范围可以双搜，真的无敌，告诉我的全是对的（可惜都没机会开），我觉得就是双搜然后二分合并，但是后面不知道为什么扯到什么随机化了。不过这时感觉已经来不及做这题了，就没想了。</p><p>最后两个队友调了很久也没有把D调出来，后来才知道原来前缀和没考虑逆元不存在的问题，这我确实没想过。早知道还是去尝试F的bitset优化背包了。😭</p><p>颁奖的时候就搞笑了，封榜时银首，突然队名就出现在铜牌第一个了？其他人还都上去领奖了？我人都傻了，还好后来去问了终榜，才知道原来有些组织奖都能发错，后来才给换牌子😅</p><p>总之打的算正常的一场[可怜]</p></blockquote><h3 id="个人总结">个人总结</h3><p>太久没训练，好在在赛场上还是发挥了不小的作用。</p><p>过掉了A题，一个数整点正方形的题，队友和我都看错题，在我手上卡了半个小时，好在看对题之后一分钟推出了公式然后快速A掉。</p><p>过掉了M题的构造。在队友都看不懂题，想不明白为什么不是m/2的时候，我感知到了题目背后的数学结构，是个k分图，过掉了这道题。</p><p>给出了后面两道题的关键思路，一道bitset优化背包，另一道双搜。但可惜，bitset优化背包我们都不会，之前一道CFdiv2E2就是bitset优化背包，结果我们都没补。另一题双搜之后如何合并没想明白。最后卡死在了D题的前缀可能逆元不存在上，这一点我们谁也没想到，都以为实现错了。</p><p>最后6题结局，银牌中上游。</p><hr><h3 id="图片">图片</h3><p>队名：面试官问我CCPC是什么。来源于真实经历）</p><p><img src="\2024-CCPC上海市赛-体验\市赛终榜.jpg" alt="市赛终榜"></p><p><img src="\2024-CCPC上海市赛-体验\市赛银牌.jpg" alt="市赛银牌"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;本来已经退役了，但是队友拉我打，于是就在实习的间隙打了，大概率是最后一场。6.16号的比赛，但现在才写总结。&lt;/p&gt;
+&lt;hr&gt;</summary>
+    
+    
+    
+    
+    <category term="算法竞赛" scheme="https://ethanh3514.github.io/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"/>
+    
+    <category term="CCPC" scheme="https://ethanh3514.github.io/tags/CCPC/"/>
+    
+    <category term="省赛" scheme="https://ethanh3514.github.io/tags/%E7%9C%81%E8%B5%9B/"/>
+    
+    <category term="上海" scheme="https://ethanh3514.github.io/tags/%E4%B8%8A%E6%B5%B7/"/>
+    
+    <category term="2024" scheme="https://ethanh3514.github.io/tags/2024/"/>
+    
+    <category term="SHCPC" scheme="https://ethanh3514.github.io/tags/SHCPC/"/>
+    
+  </entry>
   
   <entry>
     <title>分布式ID 学习笔记</title>
@@ -505,27 +535,6 @@ Token，是目前最流行的跨域认证解决方案，是一种基于Token的�
     <category term="Spring" scheme="https://ethanh3514.github.io/tags/Spring/"/>
     
     <category term="热部署" scheme="https://ethanh3514.github.io/tags/%E7%83%AD%E9%83%A8%E7%BD%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>杂记 - 一些混乱的意象</title>
-    <link href="https://ethanh3514.github.io/2024/04/10/%E6%9D%82%E8%AE%B0-%E4%B8%80%E4%BA%9B%E6%B7%B7%E4%B9%B1%E7%9A%84%E6%84%8F%E8%B1%A1/"/>
-    <id>https://ethanh3514.github.io/2024/04/10/%E6%9D%82%E8%AE%B0-%E4%B8%80%E4%BA%9B%E6%B7%B7%E4%B9%B1%E7%9A%84%E6%84%8F%E8%B1%A1/</id>
-    <published>2024-04-10T07:12:25.000Z</published>
-    <updated>2024-04-10T07:31:57.619Z</updated>
-    
-    <content type="html"><![CDATA[<p>晚风，不再温柔</p><span id="more"></span><p>4.7</p><p>陌生的城市，陌生的街头，昏暗的夜色，星星点点的灯，潇潇的暮雨，微凉的风。熟悉的人，都已消散在时间的河流中。</p><p>无边的旷野，沙沙的蝉鸣，滴滴答答的时间，从不停留。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;晚风，不再温柔&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="杂记" scheme="https://ethanh3514.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-    <category term="意象" scheme="https://ethanh3514.github.io/tags/%E6%84%8F%E8%B1%A1/"/>
     
   </entry>
   
