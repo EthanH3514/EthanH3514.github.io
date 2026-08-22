@@ -1,5 +1,7 @@
-if (typeof hljs !== "undefined") hljs.highlightAll();
-hljs.configure({ ignoreUnescapedHTML: true });
+if (typeof hljs !== "undefined") {
+    hljs.highlightAll();
+    hljs.configure({ ignoreUnescapedHTML: true });
+}
 const App = Vue.createApp({
     data() {
         return {
@@ -13,9 +15,11 @@ const App = Vue.createApp({
         var that = this;
         window.addEventListener("load", () => {
             that.show_page = true;
-            document.getElementById("loading").style.opacity = 0;
+            const loading = document.getElementById("loading");
+            if (!loading) return;
+            loading.style.opacity = 0;
             setTimeout(function () {
-                document.getElementById("loading").style.display = "none";
+                loading.style.display = "none";
             }, 300);
         });
     },
