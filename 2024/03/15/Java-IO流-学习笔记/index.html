@@ -1,0 +1,601 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            Java IO流 学习笔记 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Java IO流 学习笔记 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/15
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/笔记/" style="color: #ff7d73">
+                    笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Java/" style="color: #ffa2c4">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/IO流/" style="color: #03a9f4">
+                    IO流
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>qaq</p>
+<span id="more"></span>
+<h3 id="io流分类">IO流分类</h3>
+<h4 id="字节流">字节流</h4>
+<ul>
+<li>可以操作所有类型的文件</li>
+<li>读取文件的时候不要有中文</li>
+<li>每次只能操作一个字节（整数不能超过一个字节）</li>
+</ul>
+<h5 id="子类">子类</h5>
+<ul>
+<li>InputStream</li>
+<li>OutputStream</li>
+</ul>
+<h4 id="字符流">字符流</h4>
+<ul>
+<li>只能操作纯文本文件</li>
+</ul>
+<h5 id="子类-1">子类</h5>
+<ul>
+<li>Reader</li>
+<li>Writer</li>
+</ul>
+<h2 id="字节流-1">字节流</h2>
+<h3 id="字节输出流">字节输出流</h3>
+<ul>
+<li><code>FileOutputStream(File filename, boolean append)</code></li>
+<li><code>FileOutputStream(String filepath)</code></li>
+</ul>
+<h3 id="字节输入流">字节输入流</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">""</span>);</span><br><span class="line"><span class="type">int</span> b;</span><br><span class="line"><span class="keyword">while</span>((b = fis.read()) != -<span class="number">1</span>) {</span><br><span class="line">    System.out.println((<span class="type">char</span>)b);</span><br><span class="line">}</span><br><span class="line">fis.close();</span><br></pre></td></tr></table></figure>
+<h3 id="文件拷贝">文件拷贝</h3>
+<p>小文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">""</span>);</span><br><span class="line"><span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">""</span>);</span><br><span class="line"><span class="type">int</span> b;</span><br><span class="line"><span class="keyword">while</span>((b = fis.read()) != -<span class="number">1</span>) {</span><br><span class="line">    fos.write(b);</span><br><span class="line">}</span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line"><span class="comment">//先开的最后关闭</span></span><br><span class="line">fos.close();</span><br><span class="line">fis.close();</span><br></pre></td></tr></table></figure>
+<p>文件大的时候一次次read()太慢</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">""</span>);</span><br><span class="line"><span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">""</span>);</span><br><span class="line"><span class="type">byte</span>[] <span class="variable">buf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span> * <span class="number">1024</span> * <span class="number">5</span>];<span class="comment">//一般取1024的倍数</span></span><br><span class="line"><span class="keyword">while</span>((len = fis.read(buf)) != -<span class="number">1</span>) {</span><br><span class="line">    fos.write(buf, <span class="number">0</span>, len);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">fos.close();</span><br><span class="line">fis.close(); </span><br></pre></td></tr></table></figure>
+<h2 id="字符流-1">字符流</h2>
+<ul>
+<li>字符流 = 字节流 + 字符集</li>
+</ul>
+<h4 id="特点">特点</h4>
+<ul>
+<li>输入流：一次读一个字节，遇到中文时，一次读多个字节</li>
+<li>输出流：底层把数据按照指定的编码方式进行编码，变成字节再写到文件中</li>
+</ul>
+<h4 id="使用场景">使用场景</h4>
+<ul>
+<li>操作纯文本文件</li>
+</ul>
+<h4 id="filereader">FileReader</h4>
+<ul>
+<li><code>public int read()</code>：读取数据，到末尾返回 -1</li>
+<li><code>public int read(char[] buffer)</code>：读取多个数据，到末尾返回
+-1
+<ul>
+<li>细节：按字节进行读取，遇到中文，一次读多个字节，读取后解码，返回一个十进制整数，代表在字符集上的数字</li>
+<li>字符流的底层也是字节流</li>
+</ul></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileReader</span> <span class="variable">fr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">""</span>);</span><br><span class="line"><span class="type">int</span> ch;</span><br><span class="line"><span class="keyword">while</span>((ch = fr.read()) != -<span class="number">1</span>) {</span><br><span class="line">    System.out.println((<span class="type">char</span>)ch);</span><br><span class="line">}</span><br><span class="line">fr.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileReader</span> <span class="variable">fr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">""</span>);</span><br><span class="line"><span class="type">char</span>[] <span class="variable">ch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> len;</span><br><span class="line"><span class="comment">//read(chars)：把读取数据、解码、强转三步合并了，把强转之后的字符放到数组当中</span></span><br><span class="line"><span class="comment">//空参的read + 强制类型转换</span></span><br><span class="line"><span class="keyword">while</span>((len = fr.read(ch)) != -<span class="number">1</span>) {</span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(ch, <span class="number">0</span>, len));</span><br><span class="line">}</span><br><span class="line">fr.close();</span><br></pre></td></tr></table></figure>
+<h4 id="filewriter">FileWriter</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileWriter</span> <span class="variable">fw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">""</span>);</span><br><span class="line">fw.write(<span class="number">25105</span>);<span class="comment">//根据字符集的编码方式编码，把编码之后的数据写到文件中</span></span><br><span class="line">fw.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileWriter</span> <span class="variable">fw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">""</span>);</span><br><span class="line"><span class="type">char</span>[] <span class="variable">ch</span> <span class="operator">=</span> {<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'我'</span>};</span><br><span class="line">fw.write(ch);</span><br><span class="line">fw.close();</span><br></pre></td></tr></table></figure>
+<h4 id="字符流底层原理">字符流底层原理</h4>
+<ul>
+<li>创建字符输入流对象
+<ul>
+<li>关联文件，并创建缓冲区（长度为8192的字节数组）（字节流无缓冲区）</li>
+</ul></li>
+<li>读取数据
+<ul>
+<li>判断缓冲区中是否有数据
+<ul>
+<li>缓冲区无数据：从文件中获取数据，装入缓冲区，尽可能装满</li>
+<li>缓冲区有数据：从缓冲区读取</li>
+</ul></li>
+<li>空参read：一次读取一个字节，遇到中文一次读多个字节，把字节解码转成十进制返回</li>
+<li>有参read：读取字节、解码、强转三步合并，强转后的字符放到数组中</li>
+</ul></li>
+<li>输出数据
+<ul>
+<li>在内存中创建一个8192的缓冲区，每一次write都会把内容编码写进缓冲区里，出现下面的情况时，会把缓冲区内容写入文件
+<ul>
+<li>缓冲区满</li>
+<li>刷新（<code>flush()</code>）</li>
+<li>关流（<code>close()</code>）</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="缓冲流">缓冲流</h2>
+<p>加了缓冲区的基本流</p>
+<h3 id="字节缓冲流">字节缓冲流</h3>
+<ul>
+<li><code>public BufferedInputStream(InputStream is)</code></li>
+<li><code>public BufferedOutputStream(OutputStream os)</code></li>
+</ul>
+<h3 id="字符缓冲流">字符缓冲流</h3>
+<p>因为字符基本流已经有缓冲区了，所以效率提高不明显</p>
+<ul>
+<li><code>BufferedReader</code></li>
+<li><code>BufferedWriter</code></li>
+</ul>
+<p>主要体现在两个比较好用的方法</p>
+<ul>
+<li>输入流：<code>public String readLine()</code>：读取一行数据，如果没数据了，返回null。<strong>但是不会读取回车换行</strong></li>
+<li>输出流：<code>public void newLine()</code>：跨平台的换行</li>
+</ul>
+<h2 id="转换流">转换流</h2>
+<p>是字符流和字节流之间的桥梁</p>
+<p>数据源 -&gt; 字节流 -&gt; 转换流 -&gt; 内存 -&gt; 转换流 -&gt; 字节流
+-&gt;目的文件</p>
+<ul>
+<li><code>InputStreamReader</code></li>
+<li><code>OutputStreamWriter</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">""</span>), <span class="string">"GBK"</span>);</span><br><span class="line"><span class="type">int</span> ch;</span><br><span class="line"><span class="keyword">while</span>((ch = isr.read()) != -<span class="number">1</span>) {</span><br><span class="line">    System.out.print((<span class="type">char</span>)ch);</span><br><span class="line">}</span><br><span class="line">isr.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">OutputStreamWriter</span> <span class="variable">osw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">""</span>), <span class="string">"GBK"</span>);</span><br><span class="line">osw.write(<span class="string">"你好"</span>);</span><br><span class="line">osw.close();</span><br></pre></td></tr></table></figure>
+<p><strong>JDK11</strong>后把<code>FileInputStream</code>和<code>FileOutputStream</code>的构造方法加入了字符编码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将本地文件中的GBK文件，转成UTF-8</span></span><br><span class="line"></span><br><span class="line"><span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">""</span>), <span class="string">"GBK"</span>);</span><br><span class="line"><span class="type">OutputStreamWriter</span> <span class="variable">osw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">""</span>), <span class="string">"UTF-8"</span>);</span><br><span class="line"><span class="type">int</span> b;</span><br><span class="line"><span class="keyword">while</span>((b = isr.read()) != -<span class="number">1</span>) {</span><br><span class="line">    osw.write(b);</span><br><span class="line">}</span><br><span class="line">osw.close();</span><br><span class="line">isr.close();</span><br></pre></td></tr></table></figure>
+<h3 id="练习">练习</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用字节流读文件中数据，一次读一行，不能出现乱码</span></span><br><span class="line"><span class="comment">//1.字节流在读中文的时候，会出现乱码，用字符流没事</span></span><br><span class="line"><span class="comment">//2.字节流里面是没有读一行的方法，字符缓冲流可以</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//FileInputStream fis = new FileInputStream("");</span></span><br><span class="line"><span class="comment">//InputStreamReader isr = new InputStreamReader(fis);</span></span><br><span class="line"><span class="comment">//BufferedReader br = new BufferedReader(isr);</span></span><br><span class="line"></span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">""</span>)));</span><br><span class="line"></span><br><span class="line">String str;</span><br><span class="line"><span class="keyword">while</span>((str = br.readLine()) != <span class="literal">null</span>) {</span><br><span class="line">    System.out.println(str);</span><br><span class="line">}</span><br><span class="line">br.close();</span><br></pre></td></tr></table></figure>
+<h2 id="序列化流">序列化流</h2>
+<ul>
+<li>是字节流的一种</li>
+<li>可以把Java中的对象写到本地文件中</li>
+<li>是高级流</li>
+</ul>
+<h3 id="构造方法">构造方法</h3>
+<ul>
+<li><code>public ObjectOutputStream(OutputStream out)</code>：基本流包装成高级流</li>
+<li><code>public final void writeObject(Object obj)</code>：把对象序列化写出</li>
+</ul>
+<h3 id="输出">输出</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Student</span> <span class="variable">stu</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">"a"</span>, <span class="number">18</span>);</span><br><span class="line"><span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">""</span>));</span><br><span class="line">oos.writeObject(stu);</span><br><span class="line">oos.close();</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：要序列化的Javabean类需要实现Serializable接口，Serializable接口是个标记接口</p>
+<h3 id="输入">输入</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">""</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//Object o = ois.readObject();</span></span><br><span class="line"><span class="type">Student</span> <span class="variable">o</span> <span class="operator">=</span>(Student) ois.readObject();</span><br><span class="line"></span><br><span class="line">System.out.println(o);</span><br><span class="line"></span><br><span class="line">ois.close();</span><br></pre></td></tr></table></figure>
+<h3 id="版本号">版本号</h3>
+<ul>
+<li><p>当一个对象实现了Serializable接口之后，每一次修改这个Javabean类都会生成新的版本号，而每次序列化会把版本号序列化进去，使得在反序列化时可能会出现序列化的对象和当前Javabean类版本号不一致的问题</p></li>
+<li><p>可以固定版本号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> {</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;<span class="comment">// 唯一格式 建议自动生成</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="transient关键字">transient关键字</h4>
+<ul>
+<li>瞬态关键字</li>
+<li>被此关键字修饰的变量不会被序列化到本地文件中</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> String address;</span><br></pre></td></tr></table></figure>
+<h2 id="打印流">打印流</h2>
+<ul>
+<li><p>只有输出流</p></li>
+<li><p>字节打印流 和 字符打印流</p></li>
+<li><p>不能操作数据源，只能操作目的地</p></li>
+<li><p>PrintStream</p></li>
+<li><p>PrintWriter</p></li>
+</ul>
+<h3 id="字节打印流">字节打印流</h3>
+<p>字节流底层没缓冲区，自动刷新开不开没区别</p>
+<h4 id="构造">构造</h4>
+<ul>
+<li><code>public PrintStream(OutputStream/File/String)</code>：关联字节输出流/文件/文件路径</li>
+<li><code>public PrintStream(String fileName, Charset charset)</code>：指定字符编码</li>
+<li><code>public PrintStream(OutputStream out, boolean autoFlush)</code>：自动刷新</li>
+<li><code>public PrintStream(OutputStream out, boolean autoFlush, String encoding)</code>：指定字符编码</li>
+</ul>
+<h4 id="方法">方法</h4>
+<ul>
+<li><code>public void write(int b)</code>：常规方法，和之前一样</li>
+<li><code>public void println(Xxx xx)</code>：特有方法，打印任意数据，自动刷新、换行</li>
+<li><code>public void print(Xxx xx)</code>：特有方法，打印任意数据，不换行</li>
+<li><code>public void printf(String format, Object...)</code>：特有方法，带有占位符的打印语句，不换行</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PrintStream</span> <span class="variable">ps</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">""</span>), <span class="literal">true</span>, Charset.forName(<span class="string">"GBK"</span>));</span><br><span class="line">ps.println(<span class="number">97</span>);<span class="comment">//写出 + 自动刷新 + 自动换行</span></span><br><span class="line">ps.print(<span class="literal">true</span>);</span><br><span class="line">ps.println();</span><br><span class="line">ps.printf(<span class="string">"%s loves %s"</span>, <span class="string">"a"</span>, <span class="string">"b"</span>);</span><br><span class="line">ps.close();</span><br></pre></td></tr></table></figure>
+<h3 id="字符打印流">字符打印流</h3>
+<p>字符流底层有缓冲区，要自动刷新需要手动开启</p>
+<h4 id="构造-1">构造</h4>
+<ul>
+<li><code>public PrintWriter(Writer/File/String)</code>：关联字节输出流/文件/路径</li>
+<li><code>public PrintWriter(String fileName, Charset charset)</code>：指定字符编码</li>
+<li><code>public PrintWriter(Write w, boolean autoFlush)</code>：自动刷新</li>
+<li><code>public PrintWriter(OutputStream out, boolean autoFlush, Charset charset)</code>：指定字符编码且自动刷新</li>
+</ul>
+<h4 id="方法-1">方法</h4>
+<p>和字节打印流一样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PrintWriter</span> <span class="variable">pw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintWriter</span>(<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">""</span>), <span class="literal">true</span>);</span><br><span class="line">pw.println(<span class="string">"abc"</span>);</span><br><span class="line">pw.close();</span><br></pre></td></tr></table></figure>
+<h4 id="用处">用处</h4>
+<ul>
+<li><code>System.out</code>是一个静态打印流对象，虚拟机启动的时候，由JVM赋值，默认指向控制台</li>
+</ul>
+<h2 id="压缩流">压缩流</h2>
+<ul>
+<li>只能识别.zip文件</li>
+<li>压缩包里每一个文件在Java中是一个ZipEntry对象</li>
+<li>解压本质：把每一个ZipEntry对象按照层级拷贝到本地另一个文件夹中</li>
+</ul>
+<h3 id="解压缩流">解压缩流</h3>
+<p>ZipInputStream</p>
+<hr>
+<p>未完待续</p>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>

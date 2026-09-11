@@ -1,0 +1,460 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            新冠记录帖 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>新冠记录帖 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/12/27
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/记录/" style="color: #00a596">
+                    记录
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/新冠/" style="color: #ffa2c4">
+                    新冠
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <blockquote>
+<p>谨以此贴记录我的新冠过程🤒</p>
+</blockquote>
+<hr>
+<span id="more"></span>
+<h4 id="section">12.24</h4>
+<ul>
+<li>18:25
+宿舍楼群里隔壁的隔壁的隔壁的寝室有阳的，感觉不妙，因为我虽然在寝室几乎不出门，但是时不时会去水房接热水，而我和那个寝室的同学去的都是一个水房</li>
+</ul>
+<h4 id="section-1">12.25</h4>
+<ul>
+<li>嗓子有点不舒服</li>
+<li>17:03
+打完上海编程市赛之后心里默念“如果我真的阳了，那么我将抽出死神”，然后抽了一张塔罗牌，『正位』的『死神』😅，然后过了一会就开始发烧，37℃+</li>
+<li>害怕一个人在宿舍万一没挺住。确认了要机票改签，第二天就润回家</li>
+<li>21:54 又测了一下温度，38℃+了，喝了粒布洛芬</li>
+</ul>
+<h4 id="section-2">12.26</h4>
+<ul>
+<li>6:20 测了下温度，恢复正常了</li>
+<li>6:40 吃了早饭，感觉又烧起来了，大概37℃</li>
+<li>10:50
+上了回家的飞机，从书包里掏出来一粒布洛芬，心里想着如果坚持不住就喝掉</li>
+<li>飞机起飞，用睡眠渡过时间</li>
+<li>11:20
+再也睡不着了，头晕，十分的难受，打开百度地图定位，看着飞机一点点靠近家乡</li>
+<li>11:35
+飞机开始下降，将注意力集中在定位的高度上，看着数字一点点减小，计算了一下降落的速率，发现飞机将提前半个小时左右降落</li>
+<li>12:00 头晕的厉害，不想摘掉口罩喝水或喝药，想着再撑一会</li>
+<li>12:45 飞机顺利降落，提前了整整半个小时</li>
+<li>13:00 出机场</li>
+<li>14:12
+到家，换了身衣服，测温，39℃，简单吃了点饭，灌水，喝了粒布洛芬，喝了一袋清热颗粒，睡觉</li>
+<li>18:30 睡醒，出了很多汗，测温，37℃，感觉没啥事了，精神状态恢复</li>
+<li><del>感觉新冠不过如此😝</del></li>
+</ul>
+<h4 id="section-3">12.27</h4>
+<ul>
+<li>4:00
+梦中惊醒，发现自己在抖，昨天能捂出汗的棉被现在却如纸一样薄，起床烧水，热了热小米粥，喝了粒布洛芬</li>
+<li>7:00
+睡不着了，还是烧，简单吃了点饭，开始捂汗，顺带把上午的课的假都请了</li>
+<li>8:30 体温回降到37℃，精神状态好转</li>
+<li>16:00 又烧起来辣，38℃+</li>
+<li>清热颗粒顶上，和家人聊聊天，状态恢复</li>
+<li>21:00 又烧起来辣，38℃</li>
+<li>喝了清热颗粒，睡觉</li>
+</ul>
+<h4 id="section-4">12.28</h4>
+<ul>
+<li>安稳渡过这一晚</li>
+<li>8:30 测体温，37℃+</li>
+<li>精神状态恢复，感觉快结束了</li>
+</ul>
+<h4 id="section-5">12.29</h4>
+<ul>
+<li>0:15 测温，37.4℃，但已经没有什么生病的感觉了</li>
+<li>9:30 测温 36.8℃</li>
+<li>10:31 抽了发塔罗牌，『逆位』的『恶魔』，其释义为:
+逃离束缚、拒绝诱惑、治愈病痛、直面现实，也许意味着今天病就好了</li>
+</ul>
+<h4 id="section-6">12.31</h4>
+<ul>
+<li>17:30 测抗原，阴性</li>
+</ul>
+<hr>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>

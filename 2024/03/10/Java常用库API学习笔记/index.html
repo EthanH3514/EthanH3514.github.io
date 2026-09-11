@@ -1,0 +1,554 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            Java常用库API学习笔记 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Java常用库API学习笔记 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/10
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/笔记/" style="color: #ffa2c4">
+                    笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Java/" style="color: #00bcd4">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/API/" style="color: #00bcd4">
+                    API
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>好记性不如烂笔头，还是写一下</p>
+<span id="more"></span>
+<h2 id="math">Math</h2>
+<ul>
+<li>静态工具类，构造函数为private</li>
+<li><code>Math.ceil()</code>数轴向右取整，<code>Math.floor()</code>数轴向左取整</li>
+<li><code>Math.abs()</code>在<code>-2147483648</code>的时候会有问题，溢出，返回自身。解决方法：特判或<code>Math.absExact()</code></li>
+<li><code>Math.random()</code>返回<code>[0.0, 1.0)</code>之间的随机数</li>
+</ul>
+<h2 id="system">System</h2>
+<ul>
+<li>静态工具类</li>
+<li><code>public static void exit(int status)</code>
+终止当前运行的JVM，<code>status = 0</code>为正常退出，其余异常退出</li>
+<li><code>public static long currentTimeMillis()</code>
+返回当前系统时的毫秒形式</li>
+<li><code>System.arraycopy(原数组, 开始索引, 目的数组, 开始索引, 拷贝个数)</code></li>
+</ul>
+<h2 id="runtime">Runtime</h2>
+<ul>
+<li>方法不是静态的，需要先创建对象再调用，但对象不能自己new</li>
+<li><code>public static Runtime getRuntime()</code>
+获取当前系统的运行环境对象，返回的是同一个<code>Runtime</code> 对象</li>
+<li><code>public void exit(int status)</code> 停止虚拟机</li>
+<li><code>public int availableProcessors()</code> 获得CPU的线程数</li>
+<li><code>public long maxMemory()</code>
+JVM从系统中能获取总内存大小（单位byte）</li>
+<li><code>public long totalMemory()</code>
+JVM已经从系统中获取总内存大小（单位byte）</li>
+<li><code>public long freeMemory()</code>
+JVM剩余内存大小（单位byte）</li>
+<li><code>public Process exec(String command)</code> 运行 cmd 命令</li>
+</ul>
+<h2 id="object">Object</h2>
+<ul>
+<li>顶级父类</li>
+</ul>
+<h3 id="tostring"><code>toString()</code></h3>
+<ul>
+<li><p><code>public String toString()</code>
+返回字符串形式。形如<code>java.lang.Object@119d7047 (对象名+@+哈希地址)</code></p></li>
+<li><p><code>System.out.println(Object)</code>
+方法就是对象非空调用<code>toString()</code>
+，为空返回<code>null</code></p></li>
+<li><p>重写子类中的 <code>toString()</code> 可以自定义打印</p></li>
+</ul>
+<h3 id="equals"><code>equals()</code></h3>
+<ul>
+<li><code>public boolean equals(Object obj)</code></li>
+<li>判断两个对象是否相等</li>
+<li><code>Object</code>中用<code>==</code> 实现的，比较地址</li>
+<li>比较内容需要重写子类的<code>equals()</code> ，需要判非空</li>
+</ul>
+<h3 id="clone"><code>clone()</code></h3>
+<ul>
+<li><code>protected native Object clone() throws CloneNotSupportedException;</code></li>
+<li>子类要使用需要重写<code>clone</code>方法，实现<code>Cloneable</code>标记性接口</li>
+<li><code>Object()</code>的<code>clone()</code>是浅拷贝。基本数据类型拷贝数据值，字符串拷贝串池地址，引用数据拷贝堆地址</li>
+<li>深拷贝需要自己实现，要么手写，要么用第三方库（转为json再转回来）</li>
+</ul>
+<h2 id="objects">Objects</h2>
+<ul>
+<li>工具类</li>
+</ul>
+<h3 id="equals-1"><code>equals()</code></h3>
+<ul>
+<li><code>public static boolean equals(Object a, Object b)</code></li>
+<li>先做非空判断，再比较两个对象</li>
+<li>相比于<code>Object</code>的<code>equals</code>不会出现空指针调用的情况。例：<code>a = null; a.equals(b);</code></li>
+</ul>
+<h3 id="isnull"><code>isNull()</code></h3>
+<ul>
+<li><code>public static boolean isNull(Object obj)</code></li>
+</ul>
+<h3 id="nonnull"><code>nonNull ()</code></h3>
+<ul>
+<li><code>public static boolean nonNull(Object obj)</code></li>
+</ul>
+<h2 id="biginteger">BigInteger</h2>
+<ul>
+<li>大整数类</li>
+<li>对象一旦创建，内部的值不能变</li>
+<li>只要进行计算都会产生一个新的BigInteger对象</li>
+</ul>
+<h3 id="构造方法">构造方法</h3>
+<ul>
+<li><code>public BigInteger(int num, Random rnd)</code>
+：获取随机大整数，范围 <span class="math inline">[0,2<sup><em>n</em><em>u</em><em>m</em></sup>−1]</span></li>
+<li><code>public BigInteger(String val)</code></li>
+<li><code>public BigInteger(String val, int radix)</code>
+：获取指定进制的大整数</li>
+<li><code>public static BigInteger valueOf(long value)</code>
+有优化：对于-16~16先创建好对象，重用</li>
+</ul>
+<h2 id="时间库">时间库</h2>
+<h3 id="date">Date</h3>
+<ul>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="type">Date</span> <span class="variable">date2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>(指定毫秒值);</span><br></pre></td></tr></table></figure></li>
+<li><p><code>setTime(毫秒值);</code>修改时间对象中的毫秒值</p></li>
+<li><p><code>getTime();</code>获取时间对象中的毫秒值</p></li>
+</ul>
+<h3 id="simpledateformat">SimpleDateFormat</h3>
+<h4 id="作用">作用</h4>
+<ul>
+<li>格式化：把时间按指定的格式输出</li>
+<li>解析：把字符串表示的时间转换成Date对象</li>
+</ul>
+<h4 id="构造">构造</h4>
+<ul>
+<li><code>public SimpleDateFormat()</code></li>
+<li><code>public SimpleDateFormat(String pattern)</code>
+：以指定格式构造</li>
+</ul>
+<h4 id="常用方法">常用方法</h4>
+<ul>
+<li><code>public final String format(Date date)</code>
+：格式化（日期对象 -&gt; 字符串）</li>
+<li><code>public Date parse(String source)</code> ：解析（字符串 -&gt;
+日期对象）</li>
+</ul>
+<h4 id="示例">示例</h4>
+<p>2023-11-11 13:27:06 对应 yyyy-MM-dd HH:mm:ss</p>
+<p>格式化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Date</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">"yyyy年MM月dd日 HH:mm:ss"</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> sdf.format(d);</span><br><span class="line">System.out.println(str);</span><br></pre></td></tr></table></figure>
+<p>解析：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">"2023-11-11 11:11:11"</span>;</span><br><span class="line"><span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line"><span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> sdf.parse(str);</span><br><span class="line">System.out.println(date.getTime());</span><br></pre></td></tr></table></figure>
+<h2 id="arrays">Arrays</h2>
+<ul>
+<li><code>public static String toString(数组)</code>：把数组拼接成一个字符串</li>
+<li><code>public static int binarySearch(数组,查找的元素)</code>：二分查找元素</li>
+<li><code>public static int[] copyOf(原数组, 新数组长度)</code>：拷贝</li>
+<li><code>public static int[] copyOfRange(原数组, 起始索引, 结束索引)</code>：拷贝指定范围的数组</li>
+<li><code>public static void fill(数组, 元素)</code></li>
+<li><code>public static void sort(数组)</code></li>
+<li><code>public static void sort(数组, 排序规则)</code></li>
+</ul>
+<h3 id="binarysearch">binarySearch()</h3>
+<ul>
+<li>有序才能用</li>
+<li>存在的话返回索引</li>
+<li>不存在返回 - 插入点 - 1</li>
+</ul>
+<h3 id="sortarr-规则">sort(arr, 规则)</h3>
+<ul>
+<li><code>Arrays.sort(arr, 规则)</code>。</li>
+<li>插入排序 + 二分查找</li>
+<li>这里的规则是一个接口，可以通过传入一个匿名内部类或者lamda体实现</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(arr, <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;(){</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer o1, Integer o2)</span> {</span><br><span class="line">        <span class="keyword">return</span> o1-o2;<span class="comment">//升序</span></span><br><span class="line">    }</span><br><span class="line">})</span><br></pre></td></tr></table></figure>
+<p>返回值：</p>
+<ul>
+<li>负数：当前要插入的元素要放前面</li>
+<li>正数和0：当前要插入的元素要放后面</li>
+</ul>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>

@@ -1,0 +1,447 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            Java 反射 学习笔记 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Java 反射 学习笔记 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/20
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/笔记/" style="color: #ff7d73">
+                    笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Java/" style="color: #03a9f4">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/反射/" style="color: #00a596">
+                    反射
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>反射允许对成员变量、成员方法和构造方法的信息进行编程访问</p>
+<span id="more"></span>
+<p>反射可以获取类中所有信息</p>
+<p>获取 -&gt; 解剖</p>
+<p>获取是从class文件中获取</p>
+<h3 id="获取class对象">获取class对象</h3>
+<ul>
+<li><code>Class.forName("全类名")</code> 全类名：包名+类名</li>
+<li><code>类名.class</code></li>
+<li><code>对象.getClass()</code></li>
+</ul>
+<h4 id="什么时候使用哪种">什么时候使用哪种</h4>
+<ul>
+<li><strong>源代码阶段</strong>：java文件 -&gt;
+class文件，只在硬盘内操作。使用第一种</li>
+<li><strong>加载阶段</strong>：class文件进入内存。使用第二种</li>
+<li><strong>运行阶段</strong>：创建了类的对象。使用第三种</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最为常用的方式</span></span><br><span class="line"><span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(<span class="string">"package1.Student"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//更多的是当做参数进行传递</span></span><br><span class="line"><span class="type">Class</span> <span class="variable">clazz2</span> <span class="operator">=</span> Student.class;</span><br><span class="line"></span><br><span class="line"><span class="comment">//当已经有了这个类的对象时才可以使用</span></span><br><span class="line"><span class="type">Student</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line"><span class="type">Class</span> <span class="variable">clazz3</span> <span class="operator">=</span> s.getClass();</span><br><span class="line"></span><br><span class="line">System.out.println(clazz1 == clazz2);<span class="comment">//true</span></span><br><span class="line">System.out.println(clazz2 == clazz3);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h3 id="java中万物皆对象">Java中万物皆对象</h3>
+<ul>
+<li>class文件可以看作Class类的对象</li>
+<li>构造方法可以看作Constructor类的对象</li>
+<li>成员变量可以看作Field的对象</li>
+<li>成员方法可以看作Method的对象</li>
+</ul>
+<h4 id="获取构造方法">获取构造方法</h4>
+<ul>
+<li><code>Constructor&lt;?&gt;[] getConstructors()</code>：返回所有<code>public</code>构造方法对象的数组</li>
+<li><code>Constructor&lt;?&gt;[] getDeclaredConstructors()</code>：返回所有构造方法对象的数组</li>
+<li><code>Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)</code>：返回单个<code>public</code>构造方法对象</li>
+<li><code>Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code>：返回单个构造方法对象</li>
+</ul>
+<p>Constructor类中用于创建对象的方法</p>
+<ul>
+<li><code>T newInstance(Object... initargs)</code>：根据指定的构造方法创建对象</li>
+<li><code>setAccessible(boolean flag)</code>：设置为true，表示取消访问检查</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(<span class="string">"package1.Student"</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">Constructor</span>[] <span class="variable">cons</span> <span class="operator">=</span> clazz.getConstructors();</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取单个构造方法的参数传入要获取的构造方法参数的字节码文件</span></span><br><span class="line"><span class="type">Constructor</span> <span class="variable">con1</span> <span class="operator">=</span> clazz.getDeclaredConstructor(String.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取参数列表</span></span><br><span class="line"><span class="type">Parameter</span>[] <span class="variable">parameters</span> <span class="operator">=</span> con1.getParameters();</span><br><span class="line"><span class="keyword">for</span> (Parameter parameter : parameters) {</span><br><span class="line">    System.out.println(parameter);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建对象</span></span><br><span class="line"><span class="comment">//无法直接利用非public的方法</span></span><br><span class="line"><span class="comment">//暴力反射：临时取消权限校验</span></span><br><span class="line">con1.setAccessible(<span class="literal">true</span>);</span><br><span class="line"><span class="type">Student</span> <span class="variable">s1</span> <span class="operator">=</span> (Student)con1.newInstance(<span class="string">"Lin"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="获取成员变量">获取成员变量</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取class字节码文件对象</span></span><br><span class="line"><span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(<span class="string">"package1.Student"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取成员变量</span></span><br><span class="line"><span class="type">Filed</span>[] <span class="variable">fileds</span> <span class="operator">=</span> clazz.getDeclaredFields();</span><br><span class="line"><span class="keyword">for</span> (Filed filed : fileds) {</span><br><span class="line">    System.out.println(filed);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取单个成员变量</span></span><br><span class="line"><span class="type">Field</span> <span class="variable">gender</span> <span class="operator">=</span> clazz.getFiled(<span class="string">"gender"</span>);</span><br><span class="line">System.out.println(gender);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取权限修饰符</span></span><br><span class="line"><span class="type">int</span> <span class="variable">modifiers</span> <span class="operator">=</span> gender.getModifiers();</span><br><span class="line">System.out.println(modifiers);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取成员变量的名字</span></span><br><span class="line"><span class="type">String</span> <span class="variable">n</span> <span class="operator">=</span> gender.getName();</span><br><span class="line">System.out.println(n);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取成员变量的数据类型</span></span><br><span class="line"><span class="type">Class</span>&lt;?&gt; <span class="variable">type</span> <span class="operator">=</span> gender.getType();</span><br><span class="line">System.out.println(type);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取成员变量记录的值</span></span><br><span class="line"><span class="type">Student</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">"zhangsan"</span>, <span class="number">23</span>, <span class="string">"boy"</span>);</span><br><span class="line">name.setAccessible(<span class="literal">true</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> (String)gender.get(s);</span><br><span class="line">System.out.println(value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改对象里面记录的值</span></span><br><span class="line">gender.set(s, <span class="string">"girl"</span>);</span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
+<h4 id="获取成员方法">获取成员方法</h4>
+<ul>
+<li><code>Method[] getMethods()</code></li>
+<li><code>Method[] getDeclaredMethods()</code></li>
+</ul>
+<p>类似</p>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>

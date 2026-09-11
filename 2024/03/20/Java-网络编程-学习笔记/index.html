@@ -1,0 +1,494 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            Java 网络编程 学习笔记 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Java 网络编程 学习笔记 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/20
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/笔记/" style="color: #00bcd4">
+                    笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Java/" style="color: #03a9f4">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/网络编程/" style="color: #ff7d73">
+                    网络编程
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>owo</p>
+<span id="more"></span>
+<h3 id="csbs">CS/BS</h3>
+<ul>
+<li>常见软件架构</li>
+</ul>
+<h4 id="cs">C/S</h4>
+<ul>
+<li>Client/Server</li>
+</ul>
+<h4 id="bs">B/S</h4>
+<ul>
+<li>Browser/Server</li>
+</ul>
+<h3 id="网络编程三要素">网络编程三要素</h3>
+<ul>
+<li><p>IP</p></li>
+<li><p>端口号</p></li>
+<li><p>协议</p></li>
+</ul>
+<h2 id="java.net包">java.net包</h2>
+<p>表示IP地址</p>
+<h3 id="inetaddress类">InetAddress类</h3>
+<h4 id="方法">方法</h4>
+<ul>
+<li><code>static InetAddress getByName(String host)</code>：确定主机的IP。主机名可以是机器名，也可以是IP</li>
+<li><code>String getHostName()</code>：获取此IP的主机名</li>
+<li><code>String getHostAddress()</code>：返回文本显示中的IP地址字符串</li>
+</ul>
+<h3 id="协议">协议</h3>
+<h4 id="udp">UDP</h4>
+<ul>
+<li>面向无连接</li>
+<li>用户数据包协议（User Datagram Protocol）</li>
+<li>速度快、一次最多发64K，易丢失</li>
+</ul>
+<h5 id="发送数据">发送数据</h5>
+<ul>
+<li>创建发送端的DatagramSocket</li>
+<li>数据打包</li>
+<li>发送数据</li>
+<li>释放资源</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建对象时底层绑定端口，作为发出的端口</span></span><br><span class="line"><span class="comment">//空参：所有可用端口中随机一个使用</span></span><br><span class="line"><span class="comment">//有参：指定端口</span></span><br><span class="line"><span class="type">DatagramSocket</span> <span class="variable">ds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DatagramSocket</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//打包数据</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">"Hello"</span>;</span><br><span class="line"><span class="type">byte</span>[] <span class="variable">bytes</span> <span class="operator">=</span> str.getBytes();</span><br><span class="line"><span class="type">InetAddress</span> <span class="variable">address</span> <span class="operator">=</span> InetAddress.getByName(<span class="string">"127.0.0.1"</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">port</span> <span class="operator">=</span> <span class="number">10086</span>;</span><br><span class="line"><span class="type">DatagramPacket</span> <span class="variable">dp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DatagramPacket</span>(bytes, bytes.length, address, port);<span class="comment">//发到 port 这个端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//发送数据</span></span><br><span class="line">ds.send(dp);</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line">ds.close();</span><br></pre></td></tr></table></figure>
+<h5 id="接收数据">接收数据</h5>
+<ul>
+<li>创建接收端的DatagramSocket对象</li>
+<li>接收打包好的数据</li>
+<li>解析数据包</li>
+<li>释放资源</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接收的时候一定要绑定端口</span></span><br><span class="line"><span class="type">DatagramSocket</span> <span class="variable">ds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DatagramSocket</span>(<span class="number">10086</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//接收数据包</span></span><br><span class="line"><span class="type">byte</span>[] <span class="variable">bytes</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="type">DatagramPacket</span> <span class="variable">dp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DatagramPacket</span>(bytes, bytes.length);</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个方法是阻塞的</span></span><br><span class="line"><span class="comment">//执行到这一步会死等</span></span><br><span class="line">ds.receive(dp);</span><br><span class="line"></span><br><span class="line"><span class="comment">//解析数据包</span></span><br><span class="line"><span class="type">byte</span>[] <span class="variable">data</span> <span class="operator">=</span> dp.getData();</span><br><span class="line"><span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> dp.getLength();</span><br><span class="line"><span class="type">InetAddress</span> <span class="variable">address</span> <span class="operator">=</span> dp.getAddress();</span><br><span class="line"><span class="type">int</span> <span class="variable">port</span> <span class="operator">=</span> dp.getPort();</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(data, <span class="number">0</span>, len));</span><br><span class="line">System.out.println(address + <span class="string">" "</span> + port);</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line">ds.close();</span><br></pre></td></tr></table></figure>
+<h5 id="三种通信方式">三种通信方式</h5>
+<ul>
+<li>单播</li>
+<li>组播</li>
+<li>广播</li>
+</ul>
+<h4 id="tcp">TCP</h4>
+<ul>
+<li>面向连接</li>
+<li>传输控制协议（Transmission Control Protocol）</li>
+<li>速度慢、没大小限制，数据安全</li>
+<li>通过Socket产生IO流进行网络通信</li>
+</ul>
+<h5 id="客户端">客户端</h5>
+<ul>
+<li>创建客户端的Socket对象（<code>Socket</code>），与指定服务端连接</li>
+<li>获取输出流，写数据</li>
+<li>释放资源</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在创建对象的同时会连接服务器</span></span><br><span class="line"><span class="comment">//连接不上会报错</span></span><br><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">"127.0.0.1"</span>, <span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以从连接通道中获取输出流</span></span><br><span class="line"><span class="type">OutputStream</span> <span class="variable">os</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line"></span><br><span class="line"><span class="comment">//写数据</span></span><br><span class="line">os.write(<span class="string">"Hello"</span>.getBytes());</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line">os.close();</span><br><span class="line">socket.close();</span><br></pre></td></tr></table></figure>
+<h5 id="服务器">服务器</h5>
+<ul>
+<li>创建服务器端的Socket对象（<code>ServerSocket</code>）</li>
+<li>监听客户端连接，返回一个Socket对象</li>
+<li>获取输入流，读数据，并把数据显示在控制台</li>
+<li>释放资源</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ServerSocket</span> <span class="variable">ss</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果没有连接就会死等</span></span><br><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> ss.accept();</span><br><span class="line"></span><br><span class="line"><span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line"><span class="type">int</span> b;</span><br><span class="line"><span class="keyword">while</span>((b = is.read()) != -<span class="number">1</span>) {</span><br><span class="line">    System.out.println((cahr)b);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">socket.close();<span class="comment">//断开连接</span></span><br><span class="line">ss.close();<span class="comment">//关闭服务器</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：这里是字节流，会出现中文乱码。类比之前的字符流可以解决</p>
+<h5 id="三次握手">三次握手</h5>
+<ul>
+<li>客户端向服务器发出连接请求，等待服务器确认</li>
+<li>服务器向客户端返回一个响应，告诉客户端收到了请求</li>
+<li>客户端向服务端再次发出确认，连接建立</li>
+</ul>
+<h5 id="四次挥手">四次挥手</h5>
+<ul>
+<li>客户端向服务端发出取消连接请求</li>
+<li>服务端向客户端返回一个请求，表示收到客户端取消请求</li>
+<li>服务端将最后的数据处理完毕之后，再次向客户端发出确认取消信息</li>
+<li>客户端再次发送确认消息，连接断开</li>
+</ul>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>

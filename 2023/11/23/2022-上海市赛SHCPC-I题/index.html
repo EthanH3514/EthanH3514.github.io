@@ -1,0 +1,471 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            2022 上海市赛SHCPC I题 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>2022 上海市赛SHCPC I题 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/11/23
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+                    算法竞赛
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #ffa2c4">
+                    C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/2022/" style="color: #03a9f4">
+                    2022
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/上海市赛/" style="color: #00a596">
+                    上海市赛
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/记忆化搜索/" style="color: #ffa2c4">
+                    记忆化搜索
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/期望dp/" style="color: #ff7d73">
+                    期望dp
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>一道期望dp的题，推了好久的式子一直算不清楚，最后发现是我对排列数的理解有偏差😥</p>
+<hr>
+<span id="more"></span>
+<h4 id="题面"><a target="_blank" rel="noopener" href="https://codeforces.com/gym/103931/problem/I">题面</a></h4>
+<p>题目大意：
+初始情况为只有n个点的无向图，每一次随机两个点(可能相同)，如果这两个点连上边之后满足下列条件就连边，不然图不变。条件：
+- 无重边自环 - 每个点的度数小于等于2</p>
+<p>不能继续操作就终止，求终止的期望步数</p>
+<hr>
+<h4 id="思路">思路</h4>
+<ul>
+<li>可以看出是有重叠的子问题的，在某种情况下开始的期望步数是定的，可以想到用dp</li>
+<li>每个点的度数小于等于2，那么2度点不能继续连边，0度点不和2度点连边，1度点有一点特殊。考虑1度点的连边情况，有可能1度点和1度点连，这个时候形成长度为2的链，另一种情况是1度点2度点连边，可以发现这两种情况需要分别分析。所以状态比较明显了：
+<span class="math inline"><em>d</em><em>p</em>[<em>i</em>][<em>j</em>][<em>k</em>]</span>
+表示当前有 <span class="math inline"><em>i</em></span> 个0度点， <span class="math inline"><em>j</em></span> 个1度点，这 <span class="math inline"><em>j</em></span> 个1度点中有 <span class="math inline"><em>k</em></span>
+条长为2的链，所需要达到终止条件的期望步数</li>
+<li>状态转移：</li>
+</ul>
+<ol type="1">
+<li>0度和0度： <span class="math inline"><em>i</em> * (<em>i</em>−1)</span></li>
+<li>0度和1度(不在长为2的链上)： <span class="math inline"><em>i</em> * (<em>j</em>−2*<em>k</em>) * 2</span>
+//一开始没乘后面的2怎么算也算不对🤡</li>
+<li>0度和1度(在长为2的链上)： <span class="math inline"><em>i</em> * 2 * <em>k</em> * 2</span></li>
+<li>1度(不在长为2的链上)和1度(不在长为2的链上)： <span class="math inline">(<em>j</em>−2*<em>k</em>) * (<em>j</em>−2*<em>k</em>−1)</span></li>
+<li>1度(不在长为2的链上)和1度(在长为2的链上)： <span class="math inline">(<em>j</em>−2*<em>k</em>) * 2 * <em>k</em> * 2</span></li>
+<li>1度(在长为2的链上)和1度(在长为2的链上)： <span class="math inline">2 * <em>k</em> * (2*<em>k</em>−2)</span></li>
+</ol>
+<p>这是所有合法转移，用记忆化搜索的方式写很方便</p>
+<p>最终状态 <span class="math inline"><em>d</em><em>p</em>[0][0][0] = 0</span></p>
+<hr>
+<h4 id="ac代码">AC代码：</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">205</span>;</span><br><span class="line"><span class="type">double</span> dp[N][N][N];</span><br><span class="line"><span class="type">bool</span> vis[N][N][N];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> j,<span class="type">int</span> k)</span></span>{</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">0</span>||j&lt;<span class="number">0</span>||k&lt;<span class="number">0</span>||i+j&gt;n)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(vis[i][j][k])</span><br><span class="line">        <span class="keyword">return</span> dp[i][j][k];</span><br><span class="line">    <span class="type">double</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> sz=i*(i<span class="number">-1</span>)+i*(j<span class="number">-2</span>*k)*<span class="number">2</span>+i*<span class="number">2</span>*k*<span class="number">2</span>+(j<span class="number">-2</span>*k)*(j<span class="number">-2</span>*k<span class="number">-1</span>)+(j<span class="number">-2</span>*k)*<span class="number">2</span>*k*<span class="number">2</span><span class="number">+2</span>*k*(<span class="number">2</span>*k<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">if</span>(sz!=<span class="number">0</span>)</span><br><span class="line">        ans+=(<span class="built_in">dfs</span>(i,j<span class="number">-2</span>,k)*(j<span class="number">-2</span>*k)*(j<span class="number">-2</span>*k<span class="number">-1</span>)+<span class="built_in">dfs</span>(i,j<span class="number">-2</span>,k<span class="number">-1</span>)*(j<span class="number">-2</span>*k)*<span class="number">2</span>*k*<span class="number">2</span>+<span class="built_in">dfs</span>(i,j<span class="number">-2</span>,k<span class="number">-2</span>)*<span class="number">2</span>*k*(<span class="number">2</span>*k<span class="number">-2</span>)\</span><br><span class="line">        +<span class="built_in">dfs</span>(i<span class="number">-2</span>,j<span class="number">+2</span>,k<span class="number">+1</span>)*i*(i<span class="number">-1</span>)+<span class="built_in">dfs</span>(i<span class="number">-1</span>,j,k)*i*(j<span class="number">-2</span>*k)*<span class="number">2</span>+<span class="built_in">dfs</span>(i<span class="number">-1</span>,j,k<span class="number">-1</span>)*i*<span class="number">2</span>*k*<span class="number">2</span>+n*n)/(sz);</span><br><span class="line">    vis[i][j][k]=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> dp[i][j][k]=ans;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    vis[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="literal">true</span>;</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="type">double</span> ans=<span class="built_in">dfs</span>(n,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.9lf\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="另一种状态的设计方法">另一种状态的设计方法</h4>
+<p>设 <span class="math inline"><em>d</em><em>p</em>[<em>i</em>][<em>j</em>][<em>k</em>]</span>
+为现在有 <span class="math inline"><em>i</em></span> 个0度点， <span class="math inline"><em>j</em></span> 条长为2的链， <span class="math inline"><em>k</em></span>
+条长大于2的链，要达到最终状态所需要的期望步数</p>
+<h5 id="状态转移">状态转移</h5>
+<ul>
+<li>0度和0度： <span class="math inline"><em>i</em> * (<em>i</em>−1)</span></li>
+<li>0度和短链： <span class="math inline"><em>i</em> * 2 * <em>j</em> * 2</span></li>
+<li>0度和长链： <span class="math inline"><em>i</em> * 2 * <em>k</em> * 2</span></li>
+<li>短链和短链： <span class="math inline">2 * <em>j</em> * (2*<em>j</em>−2)</span></li>
+<li>短链和长链： <span class="math inline">2 * <em>j</em> * 2 * <em>k</em> * 2</span></li>
+<li>长链和长链(成环)： <span class="math inline">2 * <em>k</em></span></li>
+<li>长链和长链(成链)： <span class="math inline">2 * <em>k</em> * (2*<em>k</em>−2)</span></li>
+</ul>
+<h4 id="ac代码-1">AC代码</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">205</span>;</span><br><span class="line"><span class="type">double</span> dp[N][N][N];</span><br><span class="line"><span class="type">bool</span> vis[N][N][N];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> j,<span class="type">int</span> k)</span></span>{</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">0</span>||j&lt;<span class="number">0</span>||k&lt;<span class="number">0</span>||i<span class="number">+2</span>*j<span class="number">+3</span>*k&gt;n||(k==<span class="number">0</span>&amp;&amp;i+j&lt;=<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(vis[i][j][k])</span><br><span class="line">        <span class="keyword">return</span> dp[i][j][k];</span><br><span class="line">    <span class="type">int</span> sz=i*(i<span class="number">-1</span>)+i*<span class="number">2</span>*j*<span class="number">2</span>+i*<span class="number">2</span>*k*<span class="number">2</span><span class="number">+2</span>*j*(<span class="number">2</span>*j<span class="number">-2</span>)<span class="number">+2</span>*j*<span class="number">2</span>*k*<span class="number">2</span><span class="number">+2</span>*k<span class="number">+2</span>*k*(<span class="number">2</span>*k<span class="number">-2</span>);</span><br><span class="line">    dp[i][j][k]=(<span class="built_in">dfs</span>(i<span class="number">-2</span>,j<span class="number">+1</span>,k)*i*(i<span class="number">-1</span>)+<span class="built_in">dfs</span>(i<span class="number">-1</span>,j<span class="number">-1</span>,k<span class="number">+1</span>)*i*<span class="number">2</span>*j*<span class="number">2</span>+<span class="built_in">dfs</span>(i<span class="number">-1</span>,j,k)*i*<span class="number">2</span>*k*<span class="number">2</span>+\</span><br><span class="line">    <span class="built_in">dfs</span>(i,j<span class="number">-2</span>,k<span class="number">+1</span>)*<span class="number">2</span>*j*(<span class="number">2</span>*j<span class="number">-2</span>)+<span class="built_in">dfs</span>(i,j<span class="number">-1</span>,k)*<span class="number">2</span>*j*<span class="number">2</span>*k*<span class="number">2</span>+<span class="built_in">dfs</span>(i,j,k<span class="number">-1</span>)*<span class="number">2</span>*k+\</span><br><span class="line">    <span class="built_in">dfs</span>(i,j,k<span class="number">-1</span>)*<span class="number">2</span>*k*(<span class="number">2</span>*k<span class="number">-2</span>)+n*n)/sz;</span><br><span class="line">    vis[i][j][k]=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> dp[i][j][k];</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    vis[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="literal">true</span>;</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="type">double</span> ans=<span class="built_in">dfs</span>(n,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.9lf\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<hr>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>
