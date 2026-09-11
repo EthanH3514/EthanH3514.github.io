@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,13 +308,6 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #00a596">
-                    Java
-                </a>
-            </span>
-            
-            <span class="tag">
-                
                 <a href="/tags/笔记/" style="color: #00a596">
                     笔记
                 </a>
@@ -322,14 +315,21 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Spring/" style="color: #ff7d73">
+                <a href="/tags/Java/" style="color: #ffa2c4">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Spring/" style="color: #00a596">
                     Spring
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/静态资源/" style="color: #00a596">
+                <a href="/tags/静态资源/" style="color: #00bcd4">
                     静态资源
                 </a>
             </span>
@@ -348,14 +348,14 @@ mjx-container[display="true"] + br {
 <li><p>默认为 <code>/**</code> ，直接访问 <code>localhost:8080</code>
 之后加路径即可</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>spring<span class="op">.</span><span class="fu">mvc</span><span class="op">.</span><span class="fu">static</span><span class="op">-</span>path<span class="op">-</span>pattern<span class="op">=</span><span class="co">/**</span>         </span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.mvc.<span class="keyword">static</span>-path-pattern=<span class="comment">/**         </span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>修改默认路径</li>
 <li>访问静态资源需要为 <code>localhost:8080/images</code> 后加路径</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spring<span class="op">.</span><span class="fu">mvc</span><span class="op">.</span><span class="fu">static</span><span class="op">-</span>path<span class="op">-</span>pattern<span class="op">=/</span>images<span class="co">/**</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.mvc.<span class="keyword">static</span>-path-pattern=/images<span class="comment">/**</span></span><br></pre></td></tr></table></figure>
 <h4 id="静态资源位置">静态资源位置</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>spring<span class="op">.</span><span class="fu">web</span><span class="op">.</span><span class="fu">resources</span><span class="op">.</span><span class="fu">static</span><span class="op">-</span>locations<span class="op">=</span>classpath<span class="op">:/</span><span class="dt">static</span><span class="op">/</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.web.resources.<span class="keyword">static</span>-locations=classpath:/<span class="keyword">static</span>/</span><br></pre></td></tr></table></figure>
 <p>默认即 <code>target/classes</code> 下</p>
 <p>一般不用调整</p>
 

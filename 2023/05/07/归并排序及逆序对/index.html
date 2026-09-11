@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,21 +308,21 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/C/" style="color: #ff7d73">
-                    C++
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/算法竞赛/" style="color: #00bcd4">
+                <a href="/tags/算法竞赛/" style="color: #ff7d73">
                     算法竞赛
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/归并排序/" style="color: #03a9f4">
+                <a href="/tags/C/" style="color: #03a9f4">
+                    C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/归并排序/" style="color: #ff7d73">
                     归并排序
                 </a>
             </span>
@@ -334,75 +334,10 @@ mjx-container[display="true"] + br {
         <p>归并排序挺好写的，复杂度不错,还是个稳定性排序算法，而且可以求逆序对个数。</p>
 <hr>
 <span id="more"></span>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> N<span class="op">=</span><span class="fl">1e5</span><span class="op">+</span><span class="dv">5</span><span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ll a<span class="op">[</span>N<span class="op">],</span>b<span class="op">[</span>N<span class="op">];</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Merge<span class="op">(</span>ll l<span class="op">,</span>ll mid<span class="op">,</span>ll r<span class="op">)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ll i<span class="op">=</span>l<span class="op">,</span>j<span class="op">=</span>mid<span class="op">+</span><span class="dv">1</span><span class="op">,</span>t<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>i<span class="op">&lt;=</span>mid<span class="op">&amp;&amp;</span>j<span class="op">&lt;=</span>r<span class="op">)</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>a<span class="op">[</span>i<span class="op">]&gt;</span>a<span class="op">[</span>j<span class="op">])</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            b<span class="op">[</span>t<span class="op">++]=</span>a<span class="op">[</span>j<span class="op">++];</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            b<span class="op">[</span>t<span class="op">++]=</span>a<span class="op">[</span>i<span class="op">++];</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>i<span class="op">&lt;=</span>mid<span class="op">)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        b<span class="op">[</span>t<span class="op">++]=</span>a<span class="op">[</span>i<span class="op">++];</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>j<span class="op">&lt;=</span>r<span class="op">)</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        b<span class="op">[</span>t<span class="op">++]=</span>a<span class="op">[</span>j<span class="op">++];</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span>i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>t<span class="op">;</span>i<span class="op">++)</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        a<span class="op">[</span>l<span class="op">+</span>i<span class="op">]=</span>b<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> MergeSort<span class="op">(</span>ll l<span class="op">,</span>ll r<span class="op">)</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>l<span class="op">&lt;</span>r<span class="op">)</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        ll mid<span class="op">=(</span>l<span class="op">+</span>r<span class="op">)&gt;&gt;</span><span class="dv">1</span><span class="op">;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        MergeSort<span class="op">(</span>l<span class="op">,</span>mid<span class="op">);</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        MergeSort<span class="op">(</span>mid<span class="op">+</span><span class="dv">1</span><span class="op">,</span>r<span class="op">);</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        Merge<span class="op">(</span>l<span class="op">,</span>mid<span class="op">,</span>r<span class="op">);</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e5</span><span class="number">+5</span>;</span><br><span class="line">ll a[N],b[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Merge</span><span class="params">(ll l,ll mid,ll r)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    ll i=l,j=mid<span class="number">+1</span>,t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=r)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;a[j])</span><br><span class="line">            b[t++]=a[j++];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            b[t++]=a[i++];</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid)</span><br><span class="line">        b[t++]=a[i++];</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=r)</span><br><span class="line">        b[t++]=a[j++];</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">        a[l+i]=b[i];</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MergeSort</span><span class="params">(ll l,ll r)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span>(l&lt;r)</span><br><span class="line">    {</span><br><span class="line">        ll mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">MergeSort</span>(l,mid);</span><br><span class="line">        <span class="built_in">MergeSort</span>(mid<span class="number">+1</span>,r);</span><br><span class="line">        <span class="built_in">Merge</span>(l,mid,r);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <hr>
 <p>在合并中加一步就可以求逆序对:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> ll<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> N<span class="op">=</span><span class="fl">1e5</span><span class="op">+</span><span class="dv">5</span><span class="op">;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ll a<span class="op">[</span>N<span class="op">],</span>b<span class="op">[</span>N<span class="op">],</span>cnt<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Merge<span class="op">(</span>ll l<span class="op">,</span>ll mid<span class="op">,</span>ll r<span class="op">)</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    ll i<span class="op">=</span>l<span class="op">,</span>j<span class="op">=</span>mid<span class="op">+</span><span class="dv">1</span><span class="op">,</span>t<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>i<span class="op">&lt;=</span>mid<span class="op">&amp;&amp;</span>j<span class="op">&lt;=</span>r<span class="op">)</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>a<span class="op">[</span>i<span class="op">]&gt;</span>a<span class="op">[</span>j<span class="op">])</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            b<span class="op">[</span>t<span class="op">++]=</span>a<span class="op">[</span>j<span class="op">++];</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            cnt<span class="op">+=</span>mid<span class="op">-</span>i<span class="op">+</span><span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            b<span class="op">[</span>t<span class="op">++]=</span>a<span class="op">[</span>i<span class="op">++];</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>i<span class="op">&lt;=</span>mid<span class="op">)</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        b<span class="op">[</span>t<span class="op">++]=</span>a<span class="op">[</span>i<span class="op">++];</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>j<span class="op">&lt;=</span>r<span class="op">)</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        b<span class="op">[</span>t<span class="op">++]=</span>a<span class="op">[</span>j<span class="op">++];</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span>i<span class="op">=</span><span class="dv">0</span><span class="op">;</span>i<span class="op">&lt;</span>t<span class="op">;</span>i<span class="op">++)</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        a<span class="op">[</span>l<span class="op">+</span>i<span class="op">]=</span>b<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> MergeSort<span class="op">(</span>ll l<span class="op">,</span>ll r<span class="op">)</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>l<span class="op">&lt;</span>r<span class="op">)</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        ll mid<span class="op">=(</span>l<span class="op">+</span>r<span class="op">)&gt;&gt;</span><span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        MergeSort<span class="op">(</span>l<span class="op">,</span>mid<span class="op">);</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        MergeSort<span class="op">(</span>mid<span class="op">+</span><span class="dv">1</span><span class="op">,</span>r<span class="op">);</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        Merge<span class="op">(</span>l<span class="op">,</span>mid<span class="op">,</span>r<span class="op">);</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e5</span><span class="number">+5</span>;</span><br><span class="line">ll a[N],b[N],cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Merge</span><span class="params">(ll l,ll mid,ll r)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    ll i=l,j=mid<span class="number">+1</span>,t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=r)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;a[j])</span><br><span class="line">        {</span><br><span class="line">            b[t++]=a[j++];</span><br><span class="line">            cnt+=mid-i<span class="number">+1</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            b[t++]=a[i++];</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid)</span><br><span class="line">        b[t++]=a[i++];</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=r)</span><br><span class="line">        b[t++]=a[j++];</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">        a[l+i]=b[i];</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MergeSort</span><span class="params">(ll l,ll r)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span>(l&lt;r)</span><br><span class="line">    {</span><br><span class="line">        ll mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">MergeSort</span>(l,mid);</span><br><span class="line">        <span class="built_in">MergeSort</span>(mid<span class="number">+1</span>,r);</span><br><span class="line">        <span class="built_in">Merge</span>(l,mid,r);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <hr>
 
     </div>

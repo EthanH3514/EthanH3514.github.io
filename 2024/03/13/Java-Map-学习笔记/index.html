@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,21 +308,21 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #ffa2c4">
-                    Java
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/笔记/" style="color: #00a596">
+                <a href="/tags/笔记/" style="color: #ff7d73">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Map/" style="color: #00bcd4">
+                <a href="/tags/Java/" style="color: #03a9f4">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Map/" style="color: #ff7d73">
                     Map
                 </a>
             </span>
@@ -342,29 +342,14 @@ mjx-container[display="true"] + br {
 <li>迭代器</li>
 <li>forEach( + lambda)表达式</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>map<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"abc"</span><span class="op">,</span> <span class="st">"123"</span><span class="op">);</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Set</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> keys <span class="op">=</span> map<span class="op">.</span><span class="fu">keySet</span><span class="op">();</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> key <span class="op">:</span> keys<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span> value <span class="op">=</span> map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>key<span class="op">);</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>key <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> value<span class="op">);</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Map</span>&lt;String, String&gt; <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">map.put(<span class="string">"abc"</span>, <span class="string">"123"</span>);</span><br><span class="line"><span class="type">Set</span>&lt;String&gt; <span class="variable">keys</span> <span class="operator">=</span> map.keySet();</span><br><span class="line"><span class="keyword">for</span> (String key : keys) {</span><br><span class="line">	<span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> map.get(key);</span><br><span class="line">    System.out.println(key + <span class="string">" = "</span> + value);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <h4 id="获取键值对对象再遍历这个单列集合">获取键值对对象，再遍历这个单列集合</h4>
 <p>Entry是Map的一个内部接口，需要用Map.Entry访问或者导包</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Set</span><span class="op">&lt;</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;&gt;</span> entries <span class="op">=</span> map<span class="op">.</span><span class="fu">entrySet</span><span class="op">();</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> entry <span class="op">:</span> entries<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>entry<span class="op">.</span><span class="fu">getKey</span><span class="op">()</span> <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> entry<span class="op">.</span><span class="fu">getValue</span><span class="op">());</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Map</span>&lt;String, String&gt; <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">Set&lt;Map.Entry&lt;String, String&gt;&gt; entries = map.entrySet();</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : entries) {</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">" = "</span> + entry.getValue());</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <h4 id="函数式接口遍历">函数式接口遍历</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>map<span class="op">.</span><span class="fu">forEach</span><span class="op">(</span><span class="kw">new</span> BiConsumer<span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;()</span> <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">accept</span><span class="op">(</span><span class="bu">String</span> key<span class="op">,</span> <span class="bu">String</span> value<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>key <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> value<span class="op">);</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">map.forEach(<span class="keyword">new</span> <span class="title class_">BiConsumer</span>&lt;String, String&gt;() {</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">accept</span><span class="params">(String key, String value)</span> {</span><br><span class="line">        System.out.println(key + <span class="string">" = "</span> + value);</span><br><span class="line">    }</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
 <p>这是一个函数式接口，可以用lambda表达式简化</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>map<span class="op">.</span><span class="fu">forEach</span><span class="op">((</span>key<span class="op">,</span> value<span class="op">)</span> <span class="op">-&gt;</span> <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>key <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> value<span class="op">));</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map.forEach((key, value) -&gt; System.out.println(key + <span class="string">" = "</span> + value));</span><br></pre></td></tr></table></figure>
 <p>map的forEach底层是用增强for遍历EntrySet</p>
 
     </div>

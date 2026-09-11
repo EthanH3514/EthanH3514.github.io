@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,15 +308,15 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #ffa2c4">
-                    Java
+                <a href="/tags/笔记/" style="color: #00a596">
+                    笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #00bcd4">
-                    笔记
+                <a href="/tags/Java/" style="color: #ffa2c4">
+                    Java
                 </a>
             </span>
             
@@ -335,13 +335,9 @@ mjx-container[display="true"] + br {
 <span id="more"></span>
 <p>注：Lambda表达式是JDK8之后的语法</p>
 <h4 id="格式">格式</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">(</span>形参<span class="op">)</span> <span class="op">-&gt;</span> <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    方法体</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(形参) -&gt; {</span><br><span class="line">    方法体</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <h4 id="例">例</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Arrays</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>arr<span class="op">,</span> <span class="op">(</span><span class="bu">Integer</span> o1<span class="op">,</span> <span class="bu">Integer</span> o2<span class="op">)</span> <span class="op">-&gt;</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> o1 <span class="op">-</span> o2<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(arr, (Integer o1, Integer o2) -&gt; {</span><br><span class="line">    <span class="keyword">return</span> o1 - o2;</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Lambda表达式可以用来简化匿名内部类的书写</li>
 <li>只能简化函数式接口的匿名内部类的写法</li>
@@ -349,10 +345,7 @@ mjx-container[display="true"] + br {
 <li>可以在接口上方加<code>@FunctionalInterface</code>注解检查</li>
 </ul>
 <h4 id="函数式接口示例">函数式接口示例</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@FunctionalInterface</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Swim<span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">abstract</span> <span class="dt">void</span> <span class="fu">swimming</span><span class="op">();</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Swim</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">void</span> <span class="title function_">swimming</span><span class="params">()</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <h4 id="lambda的省略规则">Lambda的省略规则</h4>
 <ul>
 <li>参数类型可以省略</li>
@@ -360,7 +353,7 @@ mjx-container[display="true"] + br {
 <li>如果Lambda表达式的方法体只有一行，大括号，分好，return都可以省略。如果省略，需要同时省略</li>
 </ul>
 <h4 id="例-1">例</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Arrays</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>arr<span class="op">,</span> <span class="op">(</span>o1<span class="op">,</span> o2<span class="op">)</span> <span class="op">-&gt;</span> o1 <span class="op">-</span> o2<span class="op">);</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(arr, (o1, o2) -&gt; o1 - o2);</span><br></pre></td></tr></table></figure>
 
     </div>
     

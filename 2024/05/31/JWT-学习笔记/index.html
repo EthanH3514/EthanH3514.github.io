@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -315,7 +315,7 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/JWT/" style="color: #00a596">
+                <a href="/tags/JWT/" style="color: #03a9f4">
                     JWT
                 </a>
             </span>
@@ -341,31 +341,19 @@ Token，是目前最流行的跨域认证解决方案，是一种基于Token的�
 <h3 id="组成">组成</h3>
 <ul>
 <li><p>header：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"alg"</span><span class="fu">:</span> <span class="st">"HS246"</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"typ"</span><span class="fu">:</span> <span class="st">"JWT"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">	<span class="attr">"alg"</span><span class="punctuation">:</span> <span class="string">"HS246"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"typ"</span><span class="punctuation">:</span> <span class="string">"JWT"</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>定义生成签名的算法</li>
 <li>定义Token类型</li>
 </ul></li>
 <li><p>payload</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"sub"</span><span class="fu">:</span> <span class="st">"1234567890"</span><span class="fu">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Ethan"</span><span class="fu">,</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"admin"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"iat"</span><span class="fu">:</span> <span class="dv">1516239022</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"sub"</span><span class="punctuation">:</span> <span class="string">"1234567890"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"name"</span><span class="punctuation">:</span> <span class="string">"Ethan"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"admin"</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"iat"</span><span class="punctuation">:</span> <span class="number">1516239022</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>存放实际需要传输的数据</li>
 <li><code>iat</code> 是时间戳</li>
 </ul></li>
 <li><p>signature</p>
-<pre><code>HMACSHA256(
-  base64UrlEncode(header) + "." +
-  base64UrlEncode(payload),
-  your-256-bit-secret
-)</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + "." +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">	your-256-bit-secret</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>服务器通过payload、header、密钥使用header中指定的签名算法生成</li>
 </ul></li>

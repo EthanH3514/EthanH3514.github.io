@@ -1,0 +1,578 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            Agent 为什么越聊越笨：从上下文压缩想到的记忆问题 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Agent 为什么越聊越笨：从上下文压缩想到的记忆问题 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2026/9/6
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/AI-Agent/" style="color: #00a596">
+                    AI Agent
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/LLM/" style="color: #ffa2c4">
+                    LLM
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/上下文管理/" style="color: #ffa2c4">
+                    上下文管理
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Agent-Memory/" style="color: #00bcd4">
+                    Agent Memory
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/技术思考/" style="color: #ffa2c4">
+                    技术思考
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>最近工作里开始比较重度地使用 GLM 5.3 配合
+OpenCode。刚开始用的时候，我最大的感受是，现在的模型已经比我之前预期的“聪明”很多了。</p>
+<p>有一次我需要排查一段 HQL
+为什么在执行过程中被提示产生了笛卡尔积。这个问题本身涉及 HQL、Tez 的执行
+DAG，以及任务实际运行时的一些信息。让我印象比较深的是，在一个新的会话里，我并不需要告诉
+Agent 每一步应该怎么查。它有时候会自己判断，直接调用 Tez UI 的
+API，查询对应 DAG、Vertex 和 Task
+的运行信息，再沿着执行关系继续往下分析。我们内部也有离线沉淀的 Vertex
+Attempt 记录表，可以通过 HQL
+查询类似的信息，但这种方式通常会慢很多。</p>
+<p>也就是说，面对同一个问题，Agent
+实际上拥有不止一种获取信息的路径。它既可以通过 Tez UI API
+直接获取当前任务的执行信息，也可以去查离线记录。在状态比较好的时候，它会自己意识到
+API 是更直接、更低成本的路径，于是先从这里入手，拿到结果以后继续分析哪些
+Vertex 值得关注，再根据新的信息缩小排查范围。</p>
+<p>这种感觉已经很接近和一个有经验的工程师合作了。我只需要告诉它“这段 HQL
+为什么会提示产生笛卡尔积”，而不需要告诉它先查哪张表、看哪个字段、再关联什么数据。它能够自己选择工具，自己规划路径，也会根据中间结果调整下一步。</p>
+<span id="more"></span>
+<p>但用得久了以后，我很快发现了另一个非常明显的问题：<strong>Agent
+会越聊越笨。</strong></p>
+<p>准确来说，并不是会话刚变长的时候就会出现，而是在一个任务持续很久、上下文经历过几轮压缩以后，这种能力下降会越来越明显。一个新的会话里，它可能很自然地意识到需要先看
+Tez 实际执行情况，然后选择 Tez UI
+API；经历几次压缩以后，它有时候却会直接去扫离线 Vertex Attempt
+表。查询很慢，而且很多时候根本没有必要。甚至我需要主动打断它，提醒一句“这里为什么不直接走
+Tez UI API”，它才会重新意识到还有这样一条更优的路径。</p>
+<p>更明显的是，后面不只是工具选择会变差。最开始它经常可以根据一个查询结果自己产生新的怀疑，再继续验证；压缩几轮以后，它却越来越容易停下来，等待我告诉它下一步查什么。模型似乎并没有忘记我们正在排查
+HQL 的问题，也没有突然不会 Tez 或者不会写
+SQL，但它开始不知道在当前状态下“最值得做的下一件事情”是什么了。</p>
+<p>这让我开始重新思考，所谓的上下文压缩，到底丢掉了什么。</p>
+<h2 id="压缩到底丢了什么">压缩到底丢了什么</h2>
+<p>最直观的长会话处理方式，是在上下文快要放不下的时候，把前面的对话总结成一段更短的内容，再把摘要重新放回上下文。从信息保存的角度看，这似乎很合理。模型不需要保留之前的每一句话，只需要知道前面发生了什么。</p>
+<p>但一个真实的问题排查过程，并不是简单的一组事实。</p>
+<p>比如在笛卡尔积这个问题里，Agent
+可能先发现需要确认真正发生问题的位置，随后意识到可以查看 Tez
+的运行信息。它知道离线 Vertex Attempt
+表能够提供这些数据，但查询代价比较高，而 Tez UI API 可以更直接地获取当前
+DAG 和 Vertex 的信息，因此先选择 API。之后，它根据某个 Vertex
+的实际情况又形成新的判断，再继续分析上下游关系。</p>
+<p>如果把这段过程总结成一句“目前正在结合 Tez Vertex 执行信息排查 HQL
+的笛卡尔积问题，也可以通过离线 Vertex Attempt
+记录进行查询”，从事实角度看并没有错，但真正决定 Agent
+后面应该怎么工作的东西已经开始消失了。</p>
+<p>例如，为什么这里应该优先使用 Tez UI
+API？离线表虽然能查到相同类型的数据，但为什么不是第一选择？之前已经排除了哪些可能？当前正在验证的究竟是什么？某个结论是已经确认的事实，还是只是暂时的怀疑？上一轮查询为什么会让我们决定继续看这个
+Vertex，而不是另一个 Vertex？</p>
+<p>这些东西很难简单归类成“知识”。它们更像是整个排查过程中一点点积累出来的<strong>思路和进度</strong>。</p>
+<p>普通的摘要比较擅长回答“之前发生过什么”，但一个持续工作的 Agent
+真正需要知道的是“为什么会走到这里，现在最值得继续做什么”。这两件事情并不一样。</p>
+<p>如果不断对历史进行压缩，再对上一次的压缩结果继续压缩，最后很容易只剩下一些高层的事实和结论。故事的大概还在，但原来的推理过程、选择依据和当前进度已经越来越模糊。模型本身的能力并没有变化，但下一次调用它的时候，外部系统已经很难把它恢复到原来那个正确的思路上。</p>
+<p>最后表现出来，就是一种很明显的“智力下降”。</p>
+<h2 id="把东西记下来就够了吗">把东西记下来就够了吗</h2>
+<p>想到这里以后，我很自然地想到人的工作方式。人当然也记不住一个复杂系统的所有细节。一个工作很多年的工程师，不可能永远记得几年前某个模块为什么这么设计，也不会记得所有历史故障的完整过程。很多东西最后都会被写下来，放到代码、文档、Wiki、Issue、PR、Commit
+Message、设计文档或者 Runbook 里，需要的时候再去查。</p>
+<p>那么 Agent
+是不是也可以这样？不用强迫所有历史都留在上下文里，而是把中间结果、历史经验和详细记录保存到外面，需要的时候再通过搜索或者文件系统重新加载。</p>
+<p>一开始我觉得这可能就是答案，但很快发现它仍然没有解决最关键的问题。</p>
+<p>如果 Agent
+已经忘记了一段信息的重要性，它又怎么知道自己现在应该把这段信息查回来？</p>
+<p>还是以前面的例子来说，假设已经有一条历史经验被记下来了：排查正在运行或者近期运行的
+Tez 任务时，如果 Tez UI API 可用，应该优先通过 API 获取 DAG 和 Vertex
+信息，离线 Vertex Attempt 表的查询成本较高，更适合作为补充路径。</p>
+<p>这条经验本身可能非常有价值。但如果 Agent
+在几轮压缩以后，连“现在应该先确认 Tez 的实际执行
+DAG”这个念头都没有产生，它自然也不会去查询和 Tez UI 相关的历史记录。</p>
+<p>记忆明明在那里，却和不存在没有太大区别。</p>
+<p>这让我意识到，<strong>知道什么时候去查记忆，本身就是思考的一部分。</strong></p>
+<p>不是把所有东西保存下来，再给模型提供一个搜索功能就够了。模型还需要判断什么时候应该搜索、应该搜索什么、哪些结果和当前问题相关、哪些历史经验虽然看起来相似但现在已经不适用了。</p>
+<p>所以问题慢慢从“怎么存记忆”变成了另一个问题：<strong>每一次模型开始思考之前，到底应该让它看到什么？</strong></p>
+<h2 id="问题好像慢慢变成了上下文">问题好像慢慢变成了上下文</h2>
+<p>现在的大模型，本质上仍然可以看成一个固定长度上下文窗口上的无状态系统。每一次调用的时候，它真正拥有的“世界”，就是这一次被放进上下文里的内容。</p>
+<p>这里面既要有系统指令，也要有当前任务目标；既要保存当前正在验证的猜想，也要放入必要的业务知识；还可能要带上一部分历史对话、工具返回结果、代码、查询结果，以及从长期记录里重新找回来的信息。</p>
+<p>同时，也不能什么都往里面塞。</p>
+<p>上下文长度毕竟是有限的。信息越多，也不代表效果一定越好。大量已经没什么用的历史细节混在里面，反而可能干扰模型判断真正重要的东西。</p>
+<p>这样想以后，我越来越觉得，“Agent
+记忆”这个说法其实把问题说窄了。真正的问题不是怎样让 Agent
+记住尽可能多的东西，而是在一个固定长度的上下文里，怎样决定<strong>此时此刻最值得放进去的内容是什么</strong>。</p>
+<p>一段刚查询出来的 SQL
+结果，也许在接下来的两轮分析里非常重要，但十轮以后可能已经毫无价值。一个两个小时前已经被排除的猜想，没有必要继续保留完整的分析过程，但“这个方向已经验证过，以及为什么被排除”可能仍然值得留下。某个平时完全不重要的数据源说明，在任务突然转向实时性问题的时候，又可能立刻变成关键背景。</p>
+<p>所以“重要”并不是一条记忆自己固定的属性，而是取决于当前到底在做什么。同一条信息，在不同阶段的价值可能完全不同。</p>
+<p>这样看下来，这已经有点像一个资源调度的问题了。</p>
+<h2 id="这件事很像内存管理">这件事很像内存管理</h2>
+<p>顺着这个思路继续想，我觉得操作系统的内存管理是一个很合适的类比。</p>
+<p>可以粗略地把大模型看成
+CPU，把上下文窗口看成内存，把代码仓库、文档、数据库、历史执行记录和各种中间结果看成硬盘，而
+Agent 外面的那套运行框架，则有点像操作系统。</p>
+<p>这样看的话，现在很多 Agent 给我的感觉就是：CPU
+已经非常强了，硬盘也可以无限扩展，但“操作系统”的内存管理仍然比较原始。</p>
+<p>当上下文快满的时候，最简单的处理方式就是把前面的内容总结一下，然后继续塞新的内容。下一次又满了，再把已经压缩过的历史继续压缩。</p>
+<p>它很像不停对一份有损压缩的结果再次做有损压缩。</p>
+<p>运行时间足够长以后，越来越失真几乎是必然的。</p>
+<p>真正成熟的内存管理显然不会要求所有数据永远留在内存里。它更关心的是，当前真正需要使用的那部分内容是什么。不活跃的数据可以先移出去，需要的时候再重新加载。</p>
+<p>如果按照这个类比，未来 Agent
+可能真正缺少的，不是一个更大的“记忆库”，而是一套更好的<strong>上下文管理机制</strong>。</p>
+<p>它需要不断判断哪些东西应该继续留在当前上下文里，哪些可以先移出去，哪些内容适合整理成更短的状态说明，哪些应该完整保存下来，哪些历史现在又应该重新找回来，哪些以前的结论已经过时，需要重新确认。</p>
+<p>也就是说，未来的上下文管理不应该只是一个非常机械的“上下文使用率超过
+80%
+就触发摘要”。它应该真正理解任务现在进行到了什么阶段，再决定下一轮模型最需要看到什么。</p>
+<h2 id="有些东西其实应该忘掉">有些东西其实应该忘掉</h2>
+<p>这还带来了一个有点反直觉的结论：一个好的 Agent
+不只是要擅长记忆，也应该擅长遗忘。</p>
+<p>我们平时很容易觉得，AI
+最好什么都不要忘。但如果上下文长度是有限的，那么什么都不忘本身就是一种低效。</p>
+<p>假设为了验证一个问题，Agent
+执行了一条查询，返回了两万行结果。在刚执行完的时候，这两万行数据也许很重要，因为模型需要观察里面的模式。但当问题已经验证结束以后，真正需要长期留下来的，可能只是一句话：“这个异常已经确认不是由缺失数据导致的”，再附上对应查询结果放在哪里，以及这个结论有多可靠。</p>
+<p>原始的两万行数据没有必要继续长期占据上下文。它们完全可以先移出去。以后如果新的证据让
+Agent 怀疑之前的结论，再把原始结果找回来就可以了。</p>
+<p>所以比较理想的“忘记”，并不是真的把东西删掉，而只是暂时从当前上下文里拿走。</p>
+<p>我觉得这可能比“永远记住所有东西”困难得多。因为系统需要判断一段信息什么时候已经不值得继续占地方，什么时候又应该重新回来。留错了东西会造成干扰，拿走了不该拿走的东西，又可能让
+Agent 丢失关键线索。</p>
+<p>从这个角度看，一个 Agent
+能不能长期稳定地工作，很大程度上取决于它能不能一直维护好“现在最需要知道的这些东西”。</p>
+<h2 id="只记一个结论也不太够">只记一个结论也不太够</h2>
+<p>继续往下想，我觉得单纯保存“结论”本身也不够。</p>
+<p>比如 Agent 记下来一条经验：“排查某类 Tez 任务时优先使用 Tez UI
+API。”如果以后环境发生变化，API
+已经不可用了，或者某种任务类型根本不适用这个规则，那么这条看起来很正确的经验反而会误导后面的
+Agent。</p>
+<p>所以一条比较可靠的记忆，可能还需要带着它的来源和适用范围。至少应该知道这个结论是在什么任务里得到的，当时为什么会得出这个结论，证据在哪里，当时的环境是什么，以及这个结论多久没有重新确认过了。</p>
+<p>换句话说，Agent 的记忆不应该只是一个不断积累的“自己写的
+Wiki”。否则时间一长，里面很容易混进大量已经过时的经验、错误判断，以及只对某个特殊场景成立的规则。</p>
+<p>这也是为什么我觉得，所谓的记忆最后可能会越来越像一套完整的状态管理，而不是简单地把很多历史文字存在一个数据库里。</p>
+<h2 id="也许可以单独找个-agent-来管这些事">也许可以单独找个 Agent
+来管这些事</h2>
+<p>再往前想一步，这套上下文管理未必一定完全靠人工写规则。</p>
+<p>以后完全可能把解决问题的 Agent 和管理上下文的 Agent
+分开。前者专心做当前任务，分析 HQL、查看
+DAG、执行查询、修改代码或者验证猜想；后者则不直接解决业务问题，而是一直观察前者现在做到哪了。</p>
+<p>它需要知道当前目标是什么，现在最重要的猜想是什么，哪些东西已经被验证，哪些方向已经排除，最近发现了什么，哪些历史经验可能相关，哪些内容继续留在上下文里已经没有什么意义。</p>
+<p>然后在每一次调用主 Agent 之前，由它重新整理要放进去的信息。</p>
+<p>它甚至可以主动提前找一些很可能马上会用到的内容。比如看到当前问题已经涉及
+Tez 的运行情况，即使主 Agent 还没有明确说要查历史经验，它也可以先把和
+Tez UI、历史排查方式、相关数据源有关的信息准备好。这样主 Agent
+下一轮开始分析的时候，就更容易直接想到合适的路径。</p>
+<p>这和现在完全依赖模型自己突然意识到“我应该去查一下以前的记录”还是很不一样的。</p>
+<p>甚至这两个 Agent
+都不需要使用同一个模型。真正负责解决问题的可以用能力更强、成本更高的模型，而负责维护状态和整理上下文的，可以使用一个更便宜、更快的模型。</p>
+<p>当然，这里面还是会有很多问题。负责整理上下文的 Agent
+自己也可能判断错，错误的摘要可能长期影响后面的判断，不该拿走的信息可能被提前移出上下文，找回来的历史也可能其实和当前问题没有关系。</p>
+<p>但我越来越觉得，这些问题本身可能就是 Agent
+接下来很值得解决的一部分。</p>
+<h2 id="最后又绕回了记忆这件事">最后又绕回了“记忆”这件事</h2>
+<p>想到最后，我反而产生了一个和最开始有些相反的想法。</p>
+<p>一个真正能够长期工作的
+Agent，也许根本不要求底层模型自己拥有长期记忆。</p>
+<p>大模型完全可以始终是无状态的。每一次调用，都可以把它看成一个刚刚被叫过来的、能力很强，但对之前发生过什么完全没有印象的工程师。</p>
+<p>真正重要的是，在它开始工作以前，外面的系统能不能迅速而准确地告诉它：现在到底要解决什么问题，已经做到哪里了，为什么会走到这里，哪些东西已经确认，哪些方向已经排除，目前还有哪些猜想没有验证，还缺哪些信息，哪些历史经验和现在有关，以及下一步最值得做什么。</p>
+<p>如果这些东西每次都能重新组织好，那么模型本身有没有长期状态，好像就没有那么重要了。</p>
+<p>所谓的 Agent
+记忆，也就不再只是把过去发生过的事情保存下来。它更像是在每一次模型开始工作以前，<strong>重新帮它把当前的思路接起来</strong>。</p>
+<p>所以现在我越来越觉得，真正的问题可能不是“如何让模型记住越来越多东西”，而是：</p>
+<p><strong>如何让一个固定长度的上下文，在每一个时刻都装着最值得它看到的信息。</strong></p>
+<p>现在的大模型本身已经很强了。至少在我的实际使用里，一个新的、上下文比较干净的
+Agent，很多时候已经可以表现出不错的自主分析能力。真正让我明显感受到能力下降的，反而是在任务越来越长以后，上下文不断累积、压缩、再累积、再压缩的过程。</p>
+<p>有一种很奇怪的感觉：<strong>模型本身明明没有变笨，但外面的系统最后却把一个聪明的模型喂成了一个糊涂的模型。</strong></p>
+<p>而这种退化还不一定表现为完全做错。更多时候，它只是开始选择一些明显更差的路径。比如原本可以直接调用
+Tez UI API
+获取信息，它却选择去跑一个很慢的离线查询；原本可以自己根据结果继续缩小范围，后来却需要人在每一步告诉它接下来做什么。最终任务也许仍然能够完成，但执行时间、资源成本以及人的介入都会明显增加。</p>
+<p>这种差异在真实工程环境里其实非常重要。</p>
+<p>也许未来 Agent
+能力的一次明显提升，并不一定来自底层模型再次变得聪明很多。只要上下文管理这件事能真正做好，让系统知道什么时候应该保留、什么时候应该遗忘、什么时候应该总结、什么时候应该把东西放到外面、什么时候又应该重新找回来，以及每一次调用模型以前怎样把这些信息重新组织好，Agent
+的长期工作能力本身就可能发生很大的变化。</p>
+<p>到那个时候，一个 Agent
+也许真的可以持续工作几天、几个月，甚至更久，而不会因为历史越来越长，就逐渐失去最开始的判断力。</p>
+<p>模型仍然可以是无状态的，但运行在模型之外的系统，开始真正拥有状态。</p>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>

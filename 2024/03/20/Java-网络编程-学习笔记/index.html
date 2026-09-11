@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,21 +308,21 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #00a596">
-                    Java
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/笔记/" style="color: #ffa2c4">
+                <a href="/tags/笔记/" style="color: #ff7d73">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/网络编程/" style="color: #00bcd4">
+                <a href="/tags/Java/" style="color: #ff7d73">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/网络编程/" style="color: #ff7d73">
                     网络编程
                 </a>
             </span>
@@ -374,23 +374,7 @@ mjx-container[display="true"] + br {
 <li>发送数据</li>
 <li>释放资源</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">//创建对象时底层绑定端口，作为发出的端口</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//空参：所有可用端口中随机一个使用</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">//有参：指定端口</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">DatagramSocket</span> ds <span class="op">=</span> <span class="kw">new</span> <span class="bu">DatagramSocket</span><span class="op">();</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">//打包数据</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> str <span class="op">=</span> <span class="st">"Hello"</span><span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">byte</span><span class="op">[]</span> bytes <span class="op">=</span> str<span class="op">.</span><span class="fu">getBytes</span><span class="op">();</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">InetAddress</span> address <span class="op">=</span> <span class="bu">InetAddress</span><span class="op">.</span><span class="fu">getByName</span><span class="op">(</span><span class="st">"127.0.0.1"</span><span class="op">);</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> port <span class="op">=</span> <span class="dv">10086</span><span class="op">;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">DatagramPacket</span> dp <span class="op">=</span> <span class="kw">new</span> <span class="bu">DatagramPacket</span><span class="op">(</span>bytes<span class="op">,</span> bytes<span class="op">.</span><span class="fu">length</span><span class="op">,</span> address<span class="op">,</span> port<span class="op">);</span><span class="co">//发到 port 这个端口</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">//发送数据</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ds<span class="op">.</span><span class="fu">send</span><span class="op">(</span>dp<span class="op">);</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">//释放资源</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ds<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建对象时底层绑定端口，作为发出的端口</span></span><br><span class="line"><span class="comment">//空参：所有可用端口中随机一个使用</span></span><br><span class="line"><span class="comment">//有参：指定端口</span></span><br><span class="line"><span class="type">DatagramSocket</span> <span class="variable">ds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DatagramSocket</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//打包数据</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">"Hello"</span>;</span><br><span class="line"><span class="type">byte</span>[] <span class="variable">bytes</span> <span class="operator">=</span> str.getBytes();</span><br><span class="line"><span class="type">InetAddress</span> <span class="variable">address</span> <span class="operator">=</span> InetAddress.getByName(<span class="string">"127.0.0.1"</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">port</span> <span class="operator">=</span> <span class="number">10086</span>;</span><br><span class="line"><span class="type">DatagramPacket</span> <span class="variable">dp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DatagramPacket</span>(bytes, bytes.length, address, port);<span class="comment">//发到 port 这个端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//发送数据</span></span><br><span class="line">ds.send(dp);</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line">ds.close();</span><br></pre></td></tr></table></figure>
 <h5 id="接收数据">接收数据</h5>
 <ul>
 <li>创建接收端的DatagramSocket对象</li>
@@ -398,28 +382,7 @@ mjx-container[display="true"] + br {
 <li>解析数据包</li>
 <li>释放资源</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">//接收的时候一定要绑定端口</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">DatagramSocket</span> ds <span class="op">=</span> <span class="kw">new</span> <span class="bu">DatagramSocket</span><span class="op">(</span><span class="dv">10086</span><span class="op">);</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">//接收数据包</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">byte</span><span class="op">[]</span> bytes <span class="op">=</span> <span class="kw">new</span> <span class="dt">byte</span><span class="op">[</span><span class="dv">1024</span><span class="op">];</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">DatagramPacket</span> dp <span class="op">=</span> <span class="kw">new</span> <span class="bu">DatagramPacket</span><span class="op">(</span>bytes<span class="op">,</span> bytes<span class="op">.</span><span class="fu">length</span><span class="op">);</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">//这个方法是阻塞的</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">//执行到这一步会死等</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ds<span class="op">.</span><span class="fu">receive</span><span class="op">(</span>dp<span class="op">);</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">//解析数据包</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="dt">byte</span><span class="op">[]</span> data <span class="op">=</span> dp<span class="op">.</span><span class="fu">getData</span><span class="op">();</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> len <span class="op">=</span> dp<span class="op">.</span><span class="fu">getLength</span><span class="op">();</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">InetAddress</span> address <span class="op">=</span> dp<span class="op">.</span><span class="fu">getAddress</span><span class="op">();</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> port <span class="op">=</span> dp<span class="op">.</span><span class="fu">getPort</span><span class="op">();</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="kw">new</span> <span class="bu">String</span><span class="op">(</span>data<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> len<span class="op">));</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>address <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> port<span class="op">);</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">//释放资源</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ds<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接收的时候一定要绑定端口</span></span><br><span class="line"><span class="type">DatagramSocket</span> <span class="variable">ds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DatagramSocket</span>(<span class="number">10086</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//接收数据包</span></span><br><span class="line"><span class="type">byte</span>[] <span class="variable">bytes</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="type">DatagramPacket</span> <span class="variable">dp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DatagramPacket</span>(bytes, bytes.length);</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个方法是阻塞的</span></span><br><span class="line"><span class="comment">//执行到这一步会死等</span></span><br><span class="line">ds.receive(dp);</span><br><span class="line"></span><br><span class="line"><span class="comment">//解析数据包</span></span><br><span class="line"><span class="type">byte</span>[] <span class="variable">data</span> <span class="operator">=</span> dp.getData();</span><br><span class="line"><span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> dp.getLength();</span><br><span class="line"><span class="type">InetAddress</span> <span class="variable">address</span> <span class="operator">=</span> dp.getAddress();</span><br><span class="line"><span class="type">int</span> <span class="variable">port</span> <span class="operator">=</span> dp.getPort();</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(data, <span class="number">0</span>, len));</span><br><span class="line">System.out.println(address + <span class="string">" "</span> + port);</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line">ds.close();</span><br></pre></td></tr></table></figure>
 <h5 id="三种通信方式">三种通信方式</h5>
 <ul>
 <li>单播</li>
@@ -439,19 +402,7 @@ mjx-container[display="true"] + br {
 <li>获取输出流，写数据</li>
 <li>释放资源</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">//在创建对象的同时会连接服务器</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">//连接不上会报错</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Socket</span> socket <span class="op">=</span> <span class="kw">new</span> <span class="bu">Socket</span><span class="op">(</span><span class="st">"127.0.0.1"</span><span class="op">,</span> <span class="dv">10000</span><span class="op">);</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">//可以从连接通道中获取输出流</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">OutputStream</span> os <span class="op">=</span> socket<span class="op">.</span><span class="fu">getOutputStream</span><span class="op">();</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">//写数据</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>os<span class="op">.</span><span class="fu">write</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">.</span><span class="fu">getBytes</span><span class="op">());</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">//释放资源</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>os<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>socket<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在创建对象的同时会连接服务器</span></span><br><span class="line"><span class="comment">//连接不上会报错</span></span><br><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">"127.0.0.1"</span>, <span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以从连接通道中获取输出流</span></span><br><span class="line"><span class="type">OutputStream</span> <span class="variable">os</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line"></span><br><span class="line"><span class="comment">//写数据</span></span><br><span class="line">os.write(<span class="string">"Hello"</span>.getBytes());</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line">os.close();</span><br><span class="line">socket.close();</span><br></pre></td></tr></table></figure>
 <h5 id="服务器">服务器</h5>
 <ul>
 <li>创建服务器端的Socket对象（<code>ServerSocket</code>）</li>
@@ -459,19 +410,7 @@ mjx-container[display="true"] + br {
 <li>获取输入流，读数据，并把数据显示在控制台</li>
 <li>释放资源</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">ServerSocket</span> ss <span class="op">=</span> <span class="kw">new</span> <span class="bu">ServerSocket</span><span class="op">(</span><span class="dv">10000</span><span class="op">);</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">//如果没有连接就会死等</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">Socket</span> socket <span class="op">=</span> ss<span class="op">.</span><span class="fu">accept</span><span class="op">();</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">InputStream</span> is <span class="op">=</span> socket<span class="op">.</span><span class="fu">getInputStream</span><span class="op">();</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> b<span class="op">;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">((</span>b <span class="op">=</span> is<span class="op">.</span><span class="fu">read</span><span class="op">())</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span>cahr<span class="op">)</span>b<span class="op">);</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>socket<span class="op">.</span><span class="fu">close</span><span class="op">();</span><span class="co">//断开连接</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ss<span class="op">.</span><span class="fu">close</span><span class="op">();</span><span class="co">//关闭服务器</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ServerSocket</span> <span class="variable">ss</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果没有连接就会死等</span></span><br><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> ss.accept();</span><br><span class="line"></span><br><span class="line"><span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line"><span class="type">int</span> b;</span><br><span class="line"><span class="keyword">while</span>((b = is.read()) != -<span class="number">1</span>) {</span><br><span class="line">    System.out.println((cahr)b);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">socket.close();<span class="comment">//断开连接</span></span><br><span class="line">ss.close();<span class="comment">//关闭服务器</span></span><br></pre></td></tr></table></figure>
 <p><strong>注意</strong>：这里是字节流，会出现中文乱码。类比之前的字符流可以解决</p>
 <h5 id="三次握手">三次握手</h5>
 <ul>

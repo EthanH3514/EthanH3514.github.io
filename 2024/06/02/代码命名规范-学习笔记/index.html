@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,14 +308,14 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #03a9f4">
+                <a href="/tags/笔记/" style="color: #00a596">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/命名规范/" style="color: #ffa2c4">
+                <a href="/tags/命名规范/" style="color: #ff7d73">
                     命名规范
                 </a>
             </span>
@@ -337,17 +337,11 @@ mjx-container[display="true"] + br {
 <li><p>包名统一小写（ <code>org.apach.dubbo.common.threadlocal</code>
 ）</p></li>
 <li><p>抽象类用Abstract开头</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">abstract</span> <span class="kw">class</span> AbstractClient <span class="kw">extends</span> AbstractEndpoint <span class="kw">implements</span> Client <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractClient</span> <span class="keyword">extends</span> <span class="title class_">AbstractEndpoint</span> <span class="keyword">implements</span> <span class="title class_">Client</span> {</span><br><span class="line">    </span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
 <li><p>异常类命名用Exception结尾</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> <span class="bu">NoSuchMethodException</span> <span class="kw">extends</span> <span class="bu">RuntimeException</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NoSuchMethodException</span> <span class="keyword">extends</span> <span class="title class_">RuntimeException</span> {</span><br><span class="line">    </span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
 <li><p>测试类用以要测试的类名开头，以Test结尾</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> AnnotationUtilsTest <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AnnotationUtilsTest</span> {</span><br><span class="line">    </span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
 <li><p>POJO类中布尔类型的变量，不要加is前缀</p></li>
 </ul>
 

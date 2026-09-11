@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,15 +308,15 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #ff7d73">
-                    Java
+                <a href="/tags/笔记/" style="color: #00bcd4">
+                    笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #ffa2c4">
-                    笔记
+                <a href="/tags/Java/" style="color: #00bcd4">
+                    Java
                 </a>
             </span>
             
@@ -329,7 +329,7 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/String/" style="color: #ffa2c4">
+                <a href="/tags/String/" style="color: #00bcd4">
                     String
                 </a>
             </span>
@@ -348,14 +348,10 @@ mjx-container[display="true"] + br {
         <p>常看常新</p>
 <span id="more"></span>
 <h3 id="常量字符串拼接">常量字符串拼接</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s <span class="op">=</span> <span class="st">"a"</span> <span class="op">+</span> <span class="st">"b"</span> <span class="op">+</span> <span class="st">"c"</span><span class="op">;</span><span class="co">//编译优化，直接就是 "abc"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>s<span class="op">);</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">"a"</span> + <span class="string">"b"</span> + <span class="string">"c"</span>;<span class="comment">//编译优化，直接就是 "abc"</span></span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
 <p>会复用串池的字符串</p>
 <h3 id="拼接有变量字符串">拼接有变量字符串</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s1 <span class="op">=</span> <span class="st">"a"</span><span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s2 <span class="op">=</span> s1 <span class="op">+</span> <span class="st">"b"</span><span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s3 <span class="op">=</span> s2 <span class="op">+</span> <span class="st">"c"</span><span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>s3<span class="op">);</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">"a"</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> s1 + <span class="string">"b"</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> s2 + <span class="string">"c"</span>;</span><br><span class="line">System.out.println(s3);</span><br></pre></td></tr></table></figure>
 <h4 id="jdk8以前">JDK8以前</h4>
 <ul>
 <li><p>底层使用<code>StringBuilder</code>拼接</p></li>
@@ -363,11 +359,7 @@ mjx-container[display="true"] + br {
 <li><p>每一次拼接都创建两个对象，开销比较大</p></li>
 </ul>
 <h4 id="jdk8">JDK8</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s1 <span class="op">=</span> <span class="st">"a"</span><span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s2 <span class="op">=</span> <span class="st">"b"</span><span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s3 <span class="op">=</span> <span class="st">"c"</span><span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> s4 <span class="op">=</span> s1 <span class="op">+</span> s2 <span class="op">+</span> s3<span class="op">;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>s4<span class="op">);</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">"a"</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">"b"</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> <span class="string">"c"</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> s1 + s2 + s3;</span><br><span class="line">System.out.println(s4);</span><br></pre></td></tr></table></figure>
 <ul>
 <li>先预估字符串的长度，创建字符数组，产生一个新的字符串</li>
 <li>预估也需要时间，多次加仍然比较慢</li>

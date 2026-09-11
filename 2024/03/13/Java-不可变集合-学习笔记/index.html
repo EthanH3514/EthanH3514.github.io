@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,6 +308,13 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
+                <a href="/tags/笔记/" style="color: #03a9f4">
+                    笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
                 <a href="/tags/Java/" style="color: #ffa2c4">
                     Java
                 </a>
@@ -315,14 +322,7 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #00bcd4">
-                    笔记
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/不可变集合/" style="color: #ffa2c4">
+                <a href="/tags/不可变集合/" style="color: #00bcd4">
                     不可变集合
                 </a>
             </span>
@@ -350,33 +350,12 @@ mjx-container[display="true"] + br {
 <li><code>Map</code>：元素不能重复，直接传键值对数量不超过10。超过10个用<code>ofEntries</code>方法</li>
 </ul>
 <h4 id="示例">示例</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> list <span class="op">=</span> <span class="bu">List</span><span class="op">.</span><span class="fu">of</span><span class="op">(</span><span class="st">"a"</span><span class="op">,</span> <span class="st">"b"</span><span class="op">,</span> <span class="st">"c"</span><span class="op">,</span> <span class="st">"d"</span><span class="op">);</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Set</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> set <span class="op">=</span> <span class="bu">Set</span><span class="op">.</span><span class="fu">of</span><span class="op">(</span><span class="st">"a"</span><span class="op">,</span> <span class="st">"b"</span><span class="op">,</span> <span class="st">"c"</span><span class="op">,</span> <span class="st">"d"</span><span class="op">);</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> mp <span class="op">=</span> <span class="bu">Map</span><span class="op">.</span><span class="fu">of</span><span class="op">(</span><span class="st">"a"</span><span class="op">,</span> <span class="st">"A"</span><span class="op">,</span> <span class="st">"b"</span><span class="op">,</span> <span class="st">"B"</span><span class="op">);</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">//参数为 键，值，键，值</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">//这样最多传20个参即10对键值</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">//已有的Map</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">HashMap</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> hm <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">//获取键值对对象</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Set</span><span class="op">&lt;</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;&gt;</span> entries <span class="op">=</span> hm<span class="op">.</span><span class="fu">entrySet</span><span class="op">();</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">//toArray方法在底层会比较集合的长度和数组的长度两者大小关系</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">//若集合长度 大于 数组长度，那么重新创建数组</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">//如果集合长度 不超过 数组长度，直接用</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">//所以new一个0长度比较合适</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">[]</span> arr <span class="op">=</span> entries<span class="op">.</span><span class="fu">toArray</span><span class="op">(</span><span class="kw">new</span> <span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">//不可变的map集合</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span> mmp <span class="op">=</span> <span class="bu">Map</span><span class="op">.</span><span class="fu">ofEntries</span><span class="op">(</span>arr<span class="op">);</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>&lt;String&gt; <span class="variable">list</span> <span class="operator">=</span> List.of(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>);</span><br><span class="line"><span class="type">Set</span>&lt;String&gt; <span class="variable">set</span> <span class="operator">=</span> Set.of(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Map</span>&lt;String, String&gt; <span class="variable">mp</span> <span class="operator">=</span> Map.of(<span class="string">"a"</span>, <span class="string">"A"</span>, <span class="string">"b"</span>, <span class="string">"B"</span>);</span><br><span class="line"><span class="comment">//参数为 键，值，键，值</span></span><br><span class="line"><span class="comment">//这样最多传20个参即10对键值</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//已有的Map</span></span><br><span class="line"><span class="type">HashMap</span>&lt;String, String&gt; <span class="variable">hm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取键值对对象</span></span><br><span class="line">Set&lt;Map.Entry&lt;String, String&gt;&gt; entries = hm.entrySet();</span><br><span class="line"><span class="comment">//toArray方法在底层会比较集合的长度和数组的长度两者大小关系</span></span><br><span class="line"><span class="comment">//若集合长度 大于 数组长度，那么重新创建数组</span></span><br><span class="line"><span class="comment">//如果集合长度 不超过 数组长度，直接用</span></span><br><span class="line"><span class="comment">//所以new一个0长度比较合适</span></span><br><span class="line">Map.<span class="type">Entry</span>[] <span class="variable">arr</span> <span class="operator">=</span> entries.toArray(<span class="keyword">new</span> <span class="title class_">Map</span>.Entry[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//不可变的map集合</span></span><br><span class="line"><span class="type">Map</span> <span class="variable">mmp</span> <span class="operator">=</span> Map.ofEntries(arr);</span><br></pre></td></tr></table></figure>
 <h4 id="另一种方法jdk8忽略">另一种方法（jdk8忽略）</h4>
 <p>最方便的方式</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="op">&lt;</span>K<span class="op">,</span> V<span class="op">&gt;</span> <span class="bu">Map</span><span class="op">&lt;</span>K<span class="op">,</span>V<span class="op">&gt;</span> <span class="fu">copyOf</span><span class="op">(</span><span class="bu">Map</span><span class="op">&lt;?</span> <span class="kw">extends</span> K<span class="op">,</span> <span class="op">?</span> <span class="kw">extends</span> V<span class="op">&gt;</span> map<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>map <span class="kw">instanceof</span> ImmutableCollections<span class="op">.</span><span class="fu">AbstractImmutableMap</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">(</span><span class="bu">Map</span><span class="op">&lt;</span>K<span class="op">,</span>V<span class="op">&gt;)</span>map<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">(</span><span class="bu">Map</span><span class="op">&lt;</span>K<span class="op">,</span>V<span class="op">&gt;)</span><span class="bu">Map</span><span class="op">.</span><span class="fu">ofEntries</span><span class="op">(</span>map<span class="op">.</span><span class="fu">entrySet</span><span class="op">().</span><span class="fu">toArray</span><span class="op">(</span><span class="kw">new</span> Entry<span class="op">[</span><span class="dv">0</span><span class="op">]));</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &lt;K, V&gt; <span class="type">Map</span>&lt;K,V&gt; <span class="title function_">copyOf</span><span class="params">(Map&lt;? extends K, ? extends V&gt; map)</span> {</span><br><span class="line">    <span class="keyword">if</span> (map <span class="keyword">instanceof</span> ImmutableCollections.AbstractImmutableMap) {</span><br><span class="line">        <span class="keyword">return</span> (Map&lt;K,V&gt;)map;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">return</span> (Map&lt;K,V&gt;)Map.ofEntries(map.entrySet().toArray(<span class="keyword">new</span> <span class="title class_">Entry</span>[<span class="number">0</span>]));</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
     </div>
     

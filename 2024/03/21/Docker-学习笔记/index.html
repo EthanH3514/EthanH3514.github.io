@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,14 +308,14 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #ff7d73">
+                <a href="/tags/笔记/" style="color: #00bcd4">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Docker/" style="color: #ffa2c4">
+                <a href="/tags/Docker/" style="color: #03a9f4">
                     Docker
                 </a>
             </span>
@@ -328,12 +328,7 @@ mjx-container[display="true"] + br {
 <span id="more"></span>
 <h3 id="常用命令">常用命令</h3>
 <h4 id="docker-run">docker run</h4>
-<pre class="shell"><code>docker run -d \
-    --name mysql \
-    -p 3306:3306 \
-    -e TZ=Asia/Shanghai \
-    -e MYSQL_ROOT_PASSWORD=123 \
-    mysql</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">	--name mysql \</span><br><span class="line">	-p 3306:3306 \</span><br><span class="line">	-e TZ=Asia/Shanghai \</span><br><span class="line">	-e MYSQL_ROOT_PASSWORD=123 \</span><br><span class="line">	mysql</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>docker run</code>：创建并运行一个容器，<code>-d</code>是让容器在后台运行</li>
 <li><code>--name mysql</code>：给容器起一个名字，必须唯一</li>

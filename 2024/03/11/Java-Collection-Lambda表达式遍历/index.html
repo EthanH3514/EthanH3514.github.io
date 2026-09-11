@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,15 +308,15 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #ffa2c4">
-                    Java
+                <a href="/tags/笔记/" style="color: #03a9f4">
+                    笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #ffa2c4">
-                    笔记
+                <a href="/tags/Java/" style="color: #ffa2c4">
+                    Java
                 </a>
             </span>
             
@@ -329,7 +329,7 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Lambda/" style="color: #00a596">
+                <a href="/tags/Lambda/" style="color: #ffa2c4">
                     Lambda
                 </a>
             </span>
@@ -341,54 +341,16 @@ mjx-container[display="true"] + br {
         <p>Java的Collection可以通过迭代器、增强for、forEach遍历，而forEach遍历中又可以使用lambda表达式简化代码，现在从源码上分析Lambda表达式遍历的原理。</p>
 <span id="more"></span>
 <h4 id="正常使用foreach遍历示例">正常使用forEach遍历示例</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Collection</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> col <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>col<span class="op">.</span><span class="fu">forEach</span><span class="op">(</span><span class="kw">new</span> Consumer<span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;(){</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">//s依次表示集合中每一个元素</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">accept</span><span class="op">(</span><span class="bu">String</span> s<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>s<span class="op">);</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Collection</span>&lt;String&gt; <span class="variable">col</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">col.forEach(<span class="keyword">new</span> <span class="title class_">Consumer</span>&lt;String&gt;(){</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">//s依次表示集合中每一个元素</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">accept</span><span class="params">(String s)</span> {</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    }</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
 <h4 id="foreach源码">forEach()源码</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">default</span> <span class="dt">void</span> <span class="fu">forEach</span><span class="op">(</span>Consumer<span class="op">&lt;?</span> <span class="kw">super</span> T<span class="op">&gt;</span> action<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        Objects<span class="op">.</span><span class="fu">requireNonNull</span><span class="op">(</span>action<span class="op">);</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span>T t <span class="op">:</span> <span class="kw">this</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            action<span class="op">.</span><span class="fu">accept</span><span class="op">(</span>t<span class="op">);</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">default</span> <span class="type">void</span> <span class="title function_">forEach</span><span class="params">(Consumer&lt;? <span class="built_in">super</span> T&gt; action)</span> {</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">for</span> (T t : <span class="built_in">this</span>) {</span><br><span class="line">            action.accept(t);</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
 <p>可以看到是参数是一个<code>Consumer&lt;? super T&gt; action</code>，之后使用增强for遍历了集合内部的元素</p>
 <h4 id="consumer-super-t源码">Consumer&lt;? super T&gt;源码</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@FunctionalInterface</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">interface</span> Consumer<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Performs this operation on the given argument<span class="co">.</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="co">@</span>param t the input argument</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">accept</span><span class="op">(</span>T t<span class="op">);</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Returns a composed <span class="co">{@</span>code Consumer<span class="co">}</span> that performs<span class="co">,</span> in sequence<span class="co">,</span> this</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> operation followed by the <span class="co">{@</span>code after<span class="co">}</span> operation<span class="co">. </span>If performing either</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> operation throws an exception<span class="co">,</span> it is relayed to the caller of the</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> composed operation<span class="co">.</span>  If performing this operation throws an exception<span class="co">,</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> the <span class="co">{@</span>code after<span class="co">}</span> operation will not be performed<span class="co">.</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="co">@</span>param after the operation to perform after this operation</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="co">@</span>return a composed <span class="co">{@</span>code Consumer<span class="co">}</span> that performs in sequence this</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> operation followed by the <span class="co">{@</span>code after<span class="co">}</span> operation</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="co">@</span>throws NullPointerException if <span class="co">{@</span>code after<span class="co">}</span> is null</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">default</span> Consumer<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="fu">andThen</span><span class="op">(</span>Consumer<span class="op">&lt;?</span> <span class="kw">super</span> T<span class="op">&gt;</span> after<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        Objects<span class="op">.</span><span class="fu">requireNonNull</span><span class="op">(</span>after<span class="op">);</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">(</span>T t<span class="op">)</span> <span class="op">-&gt;</span> <span class="op">{</span> <span class="fu">accept</span><span class="op">(</span>t<span class="op">);</span> after<span class="op">.</span><span class="fu">accept</span><span class="op">(</span>t<span class="op">);</span> <span class="op">};</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Consumer</span>&lt;T&gt; {</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Performs this operation on the given argument.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t the input argument</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">void</span> <span class="title function_">accept</span><span class="params">(T t)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns a composed {<span class="doctag">@code</span> Consumer} that performs, in sequence, this</span></span><br><span class="line"><span class="comment">     * operation followed by the {<span class="doctag">@code</span> after} operation. If performing either</span></span><br><span class="line"><span class="comment">     * operation throws an exception, it is relayed to the caller of the</span></span><br><span class="line"><span class="comment">     * composed operation.  If performing this operation throws an exception,</span></span><br><span class="line"><span class="comment">     * the {<span class="doctag">@code</span> after} operation will not be performed.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> after the operation to perform after this operation</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> a composed {<span class="doctag">@code</span> Consumer} that performs in sequence this</span></span><br><span class="line"><span class="comment">     * operation followed by the {<span class="doctag">@code</span> after} operation</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> NullPointerException if {<span class="doctag">@code</span> after} is null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">default</span> <span class="type">Consumer</span>&lt;T&gt; <span class="title function_">andThen</span><span class="params">(Consumer&lt;? <span class="built_in">super</span> T&gt; after)</span> {</span><br><span class="line">        Objects.requireNonNull(after);</span><br><span class="line">        <span class="keyword">return</span> (T t) -&gt; { accept(t); after.accept(t); };</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>可以看到是一个接口，并且标注了
 <code>@FunctionalInterface</code>，可以用lambda表达式来充当这个接口的实现类</p>
 <h4 id="使用lambda后的代码">使用lambda后的代码</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>col<span class="op">.</span><span class="fu">forEach</span><span class="op">(</span>s <span class="op">-&gt;</span> <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>s<span class="op">));</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">col.forEach(s -&gt; System.out.println(s));</span><br></pre></td></tr></table></figure>
 <p>可以发现大大简化了</p>
 
     </div>

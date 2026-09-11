@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -312,6 +312,138 @@ mjx-container[display="true"] + br {
             
 
 <div class="post">
+    <a href="/2026/09/06/Agent为什么越聊越笨-从上下文压缩想到的记忆问题/">
+        <h2 class="post-title">Agent 为什么越聊越笨：从上下文压缩想到的记忆问题</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2026/9/6
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>最近工作里开始比较重度地使用 GLM 5.3 配合
+OpenCode。刚开始用的时候，我最大的感受是，现在的模型已经比我之前预期的“聪明”很多了。</p>
+<p>有一次我需要排查一段 HQL
+为什么在执行过程中被提示产生了笛卡尔积。这个问题本身涉及 HQL、Tez 的执行
+DAG，以及任务实际运行时的一些信息。让我印象比较深的是，在一个新的会话里，我并不需要告诉
+Agent 每一步应该怎么查。它有时候会自己判断，直接调用 Tez UI 的
+API，查询对应 DAG、Vertex 和 Task
+的运行信息，再沿着执行关系继续往下分析。我们内部也有离线沉淀的 Vertex
+Attempt 记录表，可以通过 HQL
+查询类似的信息，但这种方式通常会慢很多。</p>
+<p>也就是说，面对同一个问题，Agent
+实际上拥有不止一种获取信息的路径。它既可以通过 Tez UI API
+直接获取当前任务的执行信息，也可以去查离线记录。在状态比较好的时候，它会自己意识到
+API 是更直接、更低成本的路径，于是先从这里入手，拿到结果以后继续分析哪些
+Vertex 值得关注，再根据新的信息缩小排查范围。</p>
+<p>这种感觉已经很接近和一个有经验的工程师合作了。我只需要告诉它“这段 HQL
+为什么会提示产生笛卡尔积”，而不需要告诉它先查哪张表、看哪个字段、再关联什么数据。它能够自己选择工具，自己规划路径，也会根据中间结果调整下一步。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/AI-Agent/" style="color: #03a9f4">
+                AI Agent
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/LLM/" style="color: #ff7d73">
+                LLM
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/上下文管理/" style="color: #00a596">
+                上下文管理
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Agent-Memory/" style="color: #ffa2c4">
+                Agent Memory
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/技术思考/" style="color: #00a596">
+                技术思考
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2026/09/06/Agent为什么越聊越笨-从上下文压缩想到的记忆问题/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/08/22/那些我没有继续走下去的路/">
+        <h2 class="post-title">那些我没有继续走下去的路</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2026/8/22
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>最近我经常会想，如果人生可以重来一次，我会不会做出完全不同的选择。</p>
+<p>工作以后，我第一次很明确地意识到，收入提高和生活变得更好，并不是一回事。现在的工作占据了每天绝大多数清醒的时间，长时间坐在电脑前，持续处理一个又一个需求，周末真正属于自己的时间也很有限。这样的生活过久了以后，我开始频繁地想起大学，甚至会想，是不是从大学的时候开始，我就已经做错了一些选择。</p>
+<p>高考发挥得并不好，最后去了上海大学。那时候我觉得，既然只是一个
+211，保研也很难去特别好的学校，那绩点似乎也没有那么重要。与其一直卷，不如早点找工作。于是大学几年，我没有太在意
+GPA，很多时间就这样过去了。</p>
+<p>那时候其实过得挺开心。但现在重新回头看，我发现自己最怀念的，反而不是那些单纯闲着的日子。真正让我直到今天还会想起来的，是那些完全由兴趣驱动、一直在思考和解决问题的日子。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/随笔/" style="color: #03a9f4">
+                随笔
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/生活/" style="color: #ffa2c4">
+                生活
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2026/08/22/那些我没有继续走下去的路/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/06/22/2024-CCPC上海市赛-体验/">
         <h2 class="post-title">2024 CCPC上海市赛 体验</h2>
     </a>
@@ -341,35 +473,35 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/算法竞赛/" style="color: #ffa2c4">
+            <a href="/tags/算法竞赛/" style="color: #00bcd4">
                 算法竞赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/CCPC/" style="color: #00a596">
+            <a href="/tags/CCPC/" style="color: #00bcd4">
                 CCPC
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/省赛/" style="color: #00bcd4">
+            <a href="/tags/省赛/" style="color: #00a596">
                 省赛
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/上海/" style="color: #ff7d73">
+            <a href="/tags/上海/" style="color: #03a9f4">
                 上海
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/2024/" style="color: #00a596">
+            <a href="/tags/2024/" style="color: #00bcd4">
                 2024
             </a>
         </span>
@@ -421,7 +553,7 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/分布式/" style="color: #00a596">
+            <a href="/tags/分布式/" style="color: #ffa2c4">
                 分布式
             </a>
         </span>
@@ -467,7 +599,7 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/笔记/" style="color: #00a596">
+            <a href="/tags/笔记/" style="color: #03a9f4">
                 笔记
             </a>
         </span>
@@ -481,14 +613,14 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/Gossip/" style="color: #ffa2c4">
+            <a href="/tags/Gossip/" style="color: #00a596">
                 Gossip
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/信息共享/" style="color: #00bcd4">
+            <a href="/tags/信息共享/" style="color: #03a9f4">
                 信息共享
             </a>
         </span>
@@ -526,22 +658,22 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/笔记/" style="color: #03a9f4">
-                笔记
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/CAP/" style="color: #00bcd4">
+            <a href="/tags/CAP/" style="color: #ffa2c4">
                 CAP
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/BASE/" style="color: #ff7d73">
+            <a href="/tags/BASE/" style="color: #00a596">
                 BASE
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/笔记/" style="color: #00bcd4">
+                笔记
             </a>
         </span>
         
@@ -554,7 +686,7 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/ACID/" style="color: #ffa2c4">
+            <a href="/tags/ACID/" style="color: #00a596">
                 ACID
             </a>
         </span>
@@ -592,14 +724,14 @@ mjx-container[display="true"] + br {
         
         <span class="tag">
             
-            <a href="/tags/笔记/" style="color: #00a596">
+            <a href="/tags/笔记/" style="color: #00bcd4">
                 笔记
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/设计模式/" style="color: #00a596">
+            <a href="/tags/设计模式/" style="color: #00bcd4">
                 设计模式
             </a>
         </span>
@@ -652,7 +784,7 @@ Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。</p>
         
         <span class="tag">
             
-            <a href="/tags/算法/" style="color: #ffa2c4">
+            <a href="/tags/算法/" style="color: #00bcd4">
                 算法
             </a>
         </span>
@@ -666,21 +798,21 @@ Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。</p>
         
         <span class="tag">
             
-            <a href="/tags/数据结构/" style="color: #ff7d73">
+            <a href="/tags/数据结构/" style="color: #00bcd4">
                 数据结构
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/DAT/" style="color: #ffa2c4">
+            <a href="/tags/DAT/" style="color: #ff7d73">
                 DAT
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Trie/" style="color: #03a9f4">
+            <a href="/tags/Trie/" style="color: #00bcd4">
                 Trie
             </a>
         </span>
@@ -720,14 +852,14 @@ Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。</p>
         
         <span class="tag">
             
-            <a href="/tags/笔记/" style="color: #ffa2c4">
+            <a href="/tags/笔记/" style="color: #03a9f4">
                 笔记
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/命名规范/" style="color: #ff7d73">
+            <a href="/tags/命名规范/" style="color: #00a596">
                 命名规范
             </a>
         </span>
@@ -775,124 +907,13 @@ Forgery）跨站请求伪造：攻击者诱导受害者进入第三方网站，�
         
         <span class="tag">
             
-            <a href="/tags/CSRF/" style="color: #00bcd4">
+            <a href="/tags/CSRF/" style="color: #00a596">
                 CSRF
             </a>
         </span>
         
     </div>
     <a href="/2024/06/01/CSRF-学习笔记/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/31/RBAC-权限控制模型-学习笔记/">
-        <h2 class="post-title">RBAC 权限控制模型 学习笔记</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2024/5/31
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <blockquote>
-<p>RBAC即基于角色的权限访问控制（Role Based Access Control）</p>
-</blockquote>
-<p>权限与角色相关联，用户通过成为包含特定角色的成员而得到这些角色的权限</p>
-<p>是系统权限控制最常采用的访问控制模型</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/笔记/" style="color: #ff7d73">
-                笔记
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/RBAC/" style="color: #ffa2c4">
-                RBAC
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/权限控制/" style="color: #00a596">
-                权限控制
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2024/05/31/RBAC-权限控制模型-学习笔记/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/31/Cookie-与-Session-学习笔记/">
-        <h2 class="post-title">Cookie 与 Session 学习笔记</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2024/5/31
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <blockquote>
-<p>Cookie和Session都是用来跟踪浏览器用户身份的会话方式</p>
-</blockquote>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/笔记/" style="color: #00bcd4">
-                笔记
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Cookie/" style="color: #ffa2c4">
-                Cookie
-            </a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Session/" style="color: #ffa2c4">
-                Session
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2024/05/31/Cookie-与-Session-学习笔记/" class="go-post">阅读全文</a>
 </div>
 
              

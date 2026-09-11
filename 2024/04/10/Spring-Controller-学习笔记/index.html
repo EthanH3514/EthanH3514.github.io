@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,6 +308,13 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
+                <a href="/tags/笔记/" style="color: #03a9f4">
+                    笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
                 <a href="/tags/Java/" style="color: #ff7d73">
                     Java
                 </a>
@@ -315,21 +322,14 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/笔记/" style="color: #ffa2c4">
-                    笔记
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/Spring/" style="color: #03a9f4">
+                <a href="/tags/Spring/" style="color: #ff7d73">
                     Spring
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Controller/" style="color: #00a596">
+                <a href="/tags/Controller/" style="color: #00bcd4">
                     Controller
                 </a>
             </span>
@@ -356,53 +356,19 @@ mjx-container[display="true"] + br {
 <li>Method 匹配：
 <code>@RequestMapping(value = "/getData", method = RequestMethod.GET)</code></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RestController</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> HelloController <span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">@RequestMapping</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"/hello"</span><span class="op">,</span> method <span class="op">=</span> RequestMethod<span class="op">.</span><span class="fu">GET</span><span class="op">)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">//    @GetMapping("/hello")</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">//这两种方式等价</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">hello</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"你好"</span><span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> {</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = "/hello", method = RequestMethod.GET)</span></span><br><span class="line"><span class="comment">//    @GetMapping("/hello")</span></span><br><span class="line">    <span class="comment">//这两种方式等价</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">String</span> <span class="title function_">hello</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"你好"</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>传参的参数名要对上</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RequestMapping</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"/hello"</span><span class="op">,</span> method <span class="op">=</span> RequestMethod<span class="op">.</span><span class="fu">GET</span><span class="op">)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">//http://localhost:8080/hello?nickname=hxy</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="bu">String</span> <span class="fu">hello</span><span class="op">(</span><span class="bu">String</span> nickname<span class="op">,</span> <span class="bu">String</span> phone<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>phone<span class="op">);</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"你好"</span> <span class="op">+</span> nickname<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = "/hello", method = RequestMethod.GET)</span></span><br><span class="line"><span class="comment">//http://localhost:8080/hello?nickname=hxy</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">String</span> <span class="title function_">hello</span><span class="params">(String nickname, String phone)</span> {</span><br><span class="line">    System.out.println(phone);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"你好"</span> + nickname;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p><code>@RequestParam()</code> 指定必须参数，否则报错</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RequestMapping</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"/getTest3"</span><span class="op">,</span> method <span class="op">=</span> RequestMethod<span class="op">.</span><span class="fu">GET</span><span class="op">)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="bu">String</span> <span class="fu">getTest3</span><span class="op">(</span><span class="at">@RequestParam</span><span class="op">(</span><span class="st">"nickname"</span><span class="op">)</span> <span class="bu">String</span> name<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"nickname:"</span> <span class="op">+</span> name<span class="op">);</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"GET请求"</span><span class="op">;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = "/getTest3", method = RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">String</span> <span class="title function_">getTest3</span><span class="params">(<span class="meta">@RequestParam("nickname")</span> String name)</span> {</span><br><span class="line">    System.out.println(<span class="string">"nickname:"</span> + name);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"GET请求"</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>可以通过 <code>required=false</code> 关闭强制要求</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RequestMapping</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"/getTest3"</span><span class="op">,</span> method <span class="op">=</span> RequestMethod<span class="op">.</span><span class="fu">GET</span><span class="op">)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="bu">String</span> <span class="fu">getTest3</span><span class="op">(</span><span class="at">@RequestParam</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"nickname"</span><span class="op">,</span>required <span class="op">=</span> <span class="kw">false</span><span class="op">)</span> <span class="bu">String</span> name<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"nickname:"</span> <span class="op">+</span> name<span class="op">);</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"GET请求"</span><span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = "/getTest3", method = RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">String</span> <span class="title function_">getTest3</span><span class="params">(<span class="meta">@RequestParam(value = "nickname",required = false)</span> String name)</span> {</span><br><span class="line">    System.out.println(<span class="string">"nickname:"</span> + name);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"GET请求"</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>用对象接收参数</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RequestMapping</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"/postTest1"</span><span class="op">,</span> method <span class="op">=</span> RequestMethod<span class="op">.</span><span class="fu">POST</span><span class="op">)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="bu">String</span> <span class="fu">postTest1</span><span class="op">(</span>User user<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>user<span class="op">);</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"POST请求"</span><span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = "/postTest1", method = RequestMethod.POST)</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">String</span> <span class="title function_">postTest1</span><span class="params">(User user)</span> {</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"POST请求"</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>接收json</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RequestMapping</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"/postTest2"</span><span class="op">,</span> method <span class="op">=</span> RequestMethod<span class="op">.</span><span class="fu">POST</span><span class="op">)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="bu">String</span> <span class="fu">postTest2</span><span class="op">(</span><span class="at">@RequestBody</span> User user<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>user<span class="op">);</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"POST请求"</span><span class="op">;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = "/postTest2", method = RequestMethod.POST)</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">String</span> <span class="title function_">postTest2</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span> {</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"POST请求"</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>通配符</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RequestMapping</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"/test/**"</span><span class="op">,</span> method <span class="op">=</span> RequestMethod<span class="op">.</span><span class="fu">GET</span><span class="op">)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="bu">String</span> <span class="fu">postTest3</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">);</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"POST"</span><span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = "/test/**", method = RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">String</span> <span class="title function_">postTest3</span><span class="params">()</span> {</span><br><span class="line">    System.out.println(<span class="string">"Hello"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"POST"</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
     </div>
     

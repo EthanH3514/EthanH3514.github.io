@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,28 +308,28 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #ff7d73">
-                    Java
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/笔记/" style="color: #03a9f4">
+                <a href="/tags/笔记/" style="color: #00a596">
                     笔记
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Spring/" style="color: #ff7d73">
+                <a href="/tags/Java/" style="color: #00a596">
+                    Java
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Spring/" style="color: #00bcd4">
                     Spring
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/文件上传/" style="color: #ffa2c4">
+                <a href="/tags/文件上传/" style="color: #ff7d73">
                     文件上传
                 </a>
             </span>
@@ -345,35 +345,9 @@ mjx-container[display="true"] + br {
 工程嵌入的tomcat限制了请求的文件大小，每个文件的配置最大1Mb，单词请求的文件的总数不能大于10Mb</li>
 <li>可以在配置文件（如application.properties）里更改</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>spring<span class="op">.</span><span class="fu">servlet</span><span class="op">.</span><span class="fu">multipart</span><span class="op">.</span><span class="fu">max</span><span class="op">-</span>file<span class="op">-</span>size<span class="op">=</span><span class="er">10</span>MB</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spring<span class="op">.</span><span class="fu">servlet</span><span class="op">.</span><span class="fu">multipart</span><span class="op">.</span><span class="fu">max</span><span class="op">-</span>request<span class="op">-</span>size<span class="op">=</span><span class="er">10</span>MB</span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.servlet.multipart.max-file-size=10MB</span><br><span class="line">spring.servlet.multipart.max-request-size=10MB</span><br></pre></td></tr></table></figure>
 <p>示例</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RestController</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> FileUploadController <span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">//    @RequestMapping(value = "/upload", method = RequestMethod.POST)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">@PostMapping</span><span class="op">(</span><span class="st">"/upload"</span><span class="op">)</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">up</span><span class="op">(</span><span class="bu">String</span> nickname<span class="op">,</span> MultipartFile photo<span class="op">,</span> HttpServletRequest request<span class="op">)</span> <span class="kw">throws</span> <span class="bu">IOException</span> <span class="op">{</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>nickname<span class="op">);</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>photo<span class="op">.</span><span class="fu">getOriginalFilename</span><span class="op">());</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">//        System.out.println(System.getProperty("user.dir"));</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>photo<span class="op">.</span><span class="fu">getContentType</span><span class="op">());</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">String</span> path <span class="op">=</span> request<span class="op">.</span><span class="fu">getServletContext</span><span class="op">().</span><span class="fu">getRealPath</span><span class="op">(</span><span class="st">"/upload/"</span><span class="op">);</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>path<span class="op">);</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">saveFile</span><span class="op">(</span>photo<span class="op">,</span> path<span class="op">);</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"上传成功"</span><span class="op">;</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">saveFile</span><span class="op">(</span>MultipartFile photo<span class="op">,</span> <span class="bu">String</span> path<span class="op">)</span> <span class="kw">throws</span> <span class="bu">IOException</span> <span class="op">{</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">File</span> dir <span class="op">=</span> <span class="kw">new</span> <span class="bu">File</span><span class="op">(</span>path<span class="op">);</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(!</span>dir<span class="op">.</span><span class="fu">exists</span><span class="op">())</span> <span class="op">{</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            dir<span class="op">.</span><span class="fu">mkdir</span><span class="op">();</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">File</span> file <span class="op">=</span> <span class="kw">new</span> <span class="bu">File</span><span class="op">(</span>path<span class="op">,</span> photo<span class="op">.</span><span class="fu">getOriginalFilename</span><span class="op">());</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        photo<span class="op">.</span><span class="fu">transferTo</span><span class="op">(</span>file<span class="op">);</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FileUploadController</span> {</span><br><span class="line"></span><br><span class="line"><span class="comment">//    @RequestMapping(value = "/upload", method = RequestMethod.POST)</span></span><br><span class="line">    <span class="meta">@PostMapping("/upload")</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">String</span> <span class="title function_">up</span><span class="params">(String nickname, MultipartFile photo, HttpServletRequest request)</span> <span class="keyword">throws</span> IOException {</span><br><span class="line">        System.out.println(nickname);</span><br><span class="line">        System.out.println(photo.getOriginalFilename());</span><br><span class="line"><span class="comment">//        System.out.println(System.getProperty("user.dir"));</span></span><br><span class="line">        System.out.println(photo.getContentType());</span><br><span class="line">        <span class="type">String</span> <span class="variable">path</span> <span class="operator">=</span> request.getServletContext().getRealPath(<span class="string">"/upload/"</span>);</span><br><span class="line">        System.out.println(path);</span><br><span class="line">        saveFile(photo, path);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"上传成功"</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">saveFile</span><span class="params">(MultipartFile photo, String path)</span> <span class="keyword">throws</span> IOException {</span><br><span class="line">        <span class="type">File</span> <span class="variable">dir</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path);</span><br><span class="line">        <span class="keyword">if</span>(!dir.exists()) {</span><br><span class="line">            dir.mkdir();</span><br><span class="line">        }</span><br><span class="line">        <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path, photo.getOriginalFilename());</span><br><span class="line">        photo.transferTo(file);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
     </div>
     

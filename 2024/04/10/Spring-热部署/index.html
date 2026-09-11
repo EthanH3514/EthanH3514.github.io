@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="/css/fonts.min.css">
             <link rel="stylesheet" href="/css/particlex.css">
         
-    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -308,14 +308,14 @@ mjx-container[display="true"] + br {
             
             <span class="tag">
                 
-                <a href="/tags/Java/" style="color: #03a9f4">
+                <a href="/tags/Java/" style="color: #ffa2c4">
                     Java
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Spring/" style="color: #ffa2c4">
+                <a href="/tags/Spring/" style="color: #00a596">
                     Spring
                 </a>
             </span>
@@ -336,18 +336,11 @@ mjx-container[display="true"] + br {
 <ol type="1">
 <li>在 <code>pom.xml</code> 里加入依赖 devtools</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;spring-boot-devtools&lt;/<span class="kw">artifactId</span>&gt;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">optional</span>&gt;true&lt;/<span class="kw">optional</span>&gt;</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span></code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ol start="2" type="1">
 <li>在 <code>application.properties</code> 里加入配置信息</li>
 </ol>
-<pre><code># 热部署生效
-spring.devtools.restart.enabled=true
-# 设置重启目录
-spring.devtools.restart.additional-paths=src/main/java</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 热部署生效</span><br><span class="line">spring.devtools.restart.enabled=true</span><br><span class="line"># 设置重启目录</span><br><span class="line">spring.devtools.restart.additional-paths=src/main/java</span><br></pre></td></tr></table></figure>
 <ol start="3" type="1">
 <li>设置 -&gt; 构建、执行、部署 -&gt; 编译器 -&gt; 自动构建项目</li>
 <li>设置 -&gt; 高级设置 -&gt;
