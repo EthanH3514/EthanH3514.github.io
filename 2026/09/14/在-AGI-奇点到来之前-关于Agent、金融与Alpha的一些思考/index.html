@@ -1,0 +1,494 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            在 AGI 奇点到来之前：关于Agent、金融与Alpha的一些思考 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>在 AGI 奇点到来之前：关于Agent、金融与Alpha的一些思考 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2026/9/14
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/AI-Agent/" style="color: #ff7d73">
+                    AI Agent
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/AGI/" style="color: #00bcd4">
+                    AGI
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/量化金融/" style="color: #00bcd4">
+                    量化金融
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Alpha/" style="color: #ff7d73">
+                    Alpha
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/随笔/" style="color: #00a596">
+                    随笔
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>最近看到 Agent
+在数学研究上的一些进展，我突然想到：金融可能会是另一个非常适合 Agent
+Research 的领域。</p>
+<p>数学和金融看起来相距很远，却有一个很相似的地方：它们都可以不断提出假设，再通过某种方式进行验证。</p>
+<p>在数学里，可以提出一个猜想，尝试寻找证明，再交给形式化工具检查；在金融里，则可以提出一个交易假设，寻找数据、编写回测、分析结果，如果不成立，就换一个方向继续尝试。</p>
+<p>当然，两者的验证强度完全不同。一个数学证明一旦成立，在给定公理体系下就是成立的；一次回测成立，只能说明某个策略在过去的数据中表现不错，并不能证明它在未来依然有效。数据挖掘、过拟合、幸存者偏差和交易成本，都可能制造出一个看起来很漂亮、实际上并不存在的
+alpha。</p>
+<p>但如果站在 Agent
+的角度，它们仍然共享一种很重要的结构：<strong>提出假设、调用工具、获得反馈、修正方向，然后继续搜索。</strong></p>
+<span id="more"></span>
+<h2 id="金融为什么适合-agent-research">金融为什么适合 Agent
+Research</h2>
+<p>过去，一个量化研究员验证一个想法，需要自己寻找数据、清洗数据、阅读论文、编写代码、设计回测，再分析结果里是否存在问题。任何一个环节都可能花掉几天甚至几周。</p>
+<p>但这些工作中的很大一部分，本质上都可以被工具化。</p>
+<p>如果 Agent
+能够自主阅读论文和财报，调用数据接口，编写并运行回测，识别常见的数据泄漏和统计陷阱，再根据结果提出下一轮假设，那么过去一个研究员需要很久才能完成的研究循环，未来可能很快就能跑完。</p>
+<p>更重要的是，人类研究受到注意力和时间的限制。一个人能读的论文有限，能测试的因子有限，能理解和维护的策略也有限。Agent
+却可以并行地探索大量方向，而且不需要休息。</p>
+<p>今天的量化研究，更像是研究员借助计算机验证自己的想法；未来的量化研究，可能会变成大量
+Agent 主动提出想法，再让计算机自动完成整个验证闭环。</p>
+<p>到了那个时候，研究的瓶颈也许不再是“有没有人想到这个假设”，而是数据是否可得、验证是否可信，以及策略能否真正容纳资金。</p>
+<h2 id="可搜索的-alpha可能会越来越快地消失">可搜索的
+alpha，可能会越来越快地消失</h2>
+<p>这让我开始怀疑：人类今天还能看到的很多
+alpha，未来可能会以越来越快的速度消失。</p>
+<p>市场里的很多机会未必有多么深奥。它们之所以能够存在，有时只是因为发现和验证它们需要成本。人需要偶然读到一篇论文，需要意识到几组数据之间可能存在联系，还需要花时间把想法写成代码，最后才知道这个规律究竟是真的，还是自己的错觉。</p>
+<p>只要这个过程足够慢，一个已经存在的规律就可能在相当长的时间里没有被充分交易。</p>
+<p>但 Agent 会大幅降低这种搜索成本。如果未来有大量 Agent
+持续扫描新闻、财报、论文、价格和各种公开数据，那么只要一个 alpha
+建立在公开信息上，而且能够被程序化地验证，它被发现可能就只是时间问题。</p>
+<p>而 alpha 一旦被越来越多的人发现，就会被交易本身逐渐抹掉。</p>
+<p>如果大家都知道某个信息意味着价格未来会上涨，就会更早买入；如果都知道某个信号意味着价格将要下跌，就会更早卖出。最终，原本分布在未来一段时间里的收益，会被竞争压缩到信号出现后的极短时间内，甚至直接反映在当下的价格里。</p>
+<p>过去，一个规律也许需要几年才会慢慢失效。以后，它的生命周期可能会以月、天，甚至更短的时间计算。</p>
+<p>Agent
+不一定让市场从此不再犯错，但它很可能让那些<strong>容易观察、容易描述、容易回测、容易交易</strong>的错误越来越难以长期存在。</p>
+<h2 id="市场会变得极其有效吗">市场会变得极其有效吗</h2>
+<p>如果未来不只是少数顶级机构，而是整个量化行业都有大量 Agent
+在持续研究，那么市场可能会变得比今天有效得多。</p>
+<p>新闻刚刚出现，Agent
+已经完成信息提取和影响分析；财报刚刚发布，模型已经更新估值和预期；一个新的统计规律刚刚形成，很快就会有大量系统同时发现并开始交易。</p>
+<p>那时候，一个普通人或者普通研究员想靠分析公开信息，长期获得稳定超额收益，可能会变得越来越困难。不是因为人类不再能够理解市场，而是因为理解之后再行动，已经太慢了。</p>
+<p>不过，Agent
+带来的也不一定只有更准确的市场。它们也可能以前所未有的速度制造“伪
+alpha”。当成千上万个假设被同时测试，总会有一些策略仅仅因为偶然性表现得异常漂亮。如果研究系统无法严格处理多重检验、样本外验证、市场冲击和策略拥挤，那么
+Agent 只是把过去的数据挖掘放大成了工业化的数据挖掘。</p>
+<p>而且，金融市场与数学还有一个根本区别：市场会对研究结果作出反应。</p>
+<p>一个数学猜想不会因为越来越多人尝试证明它，就改变自己的真假；一个交易规律却可能因为越来越多人相信和使用它，而被削弱、消失，甚至反转。Agent
+不只是在观察一个既定世界，它们的交易也会不断改变自己正在研究的世界。</p>
+<p>所以未来的市场可能同时变得更有效，也变得更快、更拥挤、更具有反身性。</p>
+<h2 id="最后留下来的也许本来就不是免费的钱">最后留下来的，也许本来就不是“免费的钱”</h2>
+<p>沿着这个思路继续想，我会想到一个更极端的结果：最终能够长期存在的
+alpha，也许本来就不是“免费的钱”。</p>
+<p>如果一个机会很容易发现，风险又很低，那么大量 Agent
+和资本一定会迅速进入，把收益压到接近消失。能够长期保留下来的额外收益，很可能恰恰是因为它背后存在某种无法轻易消除的风险，或者某种不是所有资金都能跨越的约束。</p>
+<p>例如承担流动性风险、尾部风险和杠杆风险，在市场恐慌时提供资金，忍受长期回撤，或者持有一个短期内随时可能看起来“完全错误”的头寸。</p>
+<p>这些事情即使所有人都知道，也不是所有人都愿意做，更不是所有人都有能力一直做下去。</p>
+<p>投资者可能知道某类资产长期存在额外收益，却承受不了中间数年的回撤；机构可能知道危机时提供流动性能够获得补偿，却受到赎回、杠杆和风控约束；策略可能在统计意义上有效，却因为容量有限、交易成本过高而无法容纳更多资本。</p>
+<p>这时获得的额外收益，与其说来自一个尚未被发现的秘密，不如说是对风险、耐心、资本约束和流动性供给的补偿。</p>
+<p>这样一来，所谓 alpha 和 risk premium 的边界可能会越来越模糊。</p>
+<p>如果一种收益能够稳定存在，也许不是因为人类还没有发现它，而是因为即使所有人都知道它，也不是所有人都愿意或者有能力承担它背后的代价。</p>
+<h2 id="被消灭的不会是所有收益">被消灭的不会是所有收益</h2>
+<p>从这个角度看，大量 Agent 进入金融市场以后，真正被消灭的也许不是所有
+alpha，而是那些人类能够轻易观察、理解并且低风险套利的 alpha。</p>
+<p>剩下的收益会越来越接近一种平衡：你想获得多少额外收益，就必须承担与之对应的风险、约束或者不确定性。市场不会再留下太多明显的错误价格，安静地等待人去捡。</p>
+<p>这并不意味着未来所有投资者都只能获得完全相同的回报。有人拥有更独特的数据，有人拥有更低的交易成本，有人能够承担别人无法承担的风险，也有人能够把
+Agent、数据、执行和风控组织成一个更好的系统。这些差异依然可能产生收益。</p>
+<p>只是到了那时，竞争的重点也许不再是“我发现了一个别人没注意到的公开规律”，而是：谁能更早获得可靠信息，谁能更严格地区分真实规律与统计幻觉，谁能更快完成从研究到交易的闭环，以及谁能承受一个策略真正要求承担的风险。</p>
+<p>Agent
+会降低思考和实验的成本，却不会让资本约束、市场冲击和不确定性凭空消失。</p>
+<h2 id="在那个时代真正到来之前">在那个时代真正到来之前</h2>
+<p>我不知道这种状态距离现在还有多久，也不知道金融市场最终能有效到什么程度。</p>
+<p>也许现实远比这个推演复杂。公开数据并不总是干净，市场制度不断变化，人的情绪不会消失，Agent
+之间也可能形成新的共振和盲点。旧的低效被消灭以后，新的低效仍然可能不断出现。</p>
+<p>但如果 Agent Research
+真的沿着现在表现出来的趋势继续发展，我觉得金融一定会成为受影响最深的领域之一。因为这里有海量数据，有明确反馈，有直接的经济激励，也有无数可以被提出和验证的假设。</p>
+<p>也许未来回头看，现在仍然是一个很特殊的时期：人类还可以自己寻找规律、编写策略、运行回测，并期待从公开市场里找到一些没有被充分利用的东西。</p>
+<p>而以后，市场里可能会有无数 Agent，永远不休息地寻找同样的东西。</p>
+<p>在 AGI 的奇点真正到来以前，金融市场也许会先经历一次属于 Agent
+的奇点。</p>
+<p>我想在那个时代真正到来之前，把这个想法先记下来。</p>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>
