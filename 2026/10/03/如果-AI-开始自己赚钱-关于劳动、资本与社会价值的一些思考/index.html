@@ -1,0 +1,551 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>
+            如果 AI 开始自己赚钱：关于劳动、资本与“社会价值”的一些思考 | Hxy(慌糖盐)
+        </title>
+        <meta name="author" content="EthanH3514">
+        <meta name="description" content="不能再逃避">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://user-images.githubusercontent.com/103171084/250282211-20100fa2-b869-4d9c-afe6-e7f1f1733b96.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.33/dist/vue.global.prod.js"></script>
+        <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+        ></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="/js/firework.min.js"></script>
+        
+            <link rel="stylesheet" href="/css/fonts.min.css">
+            <link rel="stylesheet" href="/css/particlex.css">
+        
+    <meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="hxy(慌糖盐)" type="application/atom+xml">
+</head>
+                
+    <body>
+        <!-- <div id="L2dCanvas"></div> -->
+        <!-- <script src="/js/live2d.min.js"></script>
+        <script src="/css/live2d.css"></script>
+        <script>
+            var v = new Viewer({
+                width: 240,
+                height: 325,
+                right: "0",
+                bottom: "0",
+                basePath: "/model",
+                role: "<model-name>",
+                mobile: true,
+            });
+        </script> -->
+        <!-- <div id="cursor"></div> -->
+        <!-- <script src="../source/css/cursor.css"></script>
+        <script src="../source/js/cursor.js"></script> -->
+        
+        <!-- <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out">
+            <div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center">
+                <div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center">
+                    <div>
+                        <h2>LOADING...</h2>
+                        <p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p>
+                        <div><img alt="loading" src="/loading.gif"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <script src="../source/js/background.js"></script> -->
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">hxy(慌糖盐)</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/friends">
+            <i class="fa-solid fa-user-group fa-fw"></i>
+            <span>&ensp;friends</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;hxy(慌糖盐)</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/friends">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-user-group fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">friends</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>如果 AI 开始自己赚钱：关于劳动、资本与“社会价值”的一些思考 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2026/10/3
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/AI-Agent/" style="color: #00a596">
+                    AI Agent
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/AGI/" style="color: #03a9f4">
+                    AGI
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/随笔/" style="color: #ffa2c4">
+                    随笔
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/AI/" style="color: #ff7d73">
+                    AI
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/社会/" style="color: #ffa2c4">
+                    社会
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <p>今天突然想到一个有点可怕的问题：如果有一天，AI
+可以自己赚钱了，会发生什么？</p>
+<p>这里说的“自己赚钱”并不是 AI
+有了自我意识，自己想要钱，也不是科幻电影里 AI
+突然产生了欲望。可能只需要人类给它一个非常宽泛的目标，比如“在某个领域持续研究，寻找能够稳定赚钱的机会，然后去执行”。之后，它自己找资料、提出假设、写代码、做实验、回测、部署、处理异常，再根据结果继续迭代。如果这一整条链条都不再需要人类持续参与，那么我感觉，一个非常重要的变化就发生了。</p>
+<p>现在的 AI
+本质上还是一个工具。它确实很强，可以让一个程序员写更多代码，让研究员读更多论文，让交易员分析更多市场，但
+AI
+创造出来的价值仍然很大程度上依附于使用它的人。人给它目标，人判断结果，人把它接入现实世界。但如果有一天，人只需要给一个模糊的方向，AI
+就可以持续寻找机会并产生经济收益，那么即使它完全没有自我意识，它似乎也已经获得了一种相当独立的“社会生产能力”。我觉得，这个节点甚至可能远远早于真正意义上的
+AGI 或者机器意识。</p>
+<span id="more"></span>
+<h2 id="ai-开始赚钱">AI 开始赚钱</h2>
+<p>以前想到 AI 威胁人类，很容易想到一种科幻式场景：AI
+产生自我意识，然后开始和人类争夺控制权。但现在我越来越觉得，真正影响社会结构的节点根本不需要走到这里。</p>
+<p>假设一家企业原来需要 1000 个人工作，后来 AI 足够强了，10
+个人加上一大堆 Agent 就能完成以前 1000 个人的工作。甚至再往后，这 10
+个人主要做的事情也只是给系统设定一些最高层的目标。那么问题不是 AI
+有没有意识，而是：<strong>拥有这套 AI
+系统的人，已经越来越不需要其他人了。</strong></p>
+<p>过去，人虽然只是生产体系中的一个要素，但至少劳动本身是一种筹码。企业需要工程师、工厂需要工人、国家需要大量人参与经济活动。普通人的收入、社会地位和政治影响力，至少有一部分来自一个非常朴素的事实：整个系统需要人。但如果
+AI
+可以承担越来越多的劳动，甚至连研究、创新和管理都可以逐渐自动化，那么这个前提可能开始松动。这比“AI
+抢走几个岗位”严重得多。真正的问题可能是：<strong>当社会不再需要大多数人的劳动之后，大多数人靠什么获得对社会产出的分配权？</strong></p>
+<h2 id="社会价值">社会价值</h2>
+<p>当然，我并不觉得人应该按照一种统一尺度衡量所谓的“价值”。一个人有没有资格过好的生活，不应该取决于他是不是比机器更擅长写代码、做设计或者算数学题。但市场不是按照这个逻辑运行的。今天大多数普通人能够获得资源，一个最直接的方式就是出售自己的劳动。我工作，公司给我工资。我之所以能拿到工资，并不是因为公司认为“我是一个人，所以应该给我资源”，而是因为我的劳动能为它产生更多收益。</p>
+<p>这意味着，如果人的生产价值下降，而主要的分配方式仍然是劳动换取收入，那么问题就出现了。甚至会出现一个很奇怪的结果：假设未来一个普通人和一个拥有大量
+AI 资产的人都不参与具体生产，两个人都没有 AI
+工作得快，但是后者仍然可以通过拥有服务器、模型、公司股权或者其他生产性资产持续获得收入，而前者却可能失去收入来源。</p>
+<p>所以这里真正重要的可能并不是“谁更有社会价值”，而是：<strong>谁拥有对
+AI 产生的产出的索取权？</strong> 这两个问题其实完全不同。</p>
+<h2 id="资本与创新">资本与创新</h2>
+<p>我以前会觉得，资本主义虽然天然存在财富积累的正反馈，但过去几百年社会总体上并没有彻底固化。一个可能的原因是，科技一直在创造新的变量。一个年轻人即使没有很多资本，也可能掌握一种新的技术，做出一种以前不存在的产品。新的公司可以击败旧公司，新产业可以替代旧产业，技术创新本身不断制造新的机会。</p>
+<p>当然，过去的科技发展从来没有真正脱离资本，工业革命、大型实验室、半导体、互联网都需要大量投资，所以不能简单说过去的科技和资本没关系。但
+AI
+可能带来一个程度上的变化：<strong>资本不仅可以购买机器和劳动，未来还可能直接购买研究能力和创新能力。</strong></p>
+<p>假设一个人拥有 100 万美元算力，另一个组织拥有 100
+亿美元算力。以前多出来的钱可以买更多工程师，但工程师本身仍然是独立的、有不同想法的人。未来如果研究本身也高度
+Agent 化，那么更多资本可能意味着更多 Agent
+并行研究、更多实验、更多训练、更多策略搜索、更快验证失败的方向，也更快发现新的赚钱机会。然后新的收益又能够购买更多算力，于是就可能出现一条反馈：</p>
+<blockquote>
+<p>资本 → AI 能力 → 研究与生产优势 → 更多资本 → 更强 AI 能力</p>
+</blockquote>
+<p>这也是我觉得 AI
+和以前的自动化有一点不一样的地方。以前的机器主要是在替代“执行”，AI
+最终可能连“寻找下一种机器应该做什么”这件事情本身都一起自动化。</p>
+<h2 id="开源">开源</h2>
+<p>第一反应可能是：那把 AI
+开源不就好了？如果每个人都有一个很强的开源模型，就不存在少数公司控制智能的问题了。但仔细想，好像也没有这么简单。</p>
+<p>如果所有人都有一个同样强的模型，那么这个模型提供的能力会迅速变成市场的基础能力。就像今天所有程序员都会使用搜索引擎，这并不会让“会使用搜索引擎”本身变成一种长期竞争优势。如果所有人都有一个可以自动写代码、自动研究市场的
+Agent，那么“拥有这个
+Agent”也可能只是新的入场券。真正决定竞争结果的东西会继续向后移动：谁有更多算力，谁有更多数据，谁有更多资本，谁可以承担更长时间的亏损，谁拥有更多用户和渠道，谁可以同时运行更多实验。</p>
+<p>而且开源模型本身也不一定长期处在最前沿。即使某一个时间点出现了非常强的开源模型，只要训练最前沿模型仍然需要巨量资本，那么资源更多的机构仍然有机会继续往前推进。所以开源当然很重要，它至少意味着很多能力不必完全依赖少数公司的许可，也能够降低进入门槛，但它似乎不能单独解决这个问题。<strong>模型能力是否开放，和生产性资产是否广泛分布，是两个不同的问题。</strong></p>
+<h2 id="市场竞争">市场竞争</h2>
+<p>另一个常见想法是：只要市场仍然有竞争，就不可能由一家公司永远垄断。我觉得这个说法可能是对的，但它没有完全回答我的担忧。</p>
+<p>因为即使未来有一百家 AI
+公司激烈竞争，任何一家都无法长期垄断技术，也可能出现另一种情况：这 100
+家公司的生产都高度自动化。它们互相竞争得非常激烈，产品价格也很低，技术进步非常快，但这些公司的所有权仍然只属于一小部分拥有资产的人。那么，<strong>企业之间存在充分竞争，并不等于劳动者仍然拥有足够的议价能力。</strong></p>
+<p>也就是说，需要分开两个问题：一个是“会不会有一家公司垄断
+AI”，另一个是“AI
+时代的大部分产出最终归谁”。第一个问题即使解决了，第二个问题仍然可能存在。</p>
+<h2 id="议价能力">议价能力</h2>
+<p>如果只是失业，其实反而没有那么可怕。假设 AI
+把所有工作都做了，人类每天什么都不用干，却仍然可以获得住房、食物、医疗、娱乐和教育，那甚至可能是一件很好的事情。真正让我不安的是另一种可能：<strong>人失去了劳动价值，但社会的分配机制仍然建立在劳动之上。</strong></p>
+<p>于是很自然就会想到：那未来给所有人发钱不就好了？比如全民基本收入，或者由某种公共基金持有
+AI
+时代的生产资产，然后把收益分给所有人。从纯粹生产能力上看，这当然可能做到。如果
+AI
+能够创造极其丰富的商品和服务，养活所有人的物质成本甚至可能比今天更低。</p>
+<p>但问题不是“能不能”，而是：<strong>为什么要？</strong>
+假设到了那个时候，大多数普通人已经无法通过罢工、跳槽、拒绝提供劳动等方式影响生产。AI
+负责生产，AI 负责研发，AI 负责基础设施，甚至越来越多组织管理工作也由 AI
+承担。那么普通人原本拥有的一种非常重要的力量——“社会需要我的参与”——可能已经消失了。</p>
+<p>于是问题就从经济学变成了权力问题：谁决定发多少钱？谁保证明年还发？如果规则改变了，普通人有没有能力阻止？如果资源控制者根本不再需要多数人的劳动，那么多数人的利益为什么一定会得到保护？我觉得“未来
+AI
+很强，所以政府自然会发钱”这句话跳过了最关键的一步。<strong>资源足够多，并不等于资源一定会被分配给每一个人。</strong></p>
+<h2 id="权利">权利</h2>
+<p>假设未来每个人每个月都能领一笔钱，但这笔钱完全来自一个无法影响的机构。今天发
+10000，明天可以改成
+5000，后天可以附加新的条件，再往后甚至可以取消。那么即使短期生活没有问题，这种状态仍然和真正拥有一部分生产资料的收益权很不一样。</p>
+<p>所以后来我觉得，未来真正重要的东西可能至少有三层：第一层是生存资源，人不参与生产之后，是否仍然能够获得维持体面生活所需要的资源；第二层是稳定的收益权，这种资源不是某个掌权者心情好所以赏给你的，而是一种相对稳定、可以主张的制度性权利；第三层是对规则本身的影响力，人是否仍然能够决定这些资源怎样分配，能否监督掌握生产系统的人，以及能否在制度出问题之后纠正它。</p>
+<p>如果只有第一层，而没有后两层，那么人的处境仍然可能非常脆弱。</p>
+<h2 id="奇点之前">奇点之前</h2>
+<p>想到这里之后，我一度会产生一种很悲观的感觉：是不是必须在 AI
+足够强之前，把社会制度调整好？否则等普通人的劳动价值消失以后，就再也没有力量要求改变了。</p>
+<p>我现在觉得，这个想法有一部分是对的，但不能把它理解成一个明确的倒计时。应该不存在某一天：“2029
+年 6 月 1 日之前还能改革，6 月 2 日 AGI
+出现，从此一切锁死。”真实过程大概率是渐进的。AI
+首先替代一部分任务，然后减少某些岗位，再提高少数人的管理跨度，再自动化研究过程，再让资本能够以越来越低的边际成本复制“数字劳动者”。在这个过程中，劳动议价能力、财富结构和政治影响力都可能慢慢发生变化。</p>
+<p>真正危险的可能不是一个瞬间的“奇点”，而是一个正反馈：</p>
+<blockquote>
+<p>AI 让资源更加集中 → 资源集中使少数人可以获得更强的 AI → 更强的 AI
+又降低他们对其他人的依赖 → 其他人的议价能力进一步下降</p>
+</blockquote>
+<p>如果这条链条成立，那么越往后调整制度可能确实越困难，因为问题本身正在削弱解决问题的人所拥有的力量。所以，与其问“AGI
+到来的最后期限是哪一年”，也许更应该问：<strong>社会在什么时候开始失去纠错能力？</strong>
+这可能才是真正的临界点。</p>
+<h2 id="五年之后">五年之后</h2>
+<p>按照现在 AI 的发展速度，我感觉未来五年，也就是大约到 2031
+年，可能会让这个问题清晰很多。这并不是说五年之后一定出现
+AGI，更不是说五年是某种已经确定的制度截止日期，而是很多现在仍然无法判断的问题，到那个时候可能会开始有现实答案。</p>
+<p>比如：AI
+到底是在创造大量新的、人类仍然有优势的工作，还是逐渐可以连新任务一起接管？一个很小的团队借助
+AI，是否真的可以和大公司竞争，还是说最强 AI 反而需要越来越庞大的资本？AI
+带来的生产率增长，最终主要变成了更低的商品价格、更短的工作时间和更高的普通人收入，还是更多变成资产所有者的收益？当一个公司使用越来越少的人就可以产生越来越大的产出时，劳动收入在整个经济中的地位又会发生什么变化？</p>
+<p>这些东西可能比“某个模型 benchmark
+又提高了多少”更值得观察。因为真正决定未来社会形态的，不只是 AI
+到底有多聪明，而是：<strong>AI 的能力最终被谁拥有，以及 AI
+创造出来的东西最终怎样分配。</strong></p>
+<h2 id="制度">制度</h2>
+<p>顺着这个问题继续想，很容易变成：资本主义会让资本越来越集中，那是不是只能彻底改变整个社会结构？然后又会想到历史上的各种尝试，以及高度集中的公共权力本身也可能带来的问题。</p>
+<p>但后来我觉得，把问题直接压缩成“资本主义 vs
+共产主义”可能过于简单了。因为真正需要解决的至少是几件相互独立的事情：生产能力是否能够被广泛获得，生产产生的收益是否能够被广泛分享，控制这些生产能力的人是否能够被监督，普通人是否拥有稳定的权利，掌握公共资源的机构本身又由谁约束。</p>
+<p>即使把所有 AI
+公司变成公共机构，如果普通人仍然无法影响管理这些机构的人，问题可能只是从一种形式变成了另一种形式。反过来，即使仍然存在市场和私人公司，也不代表所有
+AI
+产生的收益只能通过工资这一条渠道分配。所以真正困难的似乎不是给现有制度贴一个新的名字，而是如何让一个高度自动化的社会里，人即使不再是重要的生产要素，也不会因此失去对社会的参与权和资源权。</p>
+<h2 id="ai-对齐">AI 对齐</h2>
+<p>以前说 AI Alignment，我想到的通常是：AI
+会不会按照人类的目标行动？会不会欺骗人类？会不会突然获得权力然后反过来控制人类？现在感觉还存在另一种很奇怪的情况。</p>
+<p>AI 可以完全听话，每一个 Agent 都忠实执行主人的目标，没有任何 AI
+造反，甚至没有任何 AI
+拥有真正意义上的意识，最后人类社会仍然可能发生巨大的权力变化。因为最重要的问题变成了：<strong>AI
+在听谁的话？</strong></p>
+<p>如果一个高度自动化的生产系统只需要对极少数所有者负责，那么 AI
+越对齐这些所有者的目标，它执行这些目标的能力反而越强。所以“AI
+是否服从人类”可能是一个过于粗糙的问题。人类不是一个拥有完全相同利益的整体，技术能力怎样进入现有的经济结构，可能和技术能力本身一样重要。</p>
+<h2 id="最后">最后</h2>
+<p>我不知道未来到底会不会走向这种方向，也不觉得“赛博朋克
+2077”一样的世界已经是确定的结局。这里面还有很多没有确定的变量：AI
+能够替代人类到什么程度，技术是否会持续扩散，算力和模型的成本会不会快速下降，新的工作会不会继续出现，生产性资产会不会越来越集中，社会制度又会怎样调整。</p>
+<p>但我现在越来越觉得，有一个问题不能等真正的 AGI
+到来之后再开始讨论：<strong>如果有一天社会已经不再需要大多数人的劳动，我们希望一个人凭什么获得属于自己的那一部分社会资源？</strong></p>
+<p>今天我们默认的答案是：工作。但这个答案并不是自然规律，它只是在人类劳动仍然非常重要的时代里形成的一套分配方式。如果
+AI 最终改变了这个前提，那么社会可能迟早需要找到新的答案。</p>
+<p>而最危险的情况也许并不是 AI
+突然变成了一个敌人，而是它始终只是一个极其优秀、极其听话的工具。只是有一天，大多数人突然发现：<strong>拥有这个工具的人，已经不再需要自己了。</strong></p>
+
+    </div>
+    
+    <link rel="stylesheet" href="/css/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
+    
+</div>
+
+                             
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+        <div>
+            © 2022 - 2026 hxy(慌糖盐)
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @EthanH3514
+        </div>
+        <div></div>
+            <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <div id="gitalk-container"></div>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+    <script src="/js/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script>
+    var clientID = "23f0df4264a2b90dc8ac", clientSecret = "e8cf190afca1e20024d83eaa71d6b4f9818b11f6";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "gittalk_comments",
+        owner: "EthanH3514",
+        admin: ["EthanH3514"],
+        language: "zh-CN",
+        id: md5(window.location.pathname),
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+
+    </body>
+
+    </html>
